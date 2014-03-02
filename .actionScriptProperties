@@ -61,7 +61,7 @@
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="com.qnx.flexide.multiplatform.qnx.platform" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
-    <buildTarget airDownloadURL="" androidSettingsVersion="1" buildTargetName="com.adobe.flexide.multiplatform.android.platform">
+    <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="1" buildTargetName="com.adobe.flexide.multiplatform.android.platform">
       <airSettings airCertificatePath="C:/Users/Mohammad/Desktop/SignAndroid.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>

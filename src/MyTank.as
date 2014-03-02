@@ -1,13 +1,16 @@
 package 
 {
 	import flash.display.Sprite;
+	import flash.geom.Rectangle;
+	import flash.system.Capabilities;
+	
+	import ir.baazino.mytank.game.Game;
 	
 	import mx.core.FlexGlobals;
 	
 	import starling.core.Starling;
-	import ir.baazino.mytank.game.Game;
 
-	[SWF(frameRate="60", width="480", height="720", backgroundColor="#ffffff")]
+	[SWF(frameRate="60", backgroundColor="#ffffff")]
 	public class MyTank extends Sprite
 	{
 		private var strling:Starling;
@@ -15,7 +18,10 @@ package
 		public function MyTank()
 		{
 			Starling.multitouchEnabled = true;
-			strling = new Starling(Game, stage);
+			var viewPortRectangle:Rectangle = new Rectangle();
+			viewPortRectangle.width = Capabilities.screenResolutionX;
+			viewPortRectangle.height = Capabilities.screenResolutionY;
+			strling = new Starling(Game, stage, viewPortRectangle);
 			strling.antiAliasing = 1;
 			strling.showStats = true;
 			strling.start();
