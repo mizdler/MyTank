@@ -107,9 +107,10 @@ package ir.baazino.mytank.game.element
 							thumbShape.y = thumbShape2.y;
 						}
 						
-						if(distance > minRadius)
+						if(distance > minRadius){
 							info.isMoving = true;
-						info.rotation = angle + Math.PI/2;
+							info.rotation = angle + Math.PI/2;
+						}
 						
 					}
 					else if(touch.phase == TouchPhase.ENDED){
