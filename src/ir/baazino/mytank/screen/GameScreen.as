@@ -2,11 +2,9 @@ package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-	import feathers.themes.MetalWorksMobileTheme;
 	
 	import flash.utils.Dictionary;
 	
-	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.game.Field;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
@@ -15,8 +13,6 @@ package ir.baazino.mytank.screen
 	import nape.phys.Body;
 	import nape.space.Space;
 	
-	import starling.display.Shape;
-	import starling.display.Sprite;
 	import starling.events.Event;
 
 	public class GameScreen extends Screen
