@@ -4,8 +4,6 @@ package
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
 	
-	import ir.baazino.mytank.game.Game;
-	
 	import mx.core.FlexGlobals;
 	
 	import starling.core.Starling;
@@ -21,7 +19,7 @@ package
 			var viewPortRectangle:Rectangle = new Rectangle();
 			viewPortRectangle.width = Capabilities.screenResolutionX;
 			viewPortRectangle.height = Capabilities.screenResolutionY;
-			strling = new Starling(Game, stage, viewPortRectangle);
+			strling = new Starling(Starter, stage, viewPortRectangle);
 			strling.antiAliasing = 1;
 			strling.showStats = true;
 			strling.start();

@@ -1,9 +1,16 @@
-package ir.baazino.mytank.game
+package ir.baazino.mytank.screen
 {
-	import ir.baazino.mytank.game.element.JoyStick;
-	import ir.baazino.mytank.game.element.Player;
+	import feathers.controls.Button;
+	import feathers.controls.Screen;
+	import feathers.themes.MetalWorksMobileTheme;
 	
 	import flash.utils.Dictionary;
+	
+	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.game.Field;
+	import ir.baazino.mytank.game.element.JoyStick;
+	import ir.baazino.mytank.game.element.Player;
+	import ir.baazino.mytank.helper.Screens;
 	
 	import nape.phys.Body;
 	import nape.space.Space;
@@ -12,7 +19,7 @@ package ir.baazino.mytank.game
 	import starling.display.Sprite;
 	import starling.events.Event;
 
-	public class Game extends Sprite
+	public class GameScreen extends Screen
 	{
 		private var field:Field;
 		private var controller:JoyStick;
@@ -22,7 +29,7 @@ package ir.baazino.mytank.game
 		
 		private var space:Space = new Space();
 
-		public function Game()
+		public function GameScreen()
 		{
 			super();
 			playersLen = 0;
@@ -43,10 +50,28 @@ package ir.baazino.mytank.game
 			addPlayer();
 			
 			addController();
+			
+			addButtons();
 
 			addToSpace();
-
+			
 			addEventListener(Event.ENTER_FRAME, loop);
+		}
+		
+		private function addButtons():void
+		{
+			var btnStart:Button = new Button();
+			btnStart.label = "Back";
+			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
+			addChild(btnStart);
+			btnStart.validate();
+			btnStart.x = (stage.stageWidth - btnStart.width)/2;
+			btnStart.y = (stage.stageHeight - btnStart.height);			
+		}
+		
+		private function btnStartClickHandler():void
+		{
+			owner.showScreen(Screens.mainMenuId);
 		}
 		
 		private function addPlayer():void
@@ -64,7 +89,6 @@ package ir.baazino.mytank.game
 			addChild(controller);
 		}
 		
-
 		private function addToSpace():void
 		{
 			for (var i:int = 0; i < field.cell_count; i++)

@@ -9,8 +9,7 @@ package ir.baazino.mytank.connection
 	public class TCPClient
 	{
 		private var socket:Socket;
-		[Bindable]
-		public static var traceMsg:String = "Client:\n";
+		public var date:Date;
 		
 		public function TCPClient(serverIP:String)
 		{
@@ -19,45 +18,29 @@ package ir.baazino.mytank.connection
 			socket.addEventListener(Event.CONNECT, onConnect);
 			socket.addEventListener(Event.CLOSE, onClose);
 			socket.addEventListener(IOErrorEvent.IO_ERROR, onError);
-			socket.addEventListener(ProgressEvent.SOCKET_DATA, onReceived);
+			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive);
 			socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
 			
 			socket.connect(serverIP, ConnectionConfig.PORT);
+			Starter.textLog.text += "connecting to server : " + serverIP + " ...\n";
 			
 			trace("connected to server " + serverIP);
-			traceMsg += "connected to server " + serverIP + "\n";
 		}
 		
 		private function onConnect(e:Event):void 
 		{
-			socket.writeUTFBytes("salam server");
+			Starter.textLog.text += "connected to server!" + "\n";
+			socket.writeUTFBytes("hi server!");
 			socket.flush();
-			traceMsg += "message sent\n";
-		}
-		
-		private function onClose(e:Event):void 
-		{
-			socket.close();
-			traceMsg += "socket closed\n";
-		}
-		
-		private function onError(e:IOErrorEvent):void 
-		{
-			trace("IO Error: "+e);
-			traceMsg += "IO Error: " + e + "\n";
-		}
-		
-		private function onSecError(e:SecurityErrorEvent):void 
-		{
-			trace("Security Error: "+e);
-			traceMsg += "Security Error: " + e + "\n";
 		}
 		
 		private function onReceived(e:ProgressEvent):void {
+			date = new Date();
+			Starter.textLog.text += date.milliseconds + "\n";
 			if (socket.bytesAvailable>0) {
 				var msg:String = socket.readUTFBytes(socket.bytesAvailable);
 				trace(msg);
-				traceMsg += "received: " + msg + "\n";
+				Starter.textLog.text += "received: " + msg + "\n";
 			}
 		}
 		
@@ -66,5 +49,25 @@ package ir.baazino.mytank.connection
 			socket.writeUTFBytes(msg); 
 			socket.flush(); 
 		}
+		
+		private function onClose(e:Event):void 
+		{
+			socket.close();
+			Starter.textLog.text += "socket closed\n";
+		}
+		
+		private function onError(e:IOErrorEvent):void 
+		{
+			trace("IO Error: "+e);
+			Starter.textLog.text += "IO Error: " + e + "\n";
+		}
+		
+		private function onSecError(e:SecurityErrorEvent):void 
+		{
+			trace("Security Error: "+e);
+			Starter.textLog.text += "Security Error: " + e + "\n";
+		}
+		
+
 	}
 }
