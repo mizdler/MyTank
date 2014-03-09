@@ -1,5 +1,6 @@
 package ir.baazino.mytank.connection
 {
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
@@ -15,10 +16,10 @@ package ir.baazino.mytank.connection
 		private var serverSocket:ServerSocket; 
 		private var clientSocket:Socket;
 		
-		public function TCPServer(serverIP:String) 
+		public function TCPServer() 
 		{ 
 			try 
-			{ 
+			{
 				var socketSupported:Boolean = ServerSocket.isSupported;
 				var UDPSupported:Boolean = DatagramSocket.isSupported;
 				
@@ -26,19 +27,21 @@ package ir.baazino.mytank.connection
 				Starter.textLog.text += "UDPSupported: " + UDPSupported + "\n";
 				
 				serverSocket = new ServerSocket(); 
+				if(serverSocket.bound)
+					trace("bounded");
 				
-				serverSocket.addEventListener( Event.CONNECT, connectHandler ); 
-				serverSocket.addEventListener( Event.CLOSE, onClose ); 
+				serverSocket.addEventListener(Event.CONNECT, connectHandler); 
+				serverSocket.addEventListener(Event.CLOSE,onClose); 
 				
-				serverSocket.bind( ConnectionConfig.PORT ); 
-				
+				serverSocket.bind(ConnectionConfig.PORT); 
 				serverSocket.listen(); 
 				trace( "Listening on " + serverSocket.localPort ); 
 				Starter.textLog.text += "Listening on " + serverSocket.localPort + "\n";
 				
 			} 
-			catch(e:SecurityError) 
-			{ 
+			catch(e:ErrorEvent) 
+			{
+				Starter.textLog.text += e.text + "\n";
 				trace(e); 
 			} 
 		} 
@@ -93,8 +96,17 @@ package ir.baazino.mytank.connection
 		
 		public function sendMsg(msg:String):void
 		{
+			if(clientSocket == null)
+				return;
 			clientSocket.writeUTFBytes(msg); 
 			clientSocket.flush(); 
+		}
+		public function closeSocket():void
+		{
+			if(clientSocket != null)
+				clientSocket.close();
+			if(serverSocket != null)
+				serverSocket.close();
 		}
 	}
 }

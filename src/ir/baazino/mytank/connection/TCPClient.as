@@ -47,7 +47,7 @@ package ir.baazino.mytank.connection
 		public function sendMsg(msg:String):void
 		{
 			socket.writeUTFBytes(msg); 
-			socket.flush(); 
+			socket.flush();
 		}
 		
 		private function onClose(e:Event):void 
@@ -58,7 +58,7 @@ package ir.baazino.mytank.connection
 		
 		private function onError(e:IOErrorEvent):void 
 		{
-			trace("IO Error: "+e);
+			trace("IO Error: " + e);
 			Starter.textLog.text += "IO Error: " + e + "\n";
 		}
 		
@@ -69,5 +69,9 @@ package ir.baazino.mytank.connection
 		}
 		
 
+		public function closeSocket():void
+		{
+			socket.close();
+		}
 	}
 }

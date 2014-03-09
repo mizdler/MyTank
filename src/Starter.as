@@ -33,6 +33,7 @@ package
 		{
 			new MetalWorksMobileTheme;
 			textLog = new TextArea();
+			textLog.isEditable = false;
 			textLog.width = stage.stageWidth;
 			textLog.height = stage.stageHeight * 0.9;
 			

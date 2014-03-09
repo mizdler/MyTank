@@ -5,6 +5,7 @@ package ir.baazino.mytank.screen
 	
 	import flash.utils.Dictionary;
 	
+	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.game.Field;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
@@ -101,6 +102,7 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
+			ConnectionManager.sendTCP("upda/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation); 
 			space.liveBodies.foreach(updateGraphics);
 		}
 
