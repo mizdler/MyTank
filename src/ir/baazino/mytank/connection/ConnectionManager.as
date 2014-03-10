@@ -15,14 +15,17 @@ package ir.baazino.mytank.connection
 	import flash.net.Socket;
 	import flash.sampler.NewObjectSample;
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
 	import ir.baazino.mytank.connection.TCPClient;
 	import ir.baazino.mytank.connection.TCPServer;
+	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.ANE;
+	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.HOTSPOT_STATE;
-	import ir.baazino.mytank.helper.Screens;
+	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.ServerMethods;
 	import ir.baazino.mytank.screen.GameScreen;
 	
@@ -42,7 +45,10 @@ package ir.baazino.mytank.connection
 		
 		private static var server:TCPServer;
 		private static var client:TCPClient;
-		private static var another:Object;
+		
+		public static var infoMap:Dictionary = new Dictionary;
+		public static var idGen:Number = 1;
+		public static var myId:Number = 0;
 		
 		public function ConnectionManager()
 		{
@@ -55,19 +61,20 @@ package ir.baazino.mytank.connection
 			Starter.textLog.invalidate();
 			ANE.wifi.joinHotspot();
 			
-			var checkDelay:Timer = new Timer(1000);
-			checkDelay.addEventListener(TimerEvent.TIMER, checkHotspot);
-			checkDelay.start();
+			var checkTimer:Timer = new Timer(1000);
+			checkTimer.addEventListener(TimerEvent.TIMER, checkHotspot);
+			checkTimer.start();
 			
 			function checkHotspot(event:TimerEvent):void
 			{
 				if(ANE.wifi.isWifiConnected())
 				{
-					checkDelay.stop();
+					checkTimer.stop();
 					Starter.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
 					var splited:Array = dhcpInfo.split("/");
 					Starter.textLog.text += "ServerIP : " + splited[0] + "\n";
+					Starter.textLog.text += "ClientIP : " + splited[1] + "\n";
 					client = new TCPClient(splited[0]);
 				}
 			}
@@ -83,9 +90,9 @@ package ir.baazino.mytank.connection
 			trace("Activating Hotspot...");
 			ANE.wifi.createHotspot();
 				    
-			var checkDelay:Timer = new Timer(1000);
-			checkDelay.addEventListener(TimerEvent.TIMER, checkHotspot);
-			checkDelay.start();
+			var checkTimer:Timer = new Timer(1000);
+			checkTimer.addEventListener(TimerEvent.TIMER, checkHotspot);
+			checkTimer.start();
 			
 			function checkHotspot(event:TimerEvent):void
 			{
@@ -93,47 +100,49 @@ package ir.baazino.mytank.connection
 				trace(state);
 				if(state == HOTSPOT_STATE.WIFI_AP_STATE_ENABLED)
 				{
-					checkDelay.stop();
+					checkTimer.stop();
 					Starter.textLog.text += "Hotspot Activated!\n";
-					runServer();
+					server = new TCPServer();
 				}
 			}
 
 		}
 		
-		public static function runServer():void
-		{
-			if(false)
-				do{
-					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
-					var splited:Array = dhcpInfo.split("/");
-					trace(splited[0]);
-				}while(splited[0] != "192.168.1.1")
-			
-			Starter.textLog.text += "Dhcp is Ok!\n";
-			server = new TCPServer();
-		}
-		
-		
-		public static var c:Number = 0;
-		public static function onReceive( event:ProgressEvent ):void 
+		public static function onReceive(event:ProgressEvent):void 
 		{
 			var socket:Socket = event.target as Socket;
 			if(socket.bytesAvailable<=0)
 				return;
 			var msg:String = socket.readUTFBytes(socket.bytesAvailable);
-			//Starter.textLog.text += "> " + msg + "\n";
+			var splited:Array = msg.split("/");
+			var cmd:String = msg[0];
+			var id:String = msg[1];
 			
-			if(msg.substr(0,4) == "upda")
+			if(cmd == CMD.update)
 			{
+				infoMap[id].x = splited[2];
+				infoMap[id].y = splited[3];
+				infoMap[id].rotation = splited[4];
+				infoMap[id].isMoving = splited[5];
 			}
-			else if(msg.substr(0,4) == "Star")
+			else if(cmd == CMD.join)
 			{
-				Starter.navigator.showScreen(Screens.gameId);
+				infoMap[idGen] = new Object();
+				sendMsg(String(idGen));
+				idGen++;
+			}
+			else if(cmd == CMD.start)
+			{
+				Starter.navigator.showScreen(SCREEN.gameId);
 			}
 			
 		} 
 		
+		public static function sendMsg(msg:String):void
+		{
+			// if is local
+			sendTCP(msg);
+		}
 		public static function sendTCP(msg:String):void
 		{
 			if(isServer)

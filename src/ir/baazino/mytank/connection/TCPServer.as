@@ -27,19 +27,19 @@ package ir.baazino.mytank.connection
 				Starter.textLog.text += "UDPSupported: " + UDPSupported + "\n";
 				
 				serverSocket = new ServerSocket(); 
-				if(serverSocket.bound)
-					trace("bounded");
 				
 				serverSocket.addEventListener(Event.CONNECT, connectHandler); 
 				serverSocket.addEventListener(Event.CLOSE,onClose); 
 				
-				serverSocket.bind(ConnectionConfig.PORT); 
+				serverSocket.bind(ConnectionConfig.TCP_PORT);
 				serverSocket.listen(); 
-				trace( "Listening on " + serverSocket.localPort ); 
-				Starter.textLog.text += "Listening on " + serverSocket.localPort + "\n";
+				
+				Starter.textLog.text += "localIP : " + serverSocket.localAddress + "\n";
+				trace( "TCP Listening on " + serverSocket.localPort ); 
+				Starter.textLog.text += "TCP Listening on " + serverSocket.localPort + "\n";
 				
 			} 
-			catch(e:ErrorEvent) 
+			catch(e:ErrorEvent)
 			{
 				Starter.textLog.text += e.text + "\n";
 				trace(e); 
@@ -49,7 +49,7 @@ package ir.baazino.mytank.connection
 		public function connectHandler(event:ServerSocketConnectEvent):void 
 		{ 
 			clientSocket = event.socket as Socket; 
-			
+			Starter.textLog.text += "msg from: " + clientSocket.localAddress + "\n";
 			clientSocket.addEventListener( ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive); 
 			clientSocket.addEventListener( Event.CLOSE, onClientClose ); 
 			clientSocket.addEventListener( IOErrorEvent.IO_ERROR, onIOError ); 

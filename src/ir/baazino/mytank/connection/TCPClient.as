@@ -21,7 +21,8 @@ package ir.baazino.mytank.connection
 			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive);
 			socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
 			
-			socket.connect(serverIP, ConnectionConfig.PORT);
+			socket.connect(serverIP, ConnectionConfig.TCP_PORT);
+			Starter.textLog.text += "localIP : " + socket.localAddress + "\n";
 			Starter.textLog.text += "connecting to server : " + serverIP + " ...\n";
 			
 			trace("connected to server " + serverIP);
@@ -30,14 +31,15 @@ package ir.baazino.mytank.connection
 		private function onConnect(e:Event):void 
 		{
 			Starter.textLog.text += "connected to server!" + "\n";
-			socket.writeUTFBytes("hi server!");
+			socket.writeUTFBytes("join");
 			socket.flush();
 		}
 		
 		private function onReceived(e:ProgressEvent):void {
 			date = new Date();
 			Starter.textLog.text += date.milliseconds + "\n";
-			if (socket.bytesAvailable>0) {
+			if (socket.bytesAvailable > 0)
+			{
 				var msg:String = socket.readUTFBytes(socket.bytesAvailable);
 				trace(msg);
 				Starter.textLog.text += "received: " + msg + "\n";

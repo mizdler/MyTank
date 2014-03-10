@@ -7,7 +7,7 @@ package
 	
 	import flash.display.Bitmap;
 	
-	import ir.baazino.mytank.helper.Screens;
+	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
 	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
@@ -44,9 +44,9 @@ package
 			
 			navigator = new ScreenNavigator();
 			addChild(navigator);
-			navigator.addScreen(Screens.mainMenuId, new ScreenNavigatorItem(MainMenuScreen));
-			navigator.addScreen(Screens.gameId, new ScreenNavigatorItem(GameScreen));
-			navigator.showScreen(Screens.mainMenuId);
+			navigator.addScreen(SCREEN.mainMenuId, new ScreenNavigatorItem(MainMenuScreen));
+			navigator.addScreen(SCREEN.gameId, new ScreenNavigatorItem(GameScreen));
+			navigator.showScreen(SCREEN.mainMenuId);
 		}
 	}
 }

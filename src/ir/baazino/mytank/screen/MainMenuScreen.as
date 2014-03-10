@@ -4,7 +4,8 @@ package ir.baazino.mytank.screen
 	import feathers.controls.Screen;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.helper.Screens;
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.helper.SCREEN;
 	
 	import mx.core.mx_internal;
 	
@@ -61,8 +62,8 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendTCP("Star");
-			owner.showScreen(Screens.gameId);
+			ConnectionManager.sendMsg(CMD.start + "/" + ConnectionManager.myId);
+			owner.showScreen(SCREEN.gameId);
 		}
 	}
 }

@@ -9,7 +9,8 @@ package ir.baazino.mytank.screen
 	import ir.baazino.mytank.game.Field;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
-	import ir.baazino.mytank.helper.Screens;
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.helper.SCREEN;
 	
 	import nape.phys.Body;
 	import nape.space.Space;
@@ -68,7 +69,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			owner.showScreen(Screens.mainMenuId);
+			owner.showScreen(SCREEN.mainMenuId);
 		}
 		
 		private function addPlayer():void
@@ -102,7 +103,7 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
-			ConnectionManager.sendTCP("upda/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation); 
+			ConnectionManager.sendMsg(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving); 
 			space.liveBodies.foreach(updateGraphics);
 		}
 

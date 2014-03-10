@@ -3,6 +3,9 @@ package ir.baazino.mytank.game.element
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
 	
+	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.screen.GameScreen;
+	
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	
@@ -87,18 +90,6 @@ package ir.baazino.mytank.game.element
 				fire();
 				JoyStick.info.shoot = false;
 			}
-			/*
-			if(right)
-				tank.rotation += 0.07 * speed;
-			if(left)
-				tank.rotation -= 0.07 * speed;
-			if(up)
-				move(-6 * speed);
-			if(down)
-				move(6 * speed);
-			if(firing)
-				fire();
-			*/
 		}
 
 		private function handleKeyDown(e:KeyboardEvent):void
