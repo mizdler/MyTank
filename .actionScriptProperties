@@ -21,9 +21,9 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airframework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
@@ -31,9 +31,9 @@
       <libraryPathEntry kind="3" linkType="1" path="D:/Program Files/Adobe/Adobe Flash Builder 4.6/Thumb.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="D:/Program Files/Adobe/Adobe Flash Builder 4.6/Surround.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/FeathersLib/bin/FeathersLib.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="5" linkType="2" path="${SDK_THEMES_DIR}/bin/WifiExtention/WifiANE.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="${SDK_THEMES_DIR}/bin/InfoExtention/InfoANE.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="${SDK_THEMES_DIR}/bin/NotifExtention/NotifANE.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="libs/InfoANE.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="libs/NotifANE.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="libs/WifiANE.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -67,9 +67,9 @@
       <airSettings airCertificatePath="C:/Users/Mohammad/Desktop/SignAndroid.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="D:/Program Files/Adobe/Adobe Flash Builder 4.6/sdks/4.11.0/bin/WifiExtention/WifiANE.ane"/>
-          <anePathEntry path="D:/Program Files/Adobe/Adobe Flash Builder 4.6/sdks/4.11.0/bin/InfoExtention/InfoANE.ane"/>
-          <anePathEntry path="D:/Program Files/Adobe/Adobe Flash Builder 4.6/sdks/4.11.0/bin/NotifExtention/NotifANE.ane"/>
+          <anePathEntry path="C:/Users/Mohammad/git/MyTank/libs/InfoANE.ane"/>
+          <anePathEntry path="C:/Users/Mohammad/git/MyTank/libs/NotifANE.ane"/>
+          <anePathEntry path="C:/Users/Mohammad/git/MyTank/libs/WifiANE.ane"/>
         </anePaths>
       </airSettings>
       <actionScriptSettings version="1"/>

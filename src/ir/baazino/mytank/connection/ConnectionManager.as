@@ -32,8 +32,6 @@ package ir.baazino.mytank.connection
 
 	public class ConnectionManager
 	{
-		private static var _isConnectedToServer:Boolean;
-		
 		private static var serverIP:String;
 		private static var datagramSocket:DatagramSocket;
 		private static var serverSocket:ServerSocket;
@@ -44,22 +42,12 @@ package ir.baazino.mytank.connection
 		
 		private static var server:TCPServer;
 		private static var client:TCPClient;
+		private static var another:Object;
 		
 		public function ConnectionManager()
 		{
 		}
 
-		
-		public static function get isConnectedToServer():Boolean
-		{
-			return _isConnectedToServer;
-		}
-
-		public static function set isConnectedToServer(value:Boolean):void
-		{
-			_isConnectedToServer = value;
-		}
-		
 		public static function joinHotspot():void
 		{
 			isServer = false;
@@ -136,15 +124,11 @@ package ir.baazino.mytank.connection
 			var msg:String = socket.readUTFBytes(socket.bytesAvailable);
 			//Starter.textLog.text += "> " + msg + "\n";
 			
-			if(msg.substr(0,4) == "upda"){
-				c++;
-				if(c==60){
-					trace(c);
-					Starter.textLog.text += "> " + c + "\n";
-					c=0;
-				}
+			if(msg.substr(0,4) == "upda")
+			{
 			}
-			else if(msg.substr(0,4) == "Star"){
+			else if(msg.substr(0,4) == "Star")
+			{
 				Starter.navigator.showScreen(Screens.gameId);
 			}
 			

@@ -270,9 +270,10 @@
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
+
 <extensions>
-        <extensionID>ir.baazino.wifi.id</extensionID>
         <extensionID>ir.baazino.info.id</extensionID>
-    <extensionID>ir.baazino.notification.id</extensionID>
+        <extensionID>ir.baazino.notification.id</extensionID>
+        <extensionID>ir.baazino.wifi.id</extensionID>
     </extensions>
 </application>
