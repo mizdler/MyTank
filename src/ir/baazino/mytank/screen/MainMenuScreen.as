@@ -6,6 +6,7 @@ package ir.baazino.mytank.screen
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.info.Match;
 	
 	import mx.core.mx_internal;
 	
@@ -62,7 +63,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.start + "/" + ConnectionManager.myId);
+			ConnectionManager.sendMsg(CMD.start + "/" + Match.myId);
 			owner.showScreen(SCREEN.gameId);
 		}
 	}

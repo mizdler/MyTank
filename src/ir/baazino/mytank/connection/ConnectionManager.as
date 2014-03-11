@@ -27,6 +27,7 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.helper.HOTSPOT_STATE;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.ServerMethods;
+	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
 	
 	import mx.core.FlexGlobals;
@@ -45,10 +46,6 @@ package ir.baazino.mytank.connection
 		
 		private static var server:TCPServer;
 		private static var client:TCPClient;
-		
-		public static var infoMap:Dictionary = new Dictionary;
-		public static var idGen:Number = 1;
-		public static var myId:Number = 0;
 		
 		public function ConnectionManager()
 		{
@@ -120,16 +117,16 @@ package ir.baazino.mytank.connection
 			
 			if(cmd == CMD.update)
 			{
-				infoMap[id].x = splited[2];
-				infoMap[id].y = splited[3];
-				infoMap[id].rotation = splited[4];
-				infoMap[id].isMoving = splited[5];
+				Match.playerMap[id].x = splited[2];
+				Match.playerMap[id].y = splited[3];
+				Match.playerMap[id].rotation = splited[4];
+				Match.playerMap[id].isMoving = splited[5];
 			}
 			else if(cmd == CMD.join)
 			{
-				infoMap[idGen] = new Object();
-				sendMsg(String(idGen));
-				idGen++;
+				Match.playerMap[Match.idGen] = new Object();
+				sendMsg(String(Match.idGen));
+				Match.idGen++;
 			}
 			else if(cmd == CMD.start)
 			{
