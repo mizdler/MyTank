@@ -63,8 +63,8 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.start + "/" + Match.myId);
-			owner.showScreen(SCREEN.gameId);
+			ConnectionManager.sendTCP(CMD.start + "/" + Match.myId);
+			owner.showScreen(SCREEN.game);
 		}
 	}
 }

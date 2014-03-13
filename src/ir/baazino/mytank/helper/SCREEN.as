@@ -2,7 +2,7 @@ package ir.baazino.mytank.helper
 {
 	public class SCREEN
 	{
-		public static const mainMenuId:String = "mainMenuScreen";
-		public static const gameId:String = "gameScreen";
+		public static const mainMenu:String = "mainMenuScreen";
+		public static const game:String = "gameScreen";
 	}
 }

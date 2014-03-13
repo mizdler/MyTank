@@ -5,6 +5,9 @@ package ir.baazino.mytank.connection
 	import flash.events.ProgressEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.net.Socket;
+	
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.info.Match;
 
 	public class TCPClient
 	{
@@ -31,7 +34,7 @@ package ir.baazino.mytank.connection
 		private function onConnect(e:Event):void 
 		{
 			Starter.textLog.text += "connected to server!" + "\n";
-			socket.writeUTFBytes("join");
+			socket.writeUTFBytes(CMD.join + "/" + Match.myId);
 			socket.flush();
 		}
 		

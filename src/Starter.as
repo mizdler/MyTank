@@ -44,9 +44,9 @@ package
 			
 			navigator = new ScreenNavigator();
 			addChild(navigator);
-			navigator.addScreen(SCREEN.mainMenuId, new ScreenNavigatorItem(MainMenuScreen));
-			navigator.addScreen(SCREEN.gameId, new ScreenNavigatorItem(GameScreen));
-			navigator.showScreen(SCREEN.mainMenuId);
+			navigator.addScreen(SCREEN.mainMenu, new ScreenNavigatorItem(MainMenuScreen));
+			navigator.addScreen(SCREEN.game, new ScreenNavigatorItem(GameScreen));
+			navigator.showScreen(SCREEN.mainMenu);
 		}
 	}
 }

@@ -46,6 +46,7 @@ package ir.baazino.mytank.connection
 		
 		private static var server:TCPServer;
 		private static var client:TCPClient;
+		private static var udp:UDPConnection;
 		
 		public function ConnectionManager()
 		{
@@ -112,8 +113,8 @@ package ir.baazino.mytank.connection
 				return;
 			var msg:String = socket.readUTFBytes(socket.bytesAvailable);
 			var splited:Array = msg.split("/");
-			var cmd:String = msg[0];
-			var id:String = msg[1];
+			var cmd:String = splited[0];
+			var id:String = splited[1];
 			
 			if(cmd == CMD.update)
 			{
@@ -125,21 +126,16 @@ package ir.baazino.mytank.connection
 			else if(cmd == CMD.join)
 			{
 				Match.playerMap[Match.idGen] = new Object();
-				sendMsg(String(Match.idGen));
+				sendTCP(String(Match.idGen));
 				Match.idGen++;
 			}
 			else if(cmd == CMD.start)
 			{
-				Starter.navigator.showScreen(SCREEN.gameId);
+				Starter.navigator.showScreen(SCREEN.game);
 			}
 			
 		} 
 		
-		public static function sendMsg(msg:String):void
-		{
-			// if is local
-			sendTCP(msg);
-		}
 		public static function sendTCP(msg:String):void
 		{
 			if(isServer)
@@ -147,12 +143,18 @@ package ir.baazino.mytank.connection
 			else
 				client.sendMsg(msg);
 		}
-		public static function closeSocket():void
+
+		public static function closeTCP():void
 		{
 			if(server != null)
 				server.closeSocket();
 			if(client != null)
 				client.closeSocket();
+		}
+		
+		public static function sendUPD(msg:String):void
+		{
+			
 		}
 
 	}

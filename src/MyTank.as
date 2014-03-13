@@ -33,7 +33,7 @@ package
 		
 		protected function exitHandler(event:Event):void
 		{
-			ConnectionManager.closeSocket();
+			ConnectionManager.closeTCP();
 		}
 	}
 }

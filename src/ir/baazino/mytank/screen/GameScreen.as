@@ -69,7 +69,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			owner.showScreen(SCREEN.mainMenuId);
+			owner.showScreen(SCREEN.mainMenu);
 		}
 		
 		private function addPlayer():void
@@ -103,7 +103,7 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
-			ConnectionManager.sendMsg(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving); 
+			ConnectionManager.sendTCP(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving); 
 			space.liveBodies.foreach(updateGraphics);
 		}
 
