@@ -18,7 +18,6 @@ package ir.baazino.mytank.connection
 		{
 			this.localIP = localIP;
 			this.targetIP = targetIP;
-
 		}
 		public function connect():void
 		{
@@ -34,7 +33,7 @@ package ir.baazino.mytank.connection
 			trace("Received from " + event.srcAddress + ":" + event.srcPort + "> " + 
 				event.data.readUTFBytes( event.data.bytesAvailable ) ); 
 		}
-		private function send(msg:String):void
+		public function sendMsg(msg:String):void
 		{
 			var data:ByteArray = new ByteArray(); 
 			data.writeUTFBytes(msg); 

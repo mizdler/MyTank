@@ -68,12 +68,14 @@ package ir.baazino.mytank.connection
 				if(ANE.wifi.isWifiConnected())
 				{
 					checkTimer.stop();
+					Match.myId = 1;
 					Starter.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
 					var splited:Array = dhcpInfo.split("/");
 					Starter.textLog.text += "ServerIP : " + splited[0] + "\n";
 					Starter.textLog.text += "ClientIP : " + splited[1] + "\n";
 					client = new TCPClient(splited[0]);
+					udp = new UDPConnection(splited[1], splited[0]);
 				}
 			}
 			
@@ -99,8 +101,10 @@ package ir.baazino.mytank.connection
 				if(state == HOTSPOT_STATE.WIFI_AP_STATE_ENABLED)
 				{
 					checkTimer.stop();
+					Match.myId = 0;
 					Starter.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();
+					udp = new UDPConnection(server.localIP, server.remoteIP);
 				}
 			}
 
@@ -125,9 +129,7 @@ package ir.baazino.mytank.connection
 			}
 			else if(cmd == CMD.join)
 			{
-				Match.playerMap[Match.idGen] = new Object();
-				sendTCP(String(Match.idGen));
-				Match.idGen++;
+				Match.playerMap[id] = new Object();
 			}
 			else if(cmd == CMD.start)
 			{
@@ -154,7 +156,7 @@ package ir.baazino.mytank.connection
 		
 		public static function sendUPD(msg:String):void
 		{
-			
+			udp.sendMsg(msg);
 		}
 
 	}

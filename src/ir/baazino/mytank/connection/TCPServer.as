@@ -9,12 +9,17 @@ package ir.baazino.mytank.connection
 	import flash.net.ServerSocket;
 	import flash.net.Socket;
 	
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.info.Match;
+	
 	import mx.core.FlexGlobals;
 
 	public class TCPServer
 	{
 		private var serverSocket:ServerSocket; 
 		private var clientSocket:Socket;
+		public var localIP:String;
+		public var remoteIP:String;
 		
 		public function TCPServer() 
 		{ 
@@ -33,7 +38,7 @@ package ir.baazino.mytank.connection
 				
 				serverSocket.bind(ConnectionConfig.TCP_PORT);
 				serverSocket.listen(); 
-				
+				localIP = serverSocket.localAddress;
 				Starter.textLog.text += "localIP : " + serverSocket.localAddress + "\n";
 				trace( "TCP Listening on " + serverSocket.localPort ); 
 				Starter.textLog.text += "TCP Listening on " + serverSocket.localPort + "\n";
@@ -48,14 +53,12 @@ package ir.baazino.mytank.connection
 		
 		public function connectHandler(event:ServerSocketConnectEvent):void 
 		{ 
-			clientSocket = event.socket as Socket; 
-			Starter.textLog.text += "msg from: " + clientSocket.localAddress + "\n";
+			clientSocket = event.socket as Socket;
+			remoteIP = clientSocket.remoteAddress;
 			clientSocket.addEventListener( ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive); 
 			clientSocket.addEventListener( Event.CLOSE, onClientClose ); 
 			clientSocket.addEventListener( IOErrorEvent.IO_ERROR, onIOError ); 
-			
-			clientSocket.writeUTFBytes("Connected."); 
-			clientSocket.flush(); 
+			sendMsg(CMD.join + "/" + Match.myId);		
 			
 			trace( "Sending connect message" );
 			Starter.textLog.text += "Sending connect message\n";
