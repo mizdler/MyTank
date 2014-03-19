@@ -60,10 +60,10 @@ package ir.baazino.mytank.connection
 			ANE.wifi.joinHotspot();
 			
 			var checkTimer:Timer = new Timer(1000);
-			checkTimer.addEventListener(TimerEvent.TIMER, checkHotspot);
+			checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
 			checkTimer.start();
 			
-			function checkHotspot(event:TimerEvent):void
+			function checkWifi(event:TimerEvent):void
 			{
 				if(ANE.wifi.isWifiConnected())
 				{
@@ -76,6 +76,7 @@ package ir.baazino.mytank.connection
 					Starter.textLog.text += "ClientIP : " + splited[1] + "\n";
 					client = new TCPClient(splited[0]);
 					udp = new UDPConnection(splited[1], splited[0]);
+					udp.connect();
 				}
 			}
 			
@@ -104,7 +105,6 @@ package ir.baazino.mytank.connection
 					Match.myId = 0;
 					Starter.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();
-					udp = new UDPConnection(server.localIP, server.remoteIP);
 				}
 			}
 
@@ -120,16 +120,11 @@ package ir.baazino.mytank.connection
 			var cmd:String = splited[0];
 			var id:String = splited[1];
 			
-			if(cmd == CMD.update)
-			{
-				Match.playerMap[id].x = splited[2];
-				Match.playerMap[id].y = splited[3];
-				Match.playerMap[id].rotation = splited[4];
-				Match.playerMap[id].isMoving = splited[5];
-			}
-			else if(cmd == CMD.join)
+			if(cmd == CMD.join)
 			{
 				Match.playerMap[id] = new Object();
+				udp = new UDPConnection(server.localIP, server.remoteIP);
+				udp.connect();
 			}
 			else if(cmd == CMD.start)
 			{
@@ -154,7 +149,7 @@ package ir.baazino.mytank.connection
 				client.closeSocket();
 		}
 		
-		public static function sendUPD(msg:String):void
+		public static function sendUDP(msg:String):void
 		{
 			udp.sendMsg(msg);
 		}
