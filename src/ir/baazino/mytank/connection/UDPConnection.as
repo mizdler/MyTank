@@ -7,12 +7,15 @@ package ir.baazino.mytank.connection
 	import flash.utils.ByteArray;
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.info.Match;
 	
 	public class UDPConnection extends Sprite 
 	{ 
 		private var udpSocket:DatagramSocket;
 		private var localIP:String;
 		private var targetIP:String;
+		public static var c:Number = 0;
 		
 		public function UDPConnection(localIP:String, targetIP:String) 
 		{
@@ -29,9 +32,18 @@ package ir.baazino.mytank.connection
 		}
 		
 		private function onReceive(event:DatagramSocketDataEvent):void 
-		{ 
-			trace("Received from " + event.srcAddress + ":" + event.srcPort + "> " + 
-				event.data.readUTFBytes( event.data.bytesAvailable ) ); 
+		{
+			var msg:String = event.data.readUTFBytes(event.data.bytesAvailable);
+			var splited:Array = msg.split("/");
+			var cmd:String = splited[0];
+			var id:String = splited[1];
+			if(cmd == CMD.update)
+			{
+				Match.playerMap[id].x = splited[2];
+				Match.playerMap[id].y = splited[3];
+				Match.playerMap[id].rotation = splited[4];
+				Match.playerMap[id].isMoving = splited[5];
+			}
 		}
 		public function sendMsg(msg:String):void
 		{

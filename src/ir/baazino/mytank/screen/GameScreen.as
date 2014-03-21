@@ -120,7 +120,7 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
-			ConnectionManager.sendTCP(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving);
+			ConnectionManager.sendUDP(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving);
 			space.liveBodies.foreach(updateGraphics);
 		}
 
