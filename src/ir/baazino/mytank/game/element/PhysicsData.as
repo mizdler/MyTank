@@ -117,13 +117,13 @@ public class PhysicsData {
 
 
 			body = new Body();
-			body.cbTypes.add(cbtype("null"));
+			body.cbTypes.add(cbtype("tank"));
 
 
 				mat = material("default");
 				filt = filter("default");
 				prop = fprop("default");
-				cbType = cbtype("null");
+				cbType = cbtype("tank");
 
 
 

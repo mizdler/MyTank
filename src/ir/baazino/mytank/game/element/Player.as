@@ -2,13 +2,14 @@ package ir.baazino.mytank.game.element
 {
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
-	
+
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.screen.GameScreen;
-	
+
+	import nape.callbacks.CbType;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
-	
+
 	import starling.display.Image;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -34,8 +35,12 @@ package ir.baazino.mytank.game.element
 		private var down:Boolean = false;
 		private var firing:Boolean = false;
 
-		public function Player()
+		private var tankColl:CbType;
+		public var isCollided:Boolean = false;
+
+		public function Player(tankCollisionType:CbType)
 		{
+			tankColl = tankCollisionType;
 			super();
 		}
 
@@ -60,7 +65,9 @@ package ir.baazino.mytank.game.element
 			width = tankShape.width * scale;
 			height = tankShape.height * scale;
 
+			PhysicsData.registerCbType('tank', tankColl);
 			tank = PhysicsData.createBody("tank");
+
 			tank.userData.graphic = tankShape;
 
 			tank.position.x = 75;
@@ -122,10 +129,11 @@ package ir.baazino.mytank.game.element
 
 		override public function move(len:int):void
 		{
-			//tank.position.x += Math.sin(-tank.rotation)*len;
-			//tank.position.y += Math.cos(tank.rotation)*len;
-			tank.position.x += Math.sin(tank.rotation)*len;
-			tank.position.y -= Math.cos(tank.rotation)*len;
+			if (!isCollided)
+			{
+				tank.position.x += Math.sin(tank.rotation)*len;
+				tank.position.y -= Math.cos(tank.rotation)*len;
+			}
 		}
 
 		private function fire():void
