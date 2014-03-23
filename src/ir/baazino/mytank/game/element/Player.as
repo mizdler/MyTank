@@ -2,14 +2,16 @@ package ir.baazino.mytank.game.element
 {
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
-
+	
 	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.info.Actor;
+	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
-
+	
 	import nape.callbacks.CbType;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
-
+	
 	import starling.display.Image;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -17,6 +19,7 @@ package ir.baazino.mytank.game.element
 	public class Player extends AbstractObject
 	{
 		public var tank:Body;
+		public var id:String;
 
 		[Embed(source='../assets/tank.png')]
 		private var tankImg:Class;
@@ -50,8 +53,6 @@ package ir.baazino.mytank.game.element
 			addMissilePack();
 
 			stage.addEventListener(Event.ENTER_FRAME, go);
-			stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
-			stage.addEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
 		}
 
 		private function createPlayer():void
@@ -90,41 +91,16 @@ package ir.baazino.mytank.game.element
 
 		private function go():void
 		{
-			tank.rotation = JoyStick.info.rotation;
-			if(JoyStick.info.isMoving)
+			var actor:Actor = Match.playerMap[this.id] as Actor;
+			tank.rotation = actor.rotation;
+			if(actor.isMoving)
 				move(speed*3);
-			if(JoyStick.info.shoot){
+			if(actor.shoot){
 				fire();
-				JoyStick.info.shoot = false;
+				actor.shoot = false;
 			}
-		}
-
-		private function handleKeyDown(e:KeyboardEvent):void
-		{
-			if(e.keyCode == Keyboard.RIGHT && right == false)
-				right = true;
-			if(e.keyCode == Keyboard.LEFT && left == false)
-				left = true;
-			if(e.keyCode == Keyboard.UP && up == false)
-				up = true;
-			if(e.keyCode == Keyboard.DOWN && down == false)
-				down = true;
-			if(e.keyCode == Keyboard.SPACE && firing == false)
-				firing = true;
-		}
-
-		private function handleKeyUp(e:KeyboardEvent):void
-		{
-			if(e.keyCode == Keyboard.RIGHT)
-				right = false;
-			if(e.keyCode == Keyboard.LEFT)
-				left = false;
-			if(e.keyCode == Keyboard.UP)
-				up = false;
-			if(e.keyCode == Keyboard.DOWN)
-				down = false;
-			if(e.keyCode == Keyboard.SPACE)
-				firing = false;
+			actor.x = tank.position.x;
+			actor.y = tank.position.y;
 		}
 
 		override public function move(len:int):void

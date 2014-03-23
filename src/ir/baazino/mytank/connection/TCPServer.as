@@ -47,7 +47,7 @@ package ir.baazino.mytank.connection
 			catch(e:ErrorEvent)
 			{
 				Starter.textLog.text += e.text + "\n";
-				trace(e); 
+				trace(e);
 			} 
 		} 
 		

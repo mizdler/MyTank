@@ -3,6 +3,9 @@ package ir.baazino.mytank.game.element
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import ir.baazino.mytank.info.Actor;
+	import ir.baazino.mytank.info.Match;
+	
 	import nape.phys.Body;
 	
 	import starling.display.Image;
@@ -12,7 +15,7 @@ package ir.baazino.mytank.game.element
 	
 	public class JoyStick extends AbstractObject
 	{
-		public static var info:Object = new Object();
+		public static var actor:Actor = Match.playerMap[Match.myId] as Actor;
 		[Embed(source='../assets/thumb.png')]
 		private var thumbImg:Class;
 		private var thumbShape:Image;
@@ -41,9 +44,9 @@ package ir.baazino.mytank.game.element
 			center = new Object();
 			actual = new Object();
 			tank = _tank;
-			info.rotation = Math.PI/2;
-			info.isMoving = false;
-			info.shoot = false;
+			actor.rotation = Math.PI/2;
+			actor.isMoving = false;
+			actor.shoot = false;
 		}
 		
 		override protected function init():void
@@ -108,13 +111,13 @@ package ir.baazino.mytank.game.element
 						}
 						
 						if(distance > minRadius){
-							info.isMoving = true;
-							info.rotation = angle + Math.PI/2;
+							actor.isMoving = true;
+							actor.rotation = angle + Math.PI/2;
 						}
 						
 					}
 					else if(touch.phase == TouchPhase.ENDED){
-						info.isMoving = false;
+						actor.isMoving = false;
 						thumbShape2.x = center.x;
 						thumbShape2.y = center.y;
 						
@@ -123,7 +126,7 @@ package ir.baazino.mytank.game.element
 					}
 				}
 				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED){
-					JoyStick.info.shoot = true;
+					actor.shoot = true;
 				}
 			
 		}

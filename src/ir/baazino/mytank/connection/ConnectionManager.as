@@ -27,6 +27,7 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.helper.HOTSPOT_STATE;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.ServerMethods;
+	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
 	
@@ -69,6 +70,7 @@ package ir.baazino.mytank.connection
 				{
 					checkTimer.stop();
 					Match.myId = 1;
+					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
 					var splited:Array = dhcpInfo.split("/");
@@ -103,6 +105,7 @@ package ir.baazino.mytank.connection
 				{
 					checkTimer.stop();
 					Match.myId = 0;
+					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();
 				}
@@ -122,7 +125,7 @@ package ir.baazino.mytank.connection
 			
 			if(cmd == CMD.join)
 			{
-				Match.playerMap[id] = new Object();
+				Match.playerMap[id] = new Actor();
 				udp = new UDPConnection(server.localIP, server.remoteIP);
 				udp.connect();
 			}
@@ -151,7 +154,8 @@ package ir.baazino.mytank.connection
 		
 		public static function sendUDP(msg:String):void
 		{
-			udp.sendMsg(msg);
+			if(udp != null)
+				udp.sendMsg(msg);
 		}
 
 	}

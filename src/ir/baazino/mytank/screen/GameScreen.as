@@ -2,20 +2,22 @@ package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-
+	
 	import flash.utils.Dictionary;
-
+	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.game.Field;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
-
+	import ir.baazino.mytank.info.Actor;
+	import ir.baazino.mytank.info.Match;
+	
 	import nape.callbacks.*;
 	import nape.phys.Body;
 	import nape.space.Space;
-
+	
 	import starling.events.Event;
 
 	public class GameScreen extends Screen
@@ -86,11 +88,14 @@ package ir.baazino.mytank.screen
 
 		private function addPlayer():void
 		{
-			player = new Player(tankCollisionType);
-			players[playersLen] = player;
-			addChild(players[playersLen]);
-
-			playersLen += 1;
+			for(var id:String in Match.playerMap)
+			{
+				player = new Player(tankCollisionType);
+				player.id = id;
+				players[id] = player;
+				addChild(players[id]);
+				playersLen += 1;
+			}
 		}
 
 		private function addController():void
@@ -120,7 +125,8 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
-			ConnectionManager.sendUDP(CMD.update + "/" + player.tank.position.x + "/" + player.tank.position.y + "/" + player.tank.rotation + "/" + JoyStick.info.isMoving);
+			var actor:Actor = Match.playerMap[Match.myId] as Actor;
+			ConnectionManager.sendUDP(CMD.update + "/" + actor.x + "/" + actor.y + "/" + actor.rotation + "/" + actor.isMoving + "/" + actor.shoot);
 			space.liveBodies.foreach(updateGraphics);
 		}
 

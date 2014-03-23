@@ -8,6 +8,7 @@ package ir.baazino.mytank.connection
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
 	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	
 	public class UDPConnection extends Sprite 
@@ -15,7 +16,6 @@ package ir.baazino.mytank.connection
 		private var udpSocket:DatagramSocket;
 		private var localIP:String;
 		private var targetIP:String;
-		public static var c:Number = 0;
 		
 		public function UDPConnection(localIP:String, targetIP:String) 
 		{
@@ -37,18 +37,20 @@ package ir.baazino.mytank.connection
 			var splited:Array = msg.split("/");
 			var cmd:String = splited[0];
 			var id:String = splited[1];
+			var actor:Actor = Match.playerMap[id] as Actor;
 			if(cmd == CMD.update)
 			{
-				Match.playerMap[id].x = splited[2];
-				Match.playerMap[id].y = splited[3];
-				Match.playerMap[id].rotation = splited[4];
-				Match.playerMap[id].isMoving = splited[5];
+				actor.x = splited[2];
+				actor.y = splited[3];
+				actor.rotation = splited[4];
+				actor.isMoving = splited[5];
+				actor.shoot = splited[6];
 			}
 		}
 		public function sendMsg(msg:String):void
 		{
-			var data:ByteArray = new ByteArray(); 
-			data.writeUTFBytes(msg); 
+			var data:ByteArray = new ByteArray();
+			data.writeUTFBytes(msg);
 			udpSocket.send(data);
 		}
 	}}
