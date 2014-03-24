@@ -34,7 +34,7 @@ package ir.baazino.mytank.connection
 		private function onConnect(e:Event):void 
 		{
 			Starter.textLog.text += "connected to server!" + "\n";
-			sendMsg(CMD.join + "/" + Match.myId);
+			sendMsg(CMD.join + "#" + Match.myId);
 		}
 		
 		private function onReceived(e:ProgressEvent):void {

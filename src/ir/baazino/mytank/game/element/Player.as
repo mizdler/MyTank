@@ -95,10 +95,8 @@ package ir.baazino.mytank.game.element
 			tank.rotation = actor.rotation;
 			if(actor.isMoving)
 				move(speed*3);
-			if(actor.shoot){
+			if(actor.shoot)
 				fire();
-				actor.shoot = false;
-			}
 			actor.x = tank.position.x;
 			actor.y = tank.position.y;
 		}

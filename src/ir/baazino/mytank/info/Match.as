@@ -4,7 +4,7 @@ package ir.baazino.mytank.info
 
 	public class Match
 	{
-		public static var myId:Number = -1;
+		public static var myId:String;
 		public static var playerMap:Dictionary = new Dictionary;
 	}
 }

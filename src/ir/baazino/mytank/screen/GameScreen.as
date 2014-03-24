@@ -126,7 +126,8 @@ package ir.baazino.mytank.screen
 		{
 			space.step(1/60);
 			var actor:Actor = Match.playerMap[Match.myId] as Actor;
-			ConnectionManager.sendUDP(CMD.update + "/" + actor.x + "/" + actor.y + "/" + actor.rotation + "/" + actor.isMoving + "/" + actor.shoot);
+			ConnectionManager.sendUDP(CMD.update + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
+			actor.shoot = false;
 			space.liveBodies.foreach(updateGraphics);
 		}
 

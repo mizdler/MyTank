@@ -49,6 +49,10 @@ package ir.baazino.mytank.connection
 		private static var client:TCPClient;
 		private static var udp:UDPConnection;
 		
+		public static const SERVER_ID:String = "0";
+		public static const CLIENT_ID:String = "1";
+		
+		
 		public function ConnectionManager()
 		{
 		}
@@ -69,7 +73,8 @@ package ir.baazino.mytank.connection
 				if(ANE.wifi.isWifiConnected())
 				{
 					checkTimer.stop();
-					Match.myId = 1;
+					Match.myId = CLIENT_ID;
+					Match.playerMap[SERVER_ID] = new Actor();
 					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
@@ -104,7 +109,9 @@ package ir.baazino.mytank.connection
 				if(state == HOTSPOT_STATE.WIFI_AP_STATE_ENABLED)
 				{
 					checkTimer.stop();
-					Match.myId = 0;
+					trace(Match.myId);
+					Match.myId = SERVER_ID;
+					trace(Match.myId);
 					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();
@@ -119,7 +126,7 @@ package ir.baazino.mytank.connection
 			if(socket.bytesAvailable<=0)
 				return;
 			var msg:String = socket.readUTFBytes(socket.bytesAvailable);
-			var splited:Array = msg.split("/");
+			var splited:Array = msg.split("#");
 			var cmd:String = splited[0];
 			var id:String = splited[1];
 			

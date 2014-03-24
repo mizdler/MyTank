@@ -34,17 +34,19 @@ package ir.baazino.mytank.connection
 		private function onReceive(event:DatagramSocketDataEvent):void 
 		{
 			var msg:String = event.data.readUTFBytes(event.data.bytesAvailable);
-			var splited:Array = msg.split("/");
+			trace(msg + "\n");
+			var splited:Array = msg.split("#");
 			var cmd:String = splited[0];
 			var id:String = splited[1];
 			var actor:Actor = Match.playerMap[id] as Actor;
 			if(cmd == CMD.update)
 			{
+				trace(msg + "\n");
 				actor.x = splited[2];
 				actor.y = splited[3];
 				actor.rotation = splited[4];
-				actor.isMoving = splited[5];
-				actor.shoot = splited[6];
+				actor.isMoving = splited[5]=="true"?true:false;
+				actor.shoot = splited[6]=="true"?true:false;
 			}
 		}
 		public function sendMsg(msg:String):void
