@@ -41,7 +41,6 @@ package ir.baazino.mytank.connection
 			var actor:Actor = Match.playerMap[id] as Actor;
 			if(cmd == CMD.update)
 			{
-				trace(msg + "\n");
 				actor.x = splited[2];
 				actor.y = splited[3];
 				actor.rotation = splited[4];
