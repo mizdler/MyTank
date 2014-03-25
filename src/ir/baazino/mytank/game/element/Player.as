@@ -4,6 +4,7 @@ package ir.baazino.mytank.game.element
 	import flash.utils.Dictionary;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
@@ -96,7 +97,10 @@ package ir.baazino.mytank.game.element
 			if(actor.isMoving)
 				move(speed*3);
 			if(actor.shoot)
+			{
 				fire();
+				actor.shoot = false;
+			}
 			actor.x = tank.position.x;
 			actor.y = tank.position.y;
 		}

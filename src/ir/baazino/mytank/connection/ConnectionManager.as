@@ -109,9 +109,7 @@ package ir.baazino.mytank.connection
 				if(state == HOTSPOT_STATE.WIFI_AP_STATE_ENABLED)
 				{
 					checkTimer.stop();
-					trace(Match.myId);
 					Match.myId = SERVER_ID;
-					trace(Match.myId);
 					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();

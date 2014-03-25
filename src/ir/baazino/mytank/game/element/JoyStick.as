@@ -3,6 +3,8 @@ package ir.baazino.mytank.game.element
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	
@@ -34,16 +36,14 @@ package ir.baazino.mytank.game.element
 		
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
-		private var tank:Body;
 		
 		public var speed:Number = 0.7;
 		
-		public function JoyStick(_tank:Body):void
+		public function JoyStick():void
 		{
 			super();
 			center = new Object();
 			actual = new Object();
-			tank = _tank;
 			actor.rotation = Math.PI/2;
 			actor.isMoving = false;
 			actor.shoot = false;
@@ -87,7 +87,9 @@ package ir.baazino.mytank.game.element
 		{
 			var touches:Vector.<Touch> = e.getTouches(stage);
 			for each(var touch:Touch in touches)
-				if(touch.target == thumbShape2){
+			{
+				if(touch.target == thumbShape2)
+				{
 					if(touch.phase == TouchPhase.MOVED){
 						var postion:Point = touch.getLocation(stage);
 						thumbShape2.x = postion.x - thumbShape2.width/2;
@@ -125,10 +127,10 @@ package ir.baazino.mytank.game.element
 						thumbShape.y = center.y;
 					}
 				}
-				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED){
+				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
 					actor.shoot = true;
-				}
-			
+			}
+			ConnectionManager.sendUDP(CMD.update + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}
 	}
 }

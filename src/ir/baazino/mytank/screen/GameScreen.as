@@ -100,7 +100,7 @@ package ir.baazino.mytank.screen
 
 		private function addController():void
 		{
-			controller = new JoyStick(player.tank);
+			controller = new JoyStick();
 			addChild(controller);
 		}
 
@@ -125,9 +125,6 @@ package ir.baazino.mytank.screen
 		private function loop():void
 		{
 			space.step(1/60);
-			var actor:Actor = Match.playerMap[Match.myId] as Actor;
-			ConnectionManager.sendUDP(CMD.update + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
-			actor.shoot = false;
 			space.liveBodies.foreach(updateGraphics);
 		}
 
