@@ -1,4 +1,4 @@
-package ir.baazino.mytank.connection
+package ir.baazino.mytank.connection.socket
 {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -8,6 +8,8 @@ package ir.baazino.mytank.connection
 	
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.info.Match;
+	import ir.baazino.mytank.connection.ConnectionConfig;
+	import ir.baazino.mytank.connection.ConnectionManager;
 
 	public class TCPClient
 	{

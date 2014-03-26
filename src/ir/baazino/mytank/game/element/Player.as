@@ -22,7 +22,7 @@ package ir.baazino.mytank.game.element
 		public var tank:Body;
 		public var id:String;
 
-		[Embed(source='../assets/tank.png')]
+		[Embed(source='assets/tank.png')]
 		private var tankImg:Class;
 		private var tankShape:Image;
 

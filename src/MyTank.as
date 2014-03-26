@@ -32,13 +32,13 @@ package
 			strling.antiAliasing = 1;
 			strling.showStats = true;
 			strling.start();
-
 		}
 		
 		protected function backKeyHandler(event:KeyboardEvent):void
 		{
 			if(event.keyCode == Keyboard.BACK && Starter.navigator.activeScreenID == SCREEN.mainMenu){
 				ConnectionManager.closeTCP();
+				ConnectionManager.closeUDP();
 				ANE.wifi.disableWifi();
 				NativeApplication.nativeApplication.exit();
 			}

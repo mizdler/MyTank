@@ -19,8 +19,8 @@ package ir.baazino.mytank.connection
 	import flash.utils.Timer;
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
-	import ir.baazino.mytank.connection.TCPClient;
-	import ir.baazino.mytank.connection.TCPServer;
+	import ir.baazino.mytank.connection.socket.TCPClient;
+	import ir.baazino.mytank.connection.socket.TCPServer;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.CMD;
@@ -34,6 +34,9 @@ package ir.baazino.mytank.connection
 	import mx.core.FlexGlobals;
 	
 	import org.osmf.events.TimeEvent;
+	import ir.baazino.mytank.connection.socket.TCPClient;
+	import ir.baazino.mytank.connection.socket.TCPServer;
+	import ir.baazino.mytank.connection.socket.UDPConnection;
 
 	public class ConnectionManager
 	{
@@ -161,6 +164,11 @@ package ir.baazino.mytank.connection
 		{
 			if(udp != null)
 				udp.sendMsg(msg);
+		}
+		public static function closeUDP():void
+		{
+			if(udp != null)
+				udp.closeSocket();
 		}
 
 	}

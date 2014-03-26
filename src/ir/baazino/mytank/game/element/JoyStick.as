@@ -18,16 +18,16 @@ package ir.baazino.mytank.game.element
 	public class JoyStick extends AbstractObject
 	{
 		public static var actor:Actor = Match.playerMap[Match.myId] as Actor;
-		[Embed(source='../assets/thumb.png')]
+		[Embed(source='assets/thumb.png')]
 		private var thumbImg:Class;
 		private var thumbShape:Image;
 		private var thumbShape2:Image;
 		
-		[Embed(source='../assets/surround.png')]
+		[Embed(source='assets/surround.png')]
 		private var surroundImg:Class;
 		private var surroundShape:Image;
 		
-		[Embed(source='../assets/shoot.png')]
+		[Embed(source='assets/shoot.png')]
 		private var shootImg:Class;
 		private var shootShape:Image;
 		

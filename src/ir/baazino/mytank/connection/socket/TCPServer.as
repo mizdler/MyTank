@@ -1,4 +1,4 @@
-package ir.baazino.mytank.connection
+package ir.baazino.mytank.connection.socket
 {
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
@@ -13,6 +13,8 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.info.Match;
 	
 	import mx.core.FlexGlobals;
+	import ir.baazino.mytank.connection.ConnectionConfig;
+	import ir.baazino.mytank.connection.ConnectionManager;
 
 	public class TCPServer
 	{

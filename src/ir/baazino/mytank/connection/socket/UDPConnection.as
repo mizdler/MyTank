@@ -1,4 +1,4 @@
-package ir.baazino.mytank.connection
+package ir.baazino.mytank.connection.socket
 { 
 	import flash.display.Sprite;
 	import flash.events.DatagramSocketDataEvent;
@@ -53,5 +53,10 @@ package ir.baazino.mytank.connection
 			var data:ByteArray = new ByteArray();
 			data.writeUTFBytes(msg);
 			udpSocket.send(data);
+		}
+		public function closeSocket():void
+		{
+			if(udpSocket != null)
+				udpSocket.close();
 		}
 	}}
