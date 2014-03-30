@@ -21,6 +21,7 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.connection.ConnectionConfig;
 	import ir.baazino.mytank.connection.socket.TCPClient;
 	import ir.baazino.mytank.connection.socket.TCPServer;
+	import ir.baazino.mytank.connection.socket.UDPConnection;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.CMD;
@@ -34,13 +35,10 @@ package ir.baazino.mytank.connection
 	import mx.core.FlexGlobals;
 	
 	import org.osmf.events.TimeEvent;
-	import ir.baazino.mytank.connection.socket.TCPClient;
-	import ir.baazino.mytank.connection.socket.TCPServer;
-	import ir.baazino.mytank.connection.socket.UDPConnection;
 
 	public class ConnectionManager
 	{
-		private static var serverIP:String;
+		private static const SERVER_IP:String = "192.168.1.1";
 		private static var datagramSocket:DatagramSocket;
 		private static var serverSocket:ServerSocket;
 		private static var clientSockets:Array = new Array(); 
@@ -65,7 +63,8 @@ package ir.baazino.mytank.connection
 			isServer = false;
 			Starter.textLog.text += "Activating Wifi...\n";
 			Starter.textLog.invalidate();
-			ANE.wifi.joinHotspot();
+			if(!Starter.isIOS)
+				ANE.wifi.joinHotspot();
 			
 			var checkTimer:Timer = new Timer(1000);
 			checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
@@ -73,7 +72,7 @@ package ir.baazino.mytank.connection
 			
 			function checkWifi(event:TimerEvent):void
 			{
-				if(ANE.wifi.isWifiConnected())
+				if(Starter.isIOS || ANE.wifi.isWifiConnected())
 				{
 					checkTimer.stop();
 					Match.myId = CLIENT_ID;
@@ -81,11 +80,11 @@ package ir.baazino.mytank.connection
 					Match.playerMap[Match.myId] = new Actor();
 					Starter.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
-					var splited:Array = dhcpInfo.split("/");
-					Starter.textLog.text += "ServerIP : " + splited[0] + "\n";
+					var splited:Array = dhcpInfo.split("#");
+					Starter.textLog.text += "ServerIP : " + SERVER_IP + "\n";
 					Starter.textLog.text += "ClientIP : " + splited[1] + "\n";
-					client = new TCPClient(splited[0]);
-					udp = new UDPConnection(splited[1], splited[0]);
+					client = new TCPClient(SERVER_IP);
+					udp = new UDPConnection(splited[1], SERVER_IP);
 					udp.connect();
 				}
 			}

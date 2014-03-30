@@ -15,6 +15,7 @@ package
 	import mx.core.FlexGlobals;
 	
 	import starling.core.Starling;
+	
 
 	[SWF(frameRate="60", backgroundColor="#ffffff")]
 	public class MyTank extends Sprite
@@ -26,8 +27,17 @@ package
 			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_UP, backKeyHandler);
 			Starling.multitouchEnabled = true;
 			var viewPortRectangle:Rectangle = new Rectangle();
-			viewPortRectangle.width = Capabilities.screenResolutionX;
-			viewPortRectangle.height = Capabilities.screenResolutionY;
+			Starter.isIOS = Capabilities.manufacturer.indexOf("iOS")!=-1;
+			if(Starter.isIOS)
+			{
+				viewPortRectangle.width = Capabilities.screenResolutionY;
+				viewPortRectangle.height = Capabilities.screenResolutionX;
+			}		
+			else
+			{
+				viewPortRectangle.width = Capabilities.screenResolutionX;
+				viewPortRectangle.height = Capabilities.screenResolutionY;
+			}
 			strling = new Starling(Starter, stage, viewPortRectangle);
 			strling.antiAliasing = 1;
 			strling.showStats = true;

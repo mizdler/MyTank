@@ -24,6 +24,8 @@ package
 		
 		public static var navigator:ScreenNavigator;
 		public static var textLog:TextArea;
+		public static var isIOS:Boolean;
+		
 		public function Starter()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
