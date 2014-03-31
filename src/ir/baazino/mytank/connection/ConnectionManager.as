@@ -53,28 +53,29 @@ package ir.baazino.mytank.connection
 		public static const SERVER_ID:String = "0";
 		public static const CLIENT_ID:String = "1";
 		
-		
-		public function ConnectionManager()
-		{
-		}
 
 		public static function joinHotspot():void
 		{
 			isServer = false;
 			Starter.textLog.text += "Activating Wifi...\n";
 			Starter.textLog.invalidate();
-			if(!Starter.isIOS)
-				ANE.wifi.joinHotspot();
 			
-			var checkTimer:Timer = new Timer(1000);
-			checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
-			checkTimer.start();
+			if(Starter.isIOS)
+				checkWifi(null);
+			else
+			{
+				ANE.wifi.joinHotspot();
+				var checkTimer:Timer = new Timer(1000);
+				checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
+				checkTimer.start();
+			}
 			
 			function checkWifi(event:TimerEvent):void
 			{
-				if(Starter.isIOS || ANE.wifi.isWifiConnected())
+				if(ANE.wifi.isWifiConnected())
 				{
-					checkTimer.stop();
+					if(checkTimer != null)
+						checkTimer.stop();
 					Match.myId = CLIENT_ID;
 					Match.playerMap[SERVER_ID] = new Actor();
 					Match.playerMap[Match.myId] = new Actor();
@@ -87,6 +88,8 @@ package ir.baazino.mytank.connection
 					udp = new UDPConnection(splited[1], SERVER_IP);
 					udp.connect();
 				}
+				else if(Starter.isIOS)
+					ANE.wifi.showWifiAlert();
 			}
 			
 		}	
