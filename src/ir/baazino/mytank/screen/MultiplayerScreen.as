@@ -6,23 +6,28 @@ package ir.baazino.mytank.screen
 	import feathers.layout.HorizontalLayout;
 	import feathers.layout.VerticalLayout;
 	
+	import flashx.textLayout.formats.VerticalAlign;
+	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Match;
 	
+	import mx.core.mx_internal;
+	
 	import starling.events.Event;
 	
-	public class MainMenuScreen extends Screen
+	public class MultiplayerScreen extends Screen
 	{
 		private var group:LayoutGroup;
 		private var layout:VerticalLayout;
 		
-		private var btnSingle:Button;
+		private var btnCreate:Button;
 		private var btnMulti:Button;
-		private var btnSettings:Button;
 		
-		public function MainMenuScreen()
+		private var btnBack:Button;
+		
+		public function MultiplayerScreen()
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
@@ -38,40 +43,46 @@ package ir.baazino.mytank.screen
 			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
 			this.addChild(group);
 			
-			btnSingle = new Button();
-			btnSingle.label = "SinglePlayer";
-			btnSingle.addEventListener(Event.TRIGGERED, btnSingleClickHandler);
-			group.addChild(btnSingle);
+			btnCreate = new Button();
+			btnCreate.label = "Create Game!";
+			btnCreate.addEventListener(Event.TRIGGERED, btnCreateClickHandler);
+			group.addChild(btnCreate);
 			
 			btnMulti = new Button();
-			btnMulti.label = "MultiPlayer";
-			btnMulti.addEventListener(Event.TRIGGERED, btnMultiClickHandler);
+			btnMulti.label = "Join Game!";
+			btnMulti.addEventListener(Event.TRIGGERED, btnJoinClickHandler);
 			group.addChild(btnMulti);
-			
-			btnSettings = new Button();
-			btnSettings.label = "Settings";
-			btnSettings.addEventListener(Event.TRIGGERED, btnSettingsClickHandler);
-			group.addChild(btnSettings);
 			
 			
 			group.validate();
 			group.y = (stage.stageHeight - group.height)/2;
 			group.x = (stage.stageWidth - group.width)/2;
+			
+			btnBack = new Button();
+			btnBack.label = "back";
+			btnBack.addEventListener(Event.TRIGGERED, btnBackClickHandler);
+			this.addChild(btnBack);
+			btnBack.validate();
+			btnBack.x = stage.stageWidth / 100;
+			btnBack.y = stage.stageHeight - (btnBack.height + stage.stageHeight/100);
 		}
 		
-		private function btnSettingsClickHandler():void
+		private function btnBackClickHandler():void
 		{
-			owner.showScreen(SCREEN.settings);
+			owner.showScreen(SCREEN.mainMenu);
 		}
 		
-		private function btnMultiClickHandler():void
+		private function btnJoinClickHandler():void
 		{
-			owner.showScreen(SCREEN.multiPlayer);
+			owner.showScreen(SCREEN.waiting);
+			ConnectionManager.joinHotspot();
 		}
 		
-		private function btnSingleClickHandler():void
+		private function btnCreateClickHandler():void
 		{
-			owner.showScreen(SCREEN.singlePlayer);
+			owner.showScreen(SCREEN.waiting);
+			ConnectionManager.createHotspot();
 		}
+		
 	}
 }

@@ -23,9 +23,6 @@ package ir.baazino.mytank.screen
 		private var playerGroup:LayoutGroup;
 		private var playerLayout:HorizontalLayout;
 		
-		private var navGroup:LayoutGroup;
-		private var navLayout:HorizontalLayout;
-		
 		private var lblPlayerName:Label;
 		private var txtPlayerName:TextInput;
 		private var btnSave:Button;
@@ -64,25 +61,21 @@ package ir.baazino.mytank.screen
 			group.x = (stage.stageWidth - group.width)/2;
 			
 			
-			navGroup = new LayoutGroup();
-			
 			btnBack = new Button();
 			btnBack.label = "back";
 			btnBack.addEventListener(Event.TRIGGERED, btnBackClickHandler);
-			navGroup.addChild(btnBack);
+			this.addChild(btnBack);
+			btnBack.validate();
+			btnBack.x = stage.stageWidth / 100;
+			btnBack.y = stage.stageHeight - (btnBack.height + stage.stageHeight/100);
 			
 			btnSave = new Button();
-			btnSave.label = "Save";
+			btnSave.label = "Save Settings";
 			btnSave.addEventListener(Event.TRIGGERED, btnSaveClickHandler);
-			navGroup.addChild(btnSave);
-			
-			navLayout = new HorizontalLayout();
-			navGroup.layout = navLayout;
-			navLayout.padding = stage.stageHeight/100;
-			this.addChild(navGroup);
-			navGroup.validate();
-			navGroup.y = stage.stageHeight - navGroup.height;
-			navLayout.gap = stage.width - (btnBack.width + 2*btnSave.width); 
+			this.addChild(btnSave);
+			btnSave.validate();
+			btnSave.x = stage.stageWidth - (btnSave.width + stage.stageWidth/100);
+			btnSave.y = stage.stageHeight - (btnSave.height + stage.stageHeight/100);
 		}
 		
 		private function btnBackClickHandler():void

@@ -1,6 +1,6 @@
 package ir.baazino.mytank.helper
 {
-	public class ServerMethods
+	public class SERVER_FUNCTION
 	{
 		public static const ADD_ROOM:String = "addRoom";
 		public static const GET_ROOMS_NAME:String = "getRoomsName";

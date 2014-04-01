@@ -27,10 +27,11 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.HOTSPOT_STATE;
 	import ir.baazino.mytank.helper.SCREEN;
-	import ir.baazino.mytank.helper.ServerMethods;
+	import ir.baazino.mytank.helper.SERVER_FUNCTION;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
+	import ir.baazino.mytank.screen.WaitingScreen;
 	
 	import mx.core.FlexGlobals;
 	
@@ -57,8 +58,8 @@ package ir.baazino.mytank.connection
 		public static function joinHotspot():void
 		{
 			isServer = false;
-			Starter.textLog.text += "Activating Wifi...\n";
-			Starter.textLog.invalidate();
+			WaitingScreen.textLog.text += "Activating Wifi...\n";
+			WaitingScreen.textLog.invalidate();
 			
 			if(Starter.isIOS)
 				checkWifi(null);
@@ -79,11 +80,11 @@ package ir.baazino.mytank.connection
 					Match.myId = CLIENT_ID;
 					Match.playerMap[SERVER_ID] = new Actor();
 					Match.playerMap[Match.myId] = new Actor();
-					Starter.textLog.text += "Wifi Connected!\n";
+					WaitingScreen.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
 					var splited:Array = dhcpInfo.split("#");
-					Starter.textLog.text += "ServerIP : " + SERVER_IP + "\n";
-					Starter.textLog.text += "ClientIP : " + splited[1] + "\n";
+					WaitingScreen.textLog.text += "ServerIP : " + SERVER_IP + "\n";
+					WaitingScreen.textLog.text += "ClientIP : " + splited[1] + "\n";
 					client = new TCPClient(SERVER_IP);
 					udp = new UDPConnection(splited[1], SERVER_IP);
 					udp.connect();
@@ -99,7 +100,7 @@ package ir.baazino.mytank.connection
 			if(server != null)
 				server.closeSocket();
 			isServer = true;
-			Starter.textLog.text += "Activating Hotspot...\n";
+			WaitingScreen.textLog.text += "Activating Hotspot...\n";
 			trace("Activating Hotspot...");
 			ANE.wifi.createHotspot();
 				    
@@ -116,7 +117,7 @@ package ir.baazino.mytank.connection
 					checkTimer.stop();
 					Match.myId = SERVER_ID;
 					Match.playerMap[Match.myId] = new Actor();
-					Starter.textLog.text += "Hotspot Activated!\n";
+					WaitingScreen.textLog.text += "Hotspot Activated!\n";
 					server = new TCPServer();
 				}
 			}

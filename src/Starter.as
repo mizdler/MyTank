@@ -10,7 +10,10 @@ package
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
+	import ir.baazino.mytank.screen.MultiplayerScreen;
 	import ir.baazino.mytank.screen.SettingsScreen;
+	import ir.baazino.mytank.screen.SingleplayerScreen;
+	import ir.baazino.mytank.screen.WaitingScreen;
 	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
 	import starling.display.Image;
@@ -24,7 +27,6 @@ package
 		private var blankImg:Class;
 		
 		public static var navigator:ScreenNavigator;
-		public static var textLog:TextArea;
 		public static var isIOS:Boolean;
 		
 		public function Starter()
@@ -35,21 +37,15 @@ package
 		private function addedToStageHandler():void
 		{
 			new MetalWorksMobileTheme;
-			textLog = new TextArea();
-			textLog.isEditable = false;
-			textLog.width = stage.stageWidth;
-			textLog.height = stage.stageHeight * 0.9;
-			
-			addChild(textLog);
-			textLog.validate();
-			textLog.y = 50;
-			textLog.x = 50;
 			
 			navigator = new ScreenNavigator();
 			addChild(navigator);
 			navigator.addScreen(SCREEN.mainMenu, new ScreenNavigatorItem(MainMenuScreen));
 			navigator.addScreen(SCREEN.game, new ScreenNavigatorItem(GameScreen));
+			navigator.addScreen(SCREEN.singlePlayer, new ScreenNavigatorItem(SingleplayerScreen));
+			navigator.addScreen(SCREEN.multiPlayer, new ScreenNavigatorItem(MultiplayerScreen));
 			navigator.addScreen(SCREEN.settings, new ScreenNavigatorItem(SettingsScreen));
+			navigator.addScreen(SCREEN.waiting, new ScreenNavigatorItem(WaitingScreen));
 			navigator.showScreen(SCREEN.mainMenu);
 		}
 	}
