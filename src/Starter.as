@@ -10,6 +10,7 @@ package
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
+	import ir.baazino.mytank.screen.SettingsScreen;
 	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
 	import starling.display.Image;
@@ -48,6 +49,7 @@ package
 			addChild(navigator);
 			navigator.addScreen(SCREEN.mainMenu, new ScreenNavigatorItem(MainMenuScreen));
 			navigator.addScreen(SCREEN.game, new ScreenNavigatorItem(GameScreen));
+			navigator.addScreen(SCREEN.settings, new ScreenNavigatorItem(SettingsScreen));
 			navigator.showScreen(SCREEN.mainMenu);
 		}
 	}

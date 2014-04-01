@@ -4,5 +4,6 @@ package ir.baazino.mytank.helper
 	{
 		public static const mainMenu:String = "mainMenuScreen";
 		public static const game:String = "gameScreen";
+		public static const settings:String = "settingsScreen";
 	}
 }

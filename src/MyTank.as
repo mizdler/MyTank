@@ -24,17 +24,19 @@ package
 
 		public function MyTank()
 		{
-			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_UP, backKeyHandler);
+			Starter.isIOS = Capabilities.manufacturer.indexOf("iOS")!=-1;
+			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 			Starling.multitouchEnabled = true;
 			var viewPortRectangle:Rectangle = new Rectangle();
-			Starter.isIOS = Capabilities.manufacturer.indexOf("iOS")!=-1;
 			if(Starter.isIOS)
 			{
+				Starling.handleLostContext = false;
 				viewPortRectangle.width = Capabilities.screenResolutionY;
 				viewPortRectangle.height = Capabilities.screenResolutionX;
 			}		
 			else
 			{
+				Starling.handleLostContext = true;
 				viewPortRectangle.width = Capabilities.screenResolutionX;
 				viewPortRectangle.height = Capabilities.screenResolutionY;
 			}
@@ -44,13 +46,20 @@ package
 			strling.start();
 		}
 		
-		protected function backKeyHandler(event:KeyboardEvent):void
+		protected function keyDownHandler(event:KeyboardEvent):void
 		{
-			if(event.keyCode == Keyboard.BACK && Starter.navigator.activeScreenID == SCREEN.mainMenu){
-				ConnectionManager.closeTCP();
-				ConnectionManager.closeUDP();
-				ANE.wifi.disableWifi();
-				NativeApplication.nativeApplication.exit();
+			if(event.keyCode == Keyboard.BACK){
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				if(Starter.navigator.activeScreenID == SCREEN.mainMenu)
+				{
+					ConnectionManager.closeTCP();
+					ConnectionManager.closeUDP();
+					ANE.wifi.disableWifi();
+					NativeApplication.nativeApplication.exit();
+				}
+				else
+					Starter.navigator.showScreen(SCREEN.mainMenu);
 			}
 		}
 		

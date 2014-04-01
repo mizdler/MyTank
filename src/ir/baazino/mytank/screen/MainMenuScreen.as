@@ -1,7 +1,12 @@
 package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
+	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
+	import feathers.layout.HorizontalLayout;
+	import feathers.layout.VerticalLayout;
+	
+	import flashx.textLayout.formats.VerticalAlign;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
@@ -14,9 +19,13 @@ package ir.baazino.mytank.screen
 	
 	public class MainMenuScreen extends Screen
 	{
+		private var group:LayoutGroup;
+		private var layout:VerticalLayout;
+		
 		private var btnStart:Button;
 		private var btnCreate:Button;
 		private var btnJoin:Button;
+		private var btnSettings:Button;
 		
 		public function MainMenuScreen()
 		{
@@ -26,29 +35,43 @@ package ir.baazino.mytank.screen
 		
 		private function addedToStageHandler():void
 		{
+			group = new LayoutGroup();
+			layout = new VerticalLayout();
+			group.layout = layout;
+			layout.gap = stage.stageHeight / 15;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
+			this.addChild(group);
+			
 			btnStart = new Button();
 			btnStart.label = "Start Game!";
 			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
-			addChild(btnStart);
-			btnStart.validate();
-			btnStart.x = (stage.stageWidth - btnStart.width)/2;
-			btnStart.y = (stage.stageHeight/2 - btnStart.height*2);
+			group.addChild(btnStart);
 			
 			btnCreate = new Button();
 			btnCreate.label = "Create Game!";
 			btnCreate.addEventListener(Event.TRIGGERED, btnCreateClickHandler);
-			addChild(btnCreate);
-			btnCreate.validate();
-			btnCreate.x = (stage.stageWidth - btnCreate.width)/2;
-			btnCreate.y = stage.stageHeight/2;
+			group.addChild(btnCreate);
 			
 			btnJoin = new Button();
 			btnJoin.label = "Join Game!";
 			btnJoin.addEventListener(Event.TRIGGERED, btnJoinClickHandler);
-			addChild(btnJoin);
-			btnJoin.validate();
-			btnJoin.x = (stage.stageWidth - btnJoin.width)/2;
-			btnJoin.y = stage.stageHeight/2 + btnJoin.height*2;
+			group.addChild(btnJoin);
+			
+			btnJoin = new Button();
+			btnJoin.label = "Settings";
+			btnJoin.addEventListener(Event.TRIGGERED, btnSettingsClickHandler);
+			group.addChild(btnJoin);
+			
+			
+			group.validate();
+			group.y = (stage.stageHeight - group.height)/2;
+			group.x = (stage.stageWidth - group.width)/2;
+		}
+		
+		private function btnSettingsClickHandler():void
+		{
+			owner.showScreen(SCREEN.settings);
 		}
 		
 		private function btnJoinClickHandler():void
