@@ -25,6 +25,7 @@ package ir.baazino.mytank.screen
 		{
 			btnBack = new Button();
 			btnBack.label = "back";
+			btnBack.name = Button.ALTERNATE_NAME_BACK_BUTTON;
 			btnBack.addEventListener(Event.TRIGGERED, btnBackClickHandler);
 			this.addChild(btnBack);
 			btnBack.validate();
@@ -33,6 +34,7 @@ package ir.baazino.mytank.screen
 			
 			btnStart = new Button();
 			btnStart.label = "Start Game!";
+			btnStart.name = Button.ALTERNATE_NAME_FORWARD_BUTTON;
 			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
 			this.addChild(btnStart);
 			btnStart.validate();

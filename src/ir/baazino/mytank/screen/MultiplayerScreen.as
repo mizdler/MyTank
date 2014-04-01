@@ -60,6 +60,7 @@ package ir.baazino.mytank.screen
 			
 			btnBack = new Button();
 			btnBack.label = "back";
+			btnBack.name = Button.ALTERNATE_NAME_BACK_BUTTON;
 			btnBack.addEventListener(Event.TRIGGERED, btnBackClickHandler);
 			this.addChild(btnBack);
 			btnBack.validate();
@@ -74,12 +75,14 @@ package ir.baazino.mytank.screen
 		
 		private function btnJoinClickHandler():void
 		{
+			WaitingScreen.isServer = false;
 			owner.showScreen(SCREEN.waiting);
 			ConnectionManager.joinHotspot();
 		}
 		
 		private function btnCreateClickHandler():void
 		{
+			WaitingScreen.isServer = true;
 			owner.showScreen(SCREEN.waiting);
 			ConnectionManager.createHotspot();
 		}

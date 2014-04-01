@@ -1,6 +1,7 @@
 package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
+	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
@@ -10,6 +11,7 @@ package ir.baazino.mytank.screen
 	
 	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
 	import spark.containers.NavigatorGroup;
 	
@@ -17,6 +19,7 @@ package ir.baazino.mytank.screen
 	
 	public class SettingsScreen extends Screen
 	{
+		private var header:Header;
 		private var group:LayoutGroup;
 		private var layout:VerticalLayout;
 		
@@ -36,6 +39,10 @@ package ir.baazino.mytank.screen
 		
 		private function addedToStageHandler():void
 		{
+			header = new Header()
+			header.title = "Settings";
+			this.addChild( header );
+			
 			group = new LayoutGroup();
 			playerGroup = new LayoutGroup();
 			
@@ -62,6 +69,7 @@ package ir.baazino.mytank.screen
 			
 			
 			btnBack = new Button();
+			btnBack.name = Button.ALTERNATE_NAME_BACK_BUTTON;
 			btnBack.label = "back";
 			btnBack.addEventListener(Event.TRIGGERED, btnBackClickHandler);
 			this.addChild(btnBack);

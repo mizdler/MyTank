@@ -44,7 +44,7 @@ package ir.baazino.mytank.connection
 		private static var serverSocket:ServerSocket;
 		private static var clientSockets:Array = new Array(); 
 		
-		public static var isServer:Boolean;
+		private static var isServer:Boolean;
 		private static var timer:Timer;
 		
 		private static var server:TCPServer;

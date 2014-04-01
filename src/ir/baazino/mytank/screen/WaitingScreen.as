@@ -14,6 +14,7 @@ package ir.baazino.mytank.screen
 	
 	public class WaitingScreen extends Screen
 	{
+		public static var isServer:Boolean;
 		public static var textLog:StageTextTextEditor;
 		private var btnStart:Button;
 		
@@ -35,10 +36,11 @@ package ir.baazino.mytank.screen
 			textLog.y = 0;
 			textLog.x = 0;
 			
-			if(ConnectionManager.isServer)
+			if(isServer)
 			{
 				btnStart = new Button();
 				btnStart.label = "Start Game!";
+				btnStart.name = Button.ALTERNATE_NAME_FORWARD_BUTTON;
 				btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
 				this.addChild(btnStart);
 				btnStart.validate();
