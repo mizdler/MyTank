@@ -137,7 +137,6 @@ package ir.baazino.mytank.screen
 
 		private function collision(collision:InteractionCallback):void
 		{
-			trace("collide");
 			for (var i:int = 0; i < playersLen; i++)
 			{
 				players[i].isCollided = true;
@@ -146,7 +145,6 @@ package ir.baazino.mytank.screen
 
 		private function seprate(collision:InteractionCallback):void
 		{
-			trace("sep");
 			for (var i:int = 0; i < playersLen; i++)
 			{
 				players[i].isCollided = false;
