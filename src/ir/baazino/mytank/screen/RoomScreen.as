@@ -81,14 +81,14 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.start + "#" + Match.myId);
-			owner.showScreen(SCREEN.game);
+			ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
+			owner.showScreen(SCREEN.GAME);
 		}
 		
 		private function btnBackClickHandler():void
 		{
 			ConnectionManager.closeRTMFP();
-			owner.showScreen(SCREEN.multiPlayer);
+			owner.showScreen(SCREEN.MULTI_PLAYER);
 		}
 	}
 }

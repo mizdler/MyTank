@@ -41,14 +41,14 @@ package
 			
 			navigator = new ScreenNavigator();
 			addChild(navigator);
-			navigator.addScreen(SCREEN.mainMenu, new ScreenNavigatorItem(MainMenuScreen));
-			navigator.addScreen(SCREEN.game, new ScreenNavigatorItem(GameScreen));
-			navigator.addScreen(SCREEN.singlePlayer, new ScreenNavigatorItem(SingleplayerScreen));
-			navigator.addScreen(SCREEN.multiPlayer, new ScreenNavigatorItem(MultiplayerScreen));
-			navigator.addScreen(SCREEN.settings, new ScreenNavigatorItem(SettingsScreen));
-			navigator.addScreen(SCREEN.waiting, new ScreenNavigatorItem(WaitingScreen));
-			navigator.addScreen(SCREEN.room, new ScreenNavigatorItem(RoomScreen));
-			navigator.showScreen(SCREEN.mainMenu);
+			navigator.addScreen(SCREEN.MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen));
+			navigator.addScreen(SCREEN.GAME, new ScreenNavigatorItem(GameScreen));
+			navigator.addScreen(SCREEN.SINGLE_PLAYER, new ScreenNavigatorItem(SingleplayerScreen));
+			navigator.addScreen(SCREEN.MULTI_PLAYER, new ScreenNavigatorItem(MultiplayerScreen));
+			navigator.addScreen(SCREEN.SETTINGS, new ScreenNavigatorItem(SettingsScreen));
+			navigator.addScreen(SCREEN.WAITING, new ScreenNavigatorItem(WaitingScreen));
+			navigator.addScreen(SCREEN.ROOM, new ScreenNavigatorItem(RoomScreen));
+			navigator.showScreen(SCREEN.MAIN_MENU);
 		}
 	}
 }

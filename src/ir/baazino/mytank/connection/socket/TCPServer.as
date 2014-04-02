@@ -61,7 +61,7 @@ package ir.baazino.mytank.connection.socket
 			clientSocket.addEventListener( ProgressEvent.SOCKET_DATA, ConnectionManager.onTCPReceive); 
 			clientSocket.addEventListener( Event.CLOSE, onClientClose ); 
 			clientSocket.addEventListener( IOErrorEvent.IO_ERROR, onIOError ); 
-			sendMsg(CMD.join + "/" + Match.myId);		
+			sendMsg(CMD.JOIN + "/" + Match.myId);		
 			
 			trace( "Sending connect message" );
 			WaitingScreen.textLog.text += "Sending connect message\n";

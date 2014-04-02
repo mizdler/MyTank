@@ -88,13 +88,13 @@ package ir.baazino.mytank.screen
 		
 		private function btnBackClickHandler():void
 		{
-			owner.showScreen(SCREEN.mainMenu);
+			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 		
 		private function btnSaveClickHandler():void
 		{
 			ANE.info.savePlayerName(txtPlayerName.text);
-			owner.showScreen(SCREEN.mainMenu);
+			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 	}
 }

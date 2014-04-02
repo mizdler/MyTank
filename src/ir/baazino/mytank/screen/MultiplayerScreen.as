@@ -76,21 +76,21 @@ package ir.baazino.mytank.screen
 
 		private function btnBackClickHandler():void
 		{
-			owner.showScreen(SCREEN.mainMenu);
+			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 		
 		private function btLanClickHandler():void
 		{
 			Match.init();
 			ConnectionManager.connectLocal();
-			owner.showScreen(SCREEN.room);			
+			owner.showScreen(SCREEN.ROOM);			
 		}
 		
 		private function btnJoinClickHandler():void
 		{
 			Match.init();
 			WaitingScreen.isServer = false;
-			owner.showScreen(SCREEN.waiting);
+			owner.showScreen(SCREEN.WAITING);
 			ConnectionManager.joinHotspot();
 		}
 		
@@ -98,7 +98,7 @@ package ir.baazino.mytank.screen
 		{
 			Match.init();
 			WaitingScreen.isServer = true;
-			owner.showScreen(SCREEN.waiting);
+			owner.showScreen(SCREEN.WAITING);
 			ConnectionManager.createHotspot();
 		}
 		

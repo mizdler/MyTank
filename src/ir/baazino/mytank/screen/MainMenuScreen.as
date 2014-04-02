@@ -61,17 +61,17 @@ package ir.baazino.mytank.screen
 		
 		private function btnSettingsClickHandler():void
 		{
-			owner.showScreen(SCREEN.settings);
+			owner.showScreen(SCREEN.SETTINGS);
 		}
 		
 		private function btnMultiClickHandler():void
 		{
-			owner.showScreen(SCREEN.multiPlayer);
+			owner.showScreen(SCREEN.MULTI_PLAYER);
 		}
 		
 		private function btnSingleClickHandler():void
 		{
-			owner.showScreen(SCREEN.singlePlayer);
+			owner.showScreen(SCREEN.SINGLE_PLAYER);
 		}
 	}
 }

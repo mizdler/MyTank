@@ -71,10 +71,10 @@ package ir.baazino.mytank.connection.rtmfp
 					item.name = me.name;
 					Match.noneCollection.addItem(item);
 					
-					mGroup.post(CMD.join + "#" + Match.myId + "#" + me.name);
+					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.name);
 					break;
 				case "NetGroup.Neighbor.Connect":
-					mGroup.post(CMD.join + "#" + Match.myId + "#" + (Match.playerMap[Match.myId] as Actor).name);
+					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + (Match.playerMap[Match.myId] as Actor).name);
 					break;
 				case "NetGroup.Posting.Notify":
 					receiveNeighbor(event.info.message);
@@ -101,7 +101,7 @@ package ir.baazino.mytank.connection.rtmfp
 			
 			switch(cmd)
 			{
-				case CMD.update:
+				case CMD.UPDATE:
 					actor = Match.playerMap[id] as Actor;
 					actor.x = splited[2];
 					actor.y = splited[3];
@@ -110,7 +110,7 @@ package ir.baazino.mytank.connection.rtmfp
 					actor.shoot = splited[6]=="true"?true:false;
 					break;
 				
-				case CMD.join:
+				case CMD.JOIN:
 					actor = new Actor();
 					actor.name = splited[2];
 					Match.playerMap[id] = actor;
@@ -121,8 +121,8 @@ package ir.baazino.mytank.connection.rtmfp
 					Match.noneCollection.addItem(item);
 					break;
 				
-				case CMD.start:
-					Starter.navigator.showScreen(SCREEN.game);
+				case CMD.START:
+					Starter.navigator.showScreen(SCREEN.GAME);
 			}
 		}
 		

@@ -62,13 +62,13 @@ package ir.baazino.mytank.screen
 		
 		private function btnCanelClickHandler():void
 		{
-			owner.showScreen(SCREEN.multiPlayer);
+			owner.showScreen(SCREEN.MULTI_PLAYER);
 		}
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.start + "#" + Match.myId);
-			owner.showScreen(SCREEN.game);
+			ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
+			owner.showScreen(SCREEN.GAME);
 		}
 	}
 }

@@ -47,12 +47,12 @@ package ir.baazino.mytank.screen
 			Match.init();
 			Match.myId = ConnectionManager.SERVER_ID;
 			Match.playerMap[Match.myId] = new Actor();
-			owner.showScreen(SCREEN.game);
+			owner.showScreen(SCREEN.GAME);
 		}
 		
 		private function btnBackClickHandler():void
 		{
-			owner.showScreen(SCREEN.mainMenu);
+			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 	}
 }

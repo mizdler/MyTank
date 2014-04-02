@@ -40,7 +40,7 @@ package ir.baazino.mytank.connection.socket
 			var id:String = splited[1];
 			var actor:Actor = Match.playerMap[id] as Actor;
 			
-			if(cmd == CMD.update)
+			if(cmd == CMD.UPDATE)
 			{
 				actor.x = splited[2];
 				actor.y = splited[3];

@@ -130,7 +130,7 @@ package ir.baazino.mytank.game.element
 				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
 					actor.shoot = true;
 			}
-			ConnectionManager.sendMsg(CMD.update + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
+			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}
 	}
 }

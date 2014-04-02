@@ -83,7 +83,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnEndClickHandler():void
 		{
-			owner.showScreen(SCREEN.mainMenu);
+			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 		
 		private function addPlayer():void
@@ -113,11 +113,11 @@ package ir.baazino.mytank.screen
 			}
 			
 			for each(var p:Player in players)
-			p.tank.space = space;
+				p.tank.space = space;
 			
 			for each(var p2:Player in players)
-			for (var j:int = 0; j < 5; j++)
-				p2.missiles[j].missile.space = space;
+				for (var j:int = 0; j < 5; j++)
+					p2.missiles[j].missile.space = space;
 		}
 		
 		private function loop():void
@@ -136,13 +136,13 @@ package ir.baazino.mytank.screen
 		private function collision(collision:InteractionCallback):void
 		{
 			for each(var p:Player in players)
-			p.isCollided = true;
+				p.isCollided = true;
 		}
 		
 		private function seprate(collision:InteractionCallback):void
 		{
 			for each(var p:Player in players)
-			p.isCollided = false;
+				p.isCollided = false;
 		}
 	}
 }

@@ -51,14 +51,14 @@ package
 			if(event.keyCode == Keyboard.BACK){
 				event.preventDefault();
 				event.stopImmediatePropagation();
-				if(Starter.navigator.activeScreenID == SCREEN.mainMenu)
+				if(Starter.navigator.activeScreenID == SCREEN.MAIN_MENU)
 				{
 					ConnectionManager.closeTCP();
 					ConnectionManager.closeUDP();
 					NativeApplication.nativeApplication.exit();
 				}
 				else
-					Starter.navigator.showScreen(SCREEN.mainMenu);
+					Starter.navigator.showScreen(SCREEN.MAIN_MENU);
 			}
 		}
 		

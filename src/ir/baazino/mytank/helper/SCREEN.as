@@ -2,12 +2,12 @@ package ir.baazino.mytank.helper
 {
 	public class SCREEN
 	{
-		public static const mainMenu:String = "mainMenuScreen";
-		public static const game:String = "gameScreen";
-		public static const singlePlayer:String = "singlePlayerScreen";
-		public static const multiPlayer:String = "multiPlayerScreen";
-		public static const settings:String = "settingsScreen";
-		public static const waiting:String = "waitingScreen";
-		public static const room:String = "roomScreen";
+		public static const MAIN_MENU:String = "mainMenuScreen";
+		public static const GAME:String = "gameScreen";
+		public static const SINGLE_PLAYER:String = "singlePlayerScreen";
+		public static const MULTI_PLAYER:String = "multiPlayerScreen";
+		public static const SETTINGS:String = "settingsScreen";
+		public static const WAITING:String = "waitingScreen";
+		public static const ROOM:String = "roomScreen";
 	}
 }

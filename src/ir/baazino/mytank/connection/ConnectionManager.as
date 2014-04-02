@@ -146,13 +146,13 @@ package ir.baazino.mytank.connection
 			
 			switch(cmd)
 			{
-				case CMD.join:
+				case CMD.JOIN:
 					Match.playerMap[id] = new Actor();
 					udp = new UDPConnection(server.localIP, server.remoteIP);
 					udp.connect();
 					break;
-				case CMD.start:
-					Starter.navigator.showScreen(SCREEN.game);
+				case CMD.START:
+					Starter.navigator.showScreen(SCREEN.GAME);
 					break;
 			}
 			
@@ -164,7 +164,7 @@ package ir.baazino.mytank.connection
 				mConnection.sendMsg(msg);
 			else
 			{
-				if(msg.substr(0,4)==CMD.update)
+				if(msg.substr(0,4)==CMD.UPDATE)
 					sendUDP(msg);
 				else
 					sendTCP(msg);
