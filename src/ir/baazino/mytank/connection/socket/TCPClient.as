@@ -24,7 +24,7 @@ package ir.baazino.mytank.connection.socket
 			socket.addEventListener(Event.CONNECT, onConnect);
 			socket.addEventListener(Event.CLOSE, onClose);
 			socket.addEventListener(IOErrorEvent.IO_ERROR, onError);
-			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive);
+			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onTCPReceive);
 			socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
 			
 			socket.connect(serverIP, ConnectionConfig.TCP_PORT);

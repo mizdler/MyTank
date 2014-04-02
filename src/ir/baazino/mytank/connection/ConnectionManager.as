@@ -19,6 +19,7 @@ package ir.baazino.mytank.connection
 	import flash.utils.Timer;
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
+	import ir.baazino.mytank.connection.rtmfp.MTNConnection;
 	import ir.baazino.mytank.connection.socket.TCPClient;
 	import ir.baazino.mytank.connection.socket.TCPServer;
 	import ir.baazino.mytank.connection.socket.UDPConnection;
@@ -40,6 +41,9 @@ package ir.baazino.mytank.connection
 	public class ConnectionManager
 	{
 		private static const SERVER_IP:String = "192.168.1.1";
+		public static const SERVER_ID:String = "0";
+		public static const CLIENT_ID:String = "1";
+		
 		private static var datagramSocket:DatagramSocket;
 		private static var serverSocket:ServerSocket;
 		private static var clientSockets:Array = new Array(); 
@@ -51,9 +55,8 @@ package ir.baazino.mytank.connection
 		private static var client:TCPClient;
 		private static var udp:UDPConnection;
 		
-		public static const SERVER_ID:String = "0";
-		public static const CLIENT_ID:String = "1";
-		
+		private static var mConnection:MTNConnection;
+		private static var isRTMFP:Boolean;
 
 		public static function joinHotspot():void
 		{
@@ -124,7 +127,14 @@ package ir.baazino.mytank.connection
 
 		}
 		
-		public static function onReceive(event:ProgressEvent):void 
+		public static function connectLocal():void
+		{
+			isRTMFP = true;
+			mConnection = new MTNConnection(true);
+			mConnection.connectNet();
+		}
+		
+		public static function onTCPReceive(event:ProgressEvent):void 
 		{
 			var socket:Socket = event.target as Socket;
 			if(socket.bytesAvailable<=0)
@@ -134,45 +144,70 @@ package ir.baazino.mytank.connection
 			var cmd:String = splited[0];
 			var id:String = splited[1];
 			
-			if(cmd == CMD.join)
+			switch(cmd)
 			{
-				Match.playerMap[id] = new Actor();
-				udp = new UDPConnection(server.localIP, server.remoteIP);
-				udp.connect();
-			}
-			else if(cmd == CMD.start)
-			{
-				Starter.navigator.showScreen(SCREEN.game);
+				case CMD.join:
+					Match.playerMap[id] = new Actor();
+					udp = new UDPConnection(server.localIP, server.remoteIP);
+					udp.connect();
+					break;
+				case CMD.start:
+					Starter.navigator.showScreen(SCREEN.game);
+					break;
 			}
 			
 		} 
 		
-		public static function sendTCP(msg:String):void
+		public static function sendMsg(msg:String):void
+		{
+			if(isRTMFP)
+				mConnection.sendMsg(msg);
+			else
+			{
+				if(msg.substr(0,4)==CMD.update)
+					sendUDP(msg);
+				else
+					sendTCP(msg);
+			}
+		}
+		
+		private static function sendTCP(msg:String):void
 		{
 			if(isServer)
 				server.sendMsg(msg);
 			else
 				client.sendMsg(msg);
 		}
-
+		
+		private static function sendUDP(msg:String):void
+		{
+			udp.sendMsg(msg);
+		}
+		
+		private static function sendRTMFP(msg:String):void
+		{
+			mConnection.sendMsg(msg);
+		}
+		
 		public static function closeTCP():void
 		{
-			if(server != null)
+			if(server)
 				server.closeSocket();
-			if(client != null)
+			if(client)
 				client.closeSocket();
 		}
 		
-		public static function sendUDP(msg:String):void
-		{
-			if(udp != null)
-				udp.sendMsg(msg);
-		}
 		public static function closeUDP():void
 		{
-			if(udp != null)
+			if(udp)
 				udp.closeSocket();
 		}
-
+		
+		public static function closeRTMFP():void
+		{
+			if(mConnection)
+				mConnection.closeRTMFP();
+		}
+		
 	}
 }

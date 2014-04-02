@@ -55,7 +55,6 @@ package
 				{
 					ConnectionManager.closeTCP();
 					ConnectionManager.closeUDP();
-					ANE.wifi.disableWifi();
 					NativeApplication.nativeApplication.exit();
 				}
 				else

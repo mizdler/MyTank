@@ -58,7 +58,7 @@ package ir.baazino.mytank.connection.socket
 		{ 
 			clientSocket = event.socket as Socket;
 			remoteIP = clientSocket.remoteAddress;
-			clientSocket.addEventListener( ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive); 
+			clientSocket.addEventListener( ProgressEvent.SOCKET_DATA, ConnectionManager.onTCPReceive); 
 			clientSocket.addEventListener( Event.CLOSE, onClientClose ); 
 			clientSocket.addEventListener( IOErrorEvent.IO_ERROR, onIOError ); 
 			sendMsg(CMD.join + "/" + Match.myId);		

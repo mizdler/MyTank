@@ -16,7 +16,9 @@ package ir.baazino.mytank.screen
 	{
 		public static var isServer:Boolean;
 		public static var textLog:StageTextTextEditor;
+		
 		private var btnStart:Button;
+		private var btnCancel:Button;
 		
 		public function WaitingScreen()
 		{
@@ -47,11 +49,25 @@ package ir.baazino.mytank.screen
 				btnStart.x = stage.stageWidth - (btnStart.width + stage.stageWidth/100);
 				btnStart.y = stage.stageHeight - (btnStart.height + stage.stageHeight/100);
 			}
+			
+			btnCancel = new Button();
+			btnCancel.name = Button.ALTERNATE_NAME_BACK_BUTTON;
+			btnCancel.label = "cancel";
+			btnCancel.addEventListener(Event.TRIGGERED, btnCanelClickHandler);
+			this.addChild(btnCancel);
+			btnCancel.validate();
+			btnCancel.x = stage.stageWidth / 100;
+			btnCancel.y = stage.stageHeight - (btnCancel.height + stage.stageHeight/100);
+		}
+		
+		private function btnCanelClickHandler():void
+		{
+			owner.showScreen(SCREEN.multiPlayer);
 		}
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendTCP(CMD.start + "#" + Match.myId);
+			ConnectionManager.sendMsg(CMD.start + "#" + Match.myId);
 			owner.showScreen(SCREEN.game);
 		}
 	}

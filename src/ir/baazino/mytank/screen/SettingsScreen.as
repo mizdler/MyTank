@@ -41,7 +41,7 @@ package ir.baazino.mytank.screen
 		{
 			header = new Header()
 			header.title = "Settings";
-			this.addChild( header );
+			this.addChild(header);
 			
 			group = new LayoutGroup();
 			playerGroup = new LayoutGroup();

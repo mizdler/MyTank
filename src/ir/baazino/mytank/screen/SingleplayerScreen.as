@@ -44,6 +44,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
+			Match.init();
 			Match.myId = ConnectionManager.SERVER_ID;
 			Match.playerMap[Match.myId] = new Actor();
 			owner.showScreen(SCREEN.game);

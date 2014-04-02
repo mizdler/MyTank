@@ -25,13 +25,13 @@ package ir.baazino.mytank.connection.socket
 		public function connect():void
 		{
 			udpSocket = new DatagramSocket(); 
-			udpSocket.addEventListener(DatagramSocketDataEvent.DATA, onReceive); 
+			udpSocket.addEventListener(DatagramSocketDataEvent.DATA, onUDPReceive); 
 			udpSocket.bind(ConnectionConfig.UDP_PORT, localIP); 
 			udpSocket.connect(targetIP, ConnectionConfig.UDP_PORT);
 			udpSocket.receive();
 		}
 		
-		private function onReceive(event:DatagramSocketDataEvent):void 
+		private function onUDPReceive(event:DatagramSocketDataEvent):void 
 		{
 			var msg:String = event.data.readUTFBytes(event.data.bytesAvailable);
 			trace(msg + "\n");
@@ -39,6 +39,7 @@ package ir.baazino.mytank.connection.socket
 			var cmd:String = splited[0];
 			var id:String = splited[1];
 			var actor:Actor = Match.playerMap[id] as Actor;
+			
 			if(cmd == CMD.update)
 			{
 				actor.x = splited[2];

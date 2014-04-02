@@ -8,5 +8,6 @@ package ir.baazino.mytank.helper
 		public static const multiPlayer:String = "multiPlayerScreen";
 		public static const settings:String = "settingsScreen";
 		public static const waiting:String = "waitingScreen";
+		public static const room:String = "roomScreen";
 	}
 }

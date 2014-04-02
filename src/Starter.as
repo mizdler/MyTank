@@ -11,6 +11,7 @@ package
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
 	import ir.baazino.mytank.screen.MultiplayerScreen;
+	import ir.baazino.mytank.screen.RoomScreen;
 	import ir.baazino.mytank.screen.SettingsScreen;
 	import ir.baazino.mytank.screen.SingleplayerScreen;
 	import ir.baazino.mytank.screen.WaitingScreen;
@@ -46,6 +47,7 @@ package
 			navigator.addScreen(SCREEN.multiPlayer, new ScreenNavigatorItem(MultiplayerScreen));
 			navigator.addScreen(SCREEN.settings, new ScreenNavigatorItem(SettingsScreen));
 			navigator.addScreen(SCREEN.waiting, new ScreenNavigatorItem(WaitingScreen));
+			navigator.addScreen(SCREEN.room, new ScreenNavigatorItem(RoomScreen));
 			navigator.showScreen(SCREEN.mainMenu);
 		}
 	}
