@@ -19,7 +19,7 @@ package ir.baazino.mytank.screen
 	import nape.space.Space;
 	
 	import starling.events.Event;
-
+	
 	public class GameScreen extends Screen
 	{
 		private var field:Field;
@@ -27,65 +27,65 @@ package ir.baazino.mytank.screen
 		private var player:Player;
 		private var players:Dictionary = new Dictionary;
 		private var playersLen:int;
-
+		
 		private var space:Space = new Space();
-
+		
 		private var interaction:InteractionListener;
 		private var sepration:InteractionListener;
 		private var wallCollisionType:CbType=new CbType();
 		private var tankCollisionType:CbType=new CbType();
-
+		
 		public function GameScreen()
 		{
 			super();
 			playersLen = 0;
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-
-			interaction = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, wallCollisionType, tankCollisionType, collision);
-			sepration = new InteractionListener(CbEvent.END, InteractionType.COLLISION, wallCollisionType, tankCollisionType, seprate);
-
-			space.listeners.add(interaction);
-			space.listeners.add(sepration);
 		}
-
+		
 		public function onAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			init();
 		}
-
+		
 		private function init():void
 		{
 			field = new Field(stage.stageWidth, stage.stageHeight);
 			addChild(field);
-
+			
 			addPlayer();
-
+			
 			addController();
-
+			
 			addButtons();
-
+			
 			addToSpace();
-
+			
+			interaction = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, wallCollisionType, tankCollisionType, collision);
+			sepration = new InteractionListener(CbEvent.END, InteractionType.COLLISION, wallCollisionType, tankCollisionType, seprate);
+			
+			space.listeners.add(interaction);
+			space.listeners.add(sepration);
+			
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
-
+		
 		private function addButtons():void
 		{
-			var btnStart:Button = new Button();
-			btnStart.label = "Back";
-			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
-			addChild(btnStart);
-			btnStart.validate();
-			btnStart.x = (stage.stageWidth - btnStart.width)/2;
-			btnStart.y = (stage.stageHeight - btnStart.height);
+			var btnEnd:Button = new Button();
+			btnEnd.label = "End";
+			btnEnd.addEventListener(Event.TRIGGERED, btnEndClickHandler);
+			addChild(btnEnd);
+			btnEnd.validate();
+			btnEnd.x = (stage.stageWidth - btnEnd.width)/2;
+			btnEnd.y = (stage.stageHeight - btnEnd.height);
 		}
-
-		private function btnStartClickHandler():void
+		
+		private function btnEndClickHandler():void
 		{
 			owner.showScreen(SCREEN.mainMenu);
 		}
-
+		
 		private function addPlayer():void
 		{
 			for(var id:String in Match.playerMap)
@@ -97,58 +97,52 @@ package ir.baazino.mytank.screen
 				playersLen += 1;
 			}
 		}
-
+		
 		private function addController():void
 		{
 			controller = new JoyStick();
 			addChild(controller);
 		}
-
+		
 		private function addToSpace():void
 		{
-			for (var i:int = 0; i < field.cell_count; i++)
+			for each(var b:Body in field.body)
 			{
-				field.body[i].cbTypes.add(wallCollisionType);
-				field.body[i].space = space;
+				b.cbTypes.add(wallCollisionType);
+				b.space = space;
 			}
-
-			for (i = 0; i < playersLen; i++)
-			{
-				players[i].tank.space = space;
-			}
-
-			for (i = 0; i < playersLen; i++)
-				for (var j:int = 0; j < 5; j++)
-					players[i].missiles[j].missile.space = space;
+			
+			for each(var p:Player in players)
+			p.tank.space = space;
+			
+			for each(var p2:Player in players)
+			for (var j:int = 0; j < 5; j++)
+				p2.missiles[j].missile.space = space;
 		}
-
+		
 		private function loop():void
 		{
 			space.step(1/60);
 			space.liveBodies.foreach(updateGraphics);
 		}
-
+		
 		private function updateGraphics(b:Body):void
 		{
 			b.userData.graphic.x = b.position.x;
 			b.userData.graphic.y = b.position.y;
 			b.userData.graphic.rotation = b.rotation;
 		}
-
+		
 		private function collision(collision:InteractionCallback):void
 		{
-			for (var i:int = 0; i < playersLen; i++)
-			{
-				players[i].isCollided = true;
-			}
+			for each(var p:Player in players)
+			p.isCollided = true;
 		}
-
+		
 		private function seprate(collision:InteractionCallback):void
 		{
-			for (var i:int = 0; i < playersLen; i++)
-			{
-				players[i].isCollided = false;
-			}
+			for each(var p:Player in players)
+			p.isCollided = false;
 		}
 	}
 }

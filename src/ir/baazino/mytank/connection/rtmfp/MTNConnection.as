@@ -54,7 +54,6 @@ package ir.baazino.mytank.connection.rtmfp
 		
 		protected function onNetStatus(event:NetStatusEvent):void
 		{
-			trace(Match.noneCollection, Match.noneCollection.data, Match.noneCollection.length);
 			var code:String = event.info.code;
 			switch(code)
 			{
