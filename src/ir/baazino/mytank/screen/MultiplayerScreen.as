@@ -33,6 +33,7 @@ package ir.baazino.mytank.screen
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.backButtonHandler = btnBackClickHandler;
 		}
 		
 		private function addedToStageHandler():void

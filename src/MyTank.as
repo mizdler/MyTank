@@ -25,7 +25,6 @@ package
 		public function MyTank()
 		{
 			Starter.isIOS = Capabilities.manufacturer.indexOf("iOS")!=-1;
-			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 			Starling.multitouchEnabled = true;
 			var viewPortRectangle:Rectangle = new Rectangle();
 			if(Starter.isIOS)
@@ -46,20 +45,12 @@ package
 			strling.start();
 		}
 		
-		protected function keyDownHandler(event:KeyboardEvent):void
+		public static function exitGame():void
 		{
-			if(event.keyCode == Keyboard.BACK){
-				event.preventDefault();
-				event.stopImmediatePropagation();
-				if(Starter.navigator.activeScreenID == SCREEN.MAIN_MENU)
-				{
-					ConnectionManager.closeTCP();
-					ConnectionManager.closeUDP();
-					NativeApplication.nativeApplication.exit();
-				}
-				else
-					Starter.navigator.showScreen(SCREEN.MAIN_MENU);
-			}
+			ConnectionManager.closeTCP();
+			ConnectionManager.closeUDP();
+			ConnectionManager.closeRTMFP();
+			NativeApplication.nativeApplication.exit();
 		}
 		
 	}

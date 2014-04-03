@@ -24,6 +24,7 @@ package ir.baazino.mytank.screen
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.backButtonHandler = btnCancelClickHandler;
 		}
 		
 		private function addedToStageHandler():void
@@ -53,14 +54,14 @@ package ir.baazino.mytank.screen
 			btnCancel = new Button();
 			btnCancel.name = Button.ALTERNATE_NAME_BACK_BUTTON;
 			btnCancel.label = "cancel";
-			btnCancel.addEventListener(Event.TRIGGERED, btnCanelClickHandler);
+			btnCancel.addEventListener(Event.TRIGGERED, btnCancelClickHandler);
 			this.addChild(btnCancel);
 			btnCancel.validate();
 			btnCancel.x = stage.stageWidth / 100;
 			btnCancel.y = stage.stageHeight - (btnCancel.height + stage.stageHeight/100);
 		}
 		
-		private function btnCanelClickHandler():void
+		private function btnCancelClickHandler():void
 		{
 			owner.showScreen(SCREEN.MULTI_PLAYER);
 		}

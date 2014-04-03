@@ -26,6 +26,7 @@ package ir.baazino.mytank.screen
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.backButtonHandler = btnBackClickHandler;
 		}
 		
 		private function addedToStageHandler():void
@@ -72,6 +73,10 @@ package ir.baazino.mytank.screen
 		private function btnSingleClickHandler():void
 		{
 			owner.showScreen(SCREEN.SINGLE_PLAYER);
+		}
+		private function btnBackClickHandler():void
+		{
+			MyTank.exitGame();
 		}
 	}
 }

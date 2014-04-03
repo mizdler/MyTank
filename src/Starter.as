@@ -4,6 +4,7 @@ package
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.controls.TextArea;
 	import feathers.display.Scale9Image;
+	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
 	
 	import flash.display.Bitmap;
 	
@@ -27,8 +28,9 @@ package
 		[Embed(source="../assets/blank.png")]
 		private var blankImg:Class;
 		
-		public static var navigator:ScreenNavigator;
 		public static var isIOS:Boolean;
+		public static var navigator:ScreenNavigator;
+		private static var transitionManager:ScreenSlidingStackTransitionManager;
 		
 		public function Starter()
 		{
@@ -49,6 +51,9 @@ package
 			navigator.addScreen(SCREEN.WAITING, new ScreenNavigatorItem(WaitingScreen));
 			navigator.addScreen(SCREEN.ROOM, new ScreenNavigatorItem(RoomScreen));
 			navigator.showScreen(SCREEN.MAIN_MENU);
+			
+			transitionManager = new ScreenSlidingStackTransitionManager(navigator);
+			transitionManager.duration = 0.3;
 		}
 	}
 }
