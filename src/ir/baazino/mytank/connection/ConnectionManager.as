@@ -29,6 +29,7 @@ package ir.baazino.mytank.connection
 	import ir.baazino.mytank.helper.HOTSPOT_STATE;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.SERVER_FUNCTION;
+	import ir.baazino.mytank.helper.Storage;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 	import ir.baazino.mytank.screen.GameScreen;
@@ -40,7 +41,6 @@ package ir.baazino.mytank.connection
 
 	public class ConnectionManager
 	{
-		private static const SERVER_IP:String = "192.168.1.1";
 		public static const SERVER_ID:String = "0";
 		public static const CLIENT_ID:String = "1";
 		
@@ -68,7 +68,7 @@ package ir.baazino.mytank.connection
 				checkWifi(null);
 			else
 			{
-				ANE.wifi.joinHotspot();
+				ANE.wifi.joinHotspot(Storage.loadWifiPassword());
 				var checkTimer:Timer = new Timer(1000);
 				checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
 				checkTimer.start();
@@ -86,10 +86,13 @@ package ir.baazino.mytank.connection
 					WaitingScreen.textLog.text += "Wifi Connected!\n";
 					var dhcpInfo:String = ANE.wifi.getDhcpInfo();
 					var splited:Array = dhcpInfo.split("#");
-					WaitingScreen.textLog.text += "ServerIP : " + SERVER_IP + "\n";
+					var serverIP:String = splited[0];
+					if(Starter.isIOS)
+						serverIP = serverIP.substr(0, serverIP.lastIndexOf(".")) + ".1";
+					WaitingScreen.textLog.text += "ServerIP : " + serverIP + "\n";
 					WaitingScreen.textLog.text += "ClientIP : " + splited[1] + "\n";
-					client = new TCPClient(SERVER_IP);
-					udp = new UDPConnection(splited[1], SERVER_IP);
+					client = new TCPClient(serverIP);
+					udp = new UDPConnection(splited[1], serverIP);
 					udp.connect();
 				}
 				else if(Starter.isIOS)
@@ -105,7 +108,7 @@ package ir.baazino.mytank.connection
 			isServer = true;
 			WaitingScreen.textLog.text += "Activating Hotspot...\n";
 			trace("Activating Hotspot...");
-			ANE.wifi.createHotspot();
+			ANE.wifi.createHotspot(Storage.loadWifiPassword());
 				    
 			var checkTimer:Timer = new Timer(1000);
 			checkTimer.addEventListener(TimerEvent.TIMER, checkHotspot);

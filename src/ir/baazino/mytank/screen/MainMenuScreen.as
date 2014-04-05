@@ -1,6 +1,7 @@
 package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
+	import feathers.controls.ButtonGroup;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
 	import feathers.layout.HorizontalLayout;
@@ -8,6 +9,7 @@ package ir.baazino.mytank.screen
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Match;
 	
@@ -21,6 +23,8 @@ package ir.baazino.mytank.screen
 		private var btnSingle:Button;
 		private var btnMulti:Button;
 		private var btnSettings:Button;
+		
+		private var buttonGroup:ButtonGroup
 		
 		public function MainMenuScreen()
 		{

@@ -10,7 +10,9 @@ package ir.baazino.mytank.screen
 	import feathers.layout.VerticalLayout;
 	
 	import ir.baazino.mytank.helper.ANE;
+	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.helper.Storage;
 	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
 	import spark.containers.NavigatorGroup;
@@ -26,8 +28,15 @@ package ir.baazino.mytank.screen
 		private var playerGroup:LayoutGroup;
 		private var playerLayout:HorizontalLayout;
 		
+		private var wifiGroup:LayoutGroup;
+		private var wifiLayout:HorizontalLayout;
+		
 		private var lblPlayerName:Label;
 		private var txtPlayerName:TextInput;
+		
+		private var lblWifiPassword:Label;
+		private var txtWifiPassword:TextInput;
+		
 		private var btnSave:Button;
 		private var btnBack:Button;
 		
@@ -46,19 +55,34 @@ package ir.baazino.mytank.screen
 			
 			group = new LayoutGroup();
 			playerGroup = new LayoutGroup();
+			wifiGroup = new LayoutGroup();
 			
 			lblPlayerName = new Label;
 			lblPlayerName.text = "player name:";
 			playerGroup.addChild(lblPlayerName);
 			
 			txtPlayerName = new TextInput();
-			txtPlayerName.text = ANE.info.loadPlayerName();
+			txtPlayerName.text = Storage.loadPlayerName();
 			playerGroup.addChild(txtPlayerName);
 			
 			playerLayout = new HorizontalLayout();
 			playerGroup.layout = playerLayout;
-			playerLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_BOTTOM;
+			playerLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
 			group.addChild(playerGroup);
+			
+			
+			lblWifiPassword = new Label;
+			lblWifiPassword.text = "WiFi password:";
+			wifiGroup.addChild(lblWifiPassword);
+			
+			txtWifiPassword = new TextInput();
+			txtWifiPassword.text = Storage.loadWifiPassword();
+			wifiGroup.addChild(txtWifiPassword);
+			
+			wifiLayout = new HorizontalLayout();
+			wifiGroup.layout = wifiLayout;
+			wifiLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+			group.addChild(wifiGroup);
 			
 			layout = new VerticalLayout();
 			group.layout = layout;
@@ -94,8 +118,29 @@ package ir.baazino.mytank.screen
 		
 		private function btnSaveClickHandler():void
 		{
-			ANE.info.savePlayerName(txtPlayerName.text);
-			owner.showScreen(SCREEN.MAIN_MENU);
+			var alert:Notifier;
+			if(txtPlayerName.text.length < 1)
+			{
+				alert = new Notifier("player name must be at least 1 characters.",Notifier.OK,"Alert");
+				alert.width = stage.stageWidth/2;
+				addChild(alert);
+				alert.show();
+				txtPlayerName.text = Storage.loadPlayerName()();
+			}
+			else if(txtWifiPassword.text.length < 8)
+			{
+				alert= new Notifier("WiFi password must be at least 8 characters.",Notifier.OK,"Alert");
+				alert.width = stage.stageWidth/2;
+				addChild(alert);
+				alert.show();
+				txtWifiPassword.text = Storage.loadWifiPassword();
+			}
+			else
+			{
+				Storage.savePlayerName(txtPlayerName.text);
+				Storage.saveWifiPassword(txtWifiPassword.text);
+				owner.showScreen(SCREEN.MAIN_MENU);
+			}
 		}
 	}
 }

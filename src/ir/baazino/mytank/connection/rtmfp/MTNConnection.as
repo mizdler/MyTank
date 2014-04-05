@@ -10,6 +10,7 @@ package ir.baazino.mytank.connection.rtmfp
 	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.helper.Storage;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
 
@@ -63,7 +64,7 @@ package ir.baazino.mytank.connection.rtmfp
 				case "NetGroup.Connect.Success":
 					var me:Actor = new Actor();
 					Match.myId = mGroup.convertPeerIDToGroupAddress(nearID);
-					me.name = ANE.info.loadPlayerName();
+					me.name = Storage.loadPlayerName();
 					Match.playerMap[Match.myId] = me;
 					
 					var item:Object = new Object();
