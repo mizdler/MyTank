@@ -1,17 +1,16 @@
 package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
-	import feathers.controls.ButtonGroup;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
-	import feathers.layout.HorizontalLayout;
 	import feathers.layout.VerticalLayout;
 	
-	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.helper.CMD;
+	import flash.events.EventDispatcher;
+	import flash.events.StatusEvent;
+	
+	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
-	import ir.baazino.mytank.info.Match;
 	
 	import starling.events.Event;
 	
@@ -23,8 +22,7 @@ package ir.baazino.mytank.screen
 		private var btnSingle:Button;
 		private var btnMulti:Button;
 		private var btnSettings:Button;
-		
-		private var buttonGroup:ButtonGroup
+		private var btnUpgrade:Button;
 		
 		public function MainMenuScreen()
 		{
@@ -58,10 +56,43 @@ package ir.baazino.mytank.screen
 			btnSettings.addEventListener(Event.TRIGGERED, btnSettingsClickHandler);
 			group.addChild(btnSettings);
 			
-			
 			group.validate();
 			group.y = (stage.stageHeight - group.height)/2;
 			group.x = (stage.stageWidth - group.width)/2;
+			
+			btnUpgrade = new Button();
+			btnUpgrade.label = "Upgrade";
+			btnUpgrade.addEventListener(Event.TRIGGERED, btnUpgradeClickHandler);
+			this.addChild(btnUpgrade);
+			btnUpgrade.validate();
+			btnUpgrade.y = stage.stageHeight / 20;
+			btnUpgrade.x = stage.stageWidth - (btnUpgrade.width + stage.stageWidth / 20);
+		}
+		
+		private function btnUpgradeClickHandler():void
+		{
+			(EventDispatcher(ANE.purchase)).addEventListener(StatusEvent.STATUS, onPurchaseStatus);
+			ANE.purchase.purchase();
+		}
+
+		protected function onPurchaseStatus(event:StatusEvent):void
+		{
+			var notif:Notifier;
+			if(event.code == "INIT_SUCCESS")
+			{
+				notif = new Notifier("success!",Notifier.OK,"Alert");
+				notif.width = stage.stageWidth/2;
+				addChild(notif);
+				notif.show();
+			}
+			else if(event.code == "INIT_FAIL")
+			{
+				notif = new Notifier("failed",Notifier.OK,"Alert");
+				notif.width = stage.stageWidth/2;
+				addChild(notif);
+				notif.show();
+			}
+				
 		}
 		
 		private function btnSettingsClickHandler():void

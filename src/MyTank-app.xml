@@ -233,7 +233,7 @@
 <android>
         <colorDepth>16bit</colorDepth>
         <manifestAdditions><![CDATA[
-			<manifest android:installLocation="auto">
+			<manifest android:installLocation="auto" >
 			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
 			    <!--Removing the permission android.permission.INTERNET will have the side effect
 		of preventing you from debugging your application on your device-->
@@ -256,6 +256,11 @@
 			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 			    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 			    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+			    
+			    <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
+				<application android:enabled="true" android:versionCode="1" android:versionName="1.0">
+				<activity android:name="com.example.testbazaar.PurchaseActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+				</application>
 			</manifest>
 			
 		]]></manifestAdditions>
@@ -275,5 +280,6 @@
         <extensionID>ir.baazino.info.id</extensionID>
         <extensionID>ir.baazino.notification.id</extensionID>
 	    <extensionID>ir.baazino.wifi.id</extensionID>
+    <extensionID>ir.baazino.purchase.id</extensionID>
     </extensions>
 </application>
