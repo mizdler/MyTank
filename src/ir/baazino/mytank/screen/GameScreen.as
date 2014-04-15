@@ -6,7 +6,7 @@ package ir.baazino.mytank.screen
 	import flash.utils.Dictionary;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.game.Field;
+	import ir.baazino.mytank.map.Map;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.CMD;
@@ -19,7 +19,7 @@ package ir.baazino.mytank.screen
 
 	public class GameScreen extends Screen
 	{
-		private var field:Field;
+		private var map:Map;
 		private var controller:JoyStick;
 		private var player:Player;
 		private var players:Dictionary = new Dictionary;
@@ -42,18 +42,23 @@ package ir.baazino.mytank.screen
 
 		private function init():void
 		{
-			field = new Field(stage.stageWidth, stage.stageHeight);
-			addChild(field);
-
 			addPlayer();
 			
 			addController();
 			
 			addButtons();
+			
+			loadMap();
 
 			addToSpace();
 			
 			addEventListener(Event.ENTER_FRAME, loop);
+		}
+		
+		private function loadMap():void
+		{
+			map = new Map(players[0], players[0]);
+			map.load('war');
 		}
 		
 		private function addButtons():void
@@ -89,8 +94,9 @@ package ir.baazino.mytank.screen
 		
 		private function addToSpace():void
 		{
-			for (var i:int = 0; i < field.cell_count; i++)
-				field.body[i].space = space;
+			var i:int = 0;
+			//for (var i:int = 0; i < field.cell_count; i++)
+				//field.body[i].space = space;
 
 			for (i = 0; i < playersLen; i++)
 				players[i].tank.space = space;

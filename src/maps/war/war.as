@@ -280,7 +280,7 @@ public class PhysicsData {
 				
 			
 
-			anchor = (true) ? body.localCOM.copy() : Vec2.get(266,40);
+			anchor = (true) ? body.localCOM.copy() : Vec2.get(133,20);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
 			body.position.setxy(0,0);
 
@@ -410,7 +410,7 @@ public class PhysicsData {
 				
 			
 
-			anchor = (true) ? body.localCOM.copy() : Vec2.get(194,40);
+			anchor = (true) ? body.localCOM.copy() : Vec2.get(97,20);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
 			body.position.setxy(0,0);
 
@@ -650,7 +650,7 @@ public class PhysicsData {
 				
 			
 
-			anchor = (true) ? body.localCOM.copy() : Vec2.get(166,170);
+			anchor = (true) ? body.localCOM.copy() : Vec2.get(83,85);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
 			body.position.setxy(0,0);
 
@@ -1010,7 +1010,7 @@ public class PhysicsData {
 				
 			
 
-			anchor = (true) ? body.localCOM.copy() : Vec2.get(367,477);
+			anchor = (true) ? body.localCOM.copy() : Vec2.get(183.5,238.5);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
 			body.position.setxy(0,0);
 
@@ -1340,7 +1340,7 @@ public class PhysicsData {
 				
 			
 
-			anchor = (true) ? body.localCOM.copy() : Vec2.get(309,545);
+			anchor = (true) ? body.localCOM.copy() : Vec2.get(154.5,272.5);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
 			body.position.setxy(0,0);
 
