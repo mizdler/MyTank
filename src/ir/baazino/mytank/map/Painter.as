@@ -6,6 +6,11 @@ package ir.baazino.mytank.map
 		{
 		}
 		
+		public function paint(key:String, src:String, pos:Array):void
+		{
+			trace(key, src);
+		}
+		
 		public function background()
 		{
 		}
