@@ -4,12 +4,18 @@ package
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.controls.TextArea;
 	import feathers.display.Scale9Image;
+	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
 	
 	import flash.display.Bitmap;
 	
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
+	import ir.baazino.mytank.screen.MultiplayerScreen;
+	import ir.baazino.mytank.screen.RoomScreen;
+	import ir.baazino.mytank.screen.SettingsScreen;
+	import ir.baazino.mytank.screen.SingleplayerScreen;
+	import ir.baazino.mytank.screen.WaitingScreen;
 	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
 	import starling.display.Image;
@@ -22,8 +28,10 @@ package
 		[Embed(source="../assets/blank.png")]
 		private var blankImg:Class;
 		
+		public static var isIOS:Boolean;
 		public static var navigator:ScreenNavigator;
-		public static var textLog:TextArea;
+		private static var transitionManager:ScreenSlidingStackTransitionManager;
+		
 		public function Starter()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
@@ -32,21 +40,20 @@ package
 		private function addedToStageHandler():void
 		{
 			new MetalWorksMobileTheme;
-			textLog = new TextArea();
-			textLog.isEditable = false;
-			textLog.width = stage.stageWidth;
-			textLog.height = stage.stageHeight * 0.9;
-			
-			addChild(textLog);
-			textLog.validate();
-			textLog.y = 50;
-			textLog.x = 50;
 			
 			navigator = new ScreenNavigator();
 			addChild(navigator);
-			navigator.addScreen(SCREEN.mainMenu, new ScreenNavigatorItem(MainMenuScreen));
-			navigator.addScreen(SCREEN.game, new ScreenNavigatorItem(GameScreen));
-			navigator.showScreen(SCREEN.mainMenu);
+			navigator.addScreen(SCREEN.MAIN_MENU, new ScreenNavigatorItem(MainMenuScreen));
+			navigator.addScreen(SCREEN.GAME, new ScreenNavigatorItem(GameScreen));
+			navigator.addScreen(SCREEN.SINGLE_PLAYER, new ScreenNavigatorItem(SingleplayerScreen));
+			navigator.addScreen(SCREEN.MULTI_PLAYER, new ScreenNavigatorItem(MultiplayerScreen));
+			navigator.addScreen(SCREEN.SETTINGS, new ScreenNavigatorItem(SettingsScreen));
+			navigator.addScreen(SCREEN.WAITING, new ScreenNavigatorItem(WaitingScreen));
+			navigator.addScreen(SCREEN.ROOM, new ScreenNavigatorItem(RoomScreen));
+			navigator.showScreen(SCREEN.MAIN_MENU);
+			
+			transitionManager = new ScreenSlidingStackTransitionManager(navigator);
+			transitionManager.duration = 0.3;
 		}
 	}
 }

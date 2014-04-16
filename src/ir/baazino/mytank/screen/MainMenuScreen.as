@@ -1,70 +1,117 @@
 package ir.baazino.mytank.screen
 {
 	import feathers.controls.Button;
+	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
+	import feathers.layout.VerticalLayout;
 	
-	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.helper.CMD;
+	import flash.events.EventDispatcher;
+	import flash.events.StatusEvent;
+	
+	import ir.baazino.mytank.helper.ANE;
+	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
-	import ir.baazino.mytank.info.Match;
-	
-	import mx.core.mx_internal;
 	
 	import starling.events.Event;
 	
 	public class MainMenuScreen extends Screen
 	{
-		private var btnStart:Button;
-		private var btnCreate:Button;
-		private var btnJoin:Button;
+		private var group:LayoutGroup;
+		private var layout:VerticalLayout;
+		
+		private var btnSingle:Button;
+		private var btnMulti:Button;
+		private var btnSettings:Button;
+		private var btnUpgrade:Button;
 		
 		public function MainMenuScreen()
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.backButtonHandler = btnBackClickHandler;
 		}
 		
 		private function addedToStageHandler():void
 		{
-			btnStart = new Button();
-			btnStart.label = "Start Game!";
-			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
-			addChild(btnStart);
-			btnStart.validate();
-			btnStart.x = (stage.stageWidth - btnStart.width)/2;
-			btnStart.y = (stage.stageHeight/2 - btnStart.height*2);
+			group = new LayoutGroup();
+			layout = new VerticalLayout();
+			group.layout = layout;
+			layout.gap = stage.stageHeight / 15;
+			layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
+			layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
+			this.addChild(group);
 			
-			btnCreate = new Button();
-			btnCreate.label = "Create Game!";
-			btnCreate.addEventListener(Event.TRIGGERED, btnCreateClickHandler);
-			addChild(btnCreate);
-			btnCreate.validate();
-			btnCreate.x = (stage.stageWidth - btnCreate.width)/2;
-			btnCreate.y = stage.stageHeight/2;
+			btnSingle = new Button();
+			btnSingle.label = "SinglePlayer";
+			btnSingle.addEventListener(Event.TRIGGERED, btnSingleClickHandler);
+			group.addChild(btnSingle);
 			
-			btnJoin = new Button();
-			btnJoin.label = "Join Game!";
-			btnJoin.addEventListener(Event.TRIGGERED, btnJoinClickHandler);
-			addChild(btnJoin);
-			btnJoin.validate();
-			btnJoin.x = (stage.stageWidth - btnJoin.width)/2;
-			btnJoin.y = stage.stageHeight/2 + btnJoin.height*2;
+			btnMulti = new Button();
+			btnMulti.label = "MultiPlayer";
+			btnMulti.addEventListener(Event.TRIGGERED, btnMultiClickHandler);
+			group.addChild(btnMulti);
+			
+			btnSettings = new Button();
+			btnSettings.label = "Settings";
+			btnSettings.addEventListener(Event.TRIGGERED, btnSettingsClickHandler);
+			group.addChild(btnSettings);
+			
+			group.validate();
+			group.y = (stage.stageHeight - group.height)/2;
+			group.x = (stage.stageWidth - group.width)/2;
+			
+			btnUpgrade = new Button();
+			btnUpgrade.label = "Upgrade";
+			btnUpgrade.addEventListener(Event.TRIGGERED, btnUpgradeClickHandler);
+			this.addChild(btnUpgrade);
+			btnUpgrade.validate();
+			btnUpgrade.y = stage.stageHeight / 20;
+			btnUpgrade.x = stage.stageWidth - (btnUpgrade.width + stage.stageWidth / 20);
 		}
 		
-		private function btnJoinClickHandler():void
+		private function btnUpgradeClickHandler():void
 		{
-			ConnectionManager.joinHotspot();
+			(EventDispatcher(ANE.purchase)).addEventListener(StatusEvent.STATUS, onPurchaseStatus);
+			ANE.purchase.purchase();
+		}
+
+		protected function onPurchaseStatus(event:StatusEvent):void
+		{
+			var notif:Notifier;
+			if(event.code == "INIT_SUCCESS")
+			{
+				notif = new Notifier("success!",Notifier.OK,"Alert");
+				notif.width = stage.stageWidth/2;
+				addChild(notif);
+				notif.show();
+			}
+			else if(event.code == "INIT_FAIL")
+			{
+				notif = new Notifier("failed",Notifier.OK,"Alert");
+				notif.width = stage.stageWidth/2;
+				addChild(notif);
+				notif.show();
+			}
+				
 		}
 		
-		private function btnCreateClickHandler():void
+		private function btnSettingsClickHandler():void
 		{
-			ConnectionManager.createHotspot();
+			owner.showScreen(SCREEN.SETTINGS);
 		}
 		
-		private function btnStartClickHandler():void
+		private function btnMultiClickHandler():void
 		{
-			ConnectionManager.sendTCP(CMD.start + "/" + Match.myId);
-			owner.showScreen(SCREEN.game);
+			owner.showScreen(SCREEN.MULTI_PLAYER);
+		}
+		
+		private function btnSingleClickHandler():void
+		{
+			owner.showScreen(SCREEN.SINGLE_PLAYER);
+		}
+		private function btnBackClickHandler():void
+		{
+			MyTank.exitGame();
 		}
 	}
 }

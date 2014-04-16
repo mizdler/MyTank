@@ -1,4 +1,4 @@
-package ir.baazino.mytank.connection
+package ir.baazino.mytank.connection.socket
 {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -6,8 +6,11 @@ package ir.baazino.mytank.connection
 	import flash.events.SecurityErrorEvent;
 	import flash.net.Socket;
 	
+	import ir.baazino.mytank.connection.ConnectionConfig;
+	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.info.Match;
+	import ir.baazino.mytank.screen.WaitingScreen;
 
 	public class TCPClient
 	{
@@ -21,30 +24,30 @@ package ir.baazino.mytank.connection
 			socket.addEventListener(Event.CONNECT, onConnect);
 			socket.addEventListener(Event.CLOSE, onClose);
 			socket.addEventListener(IOErrorEvent.IO_ERROR, onError);
-			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onReceive);
+			socket.addEventListener(ProgressEvent.SOCKET_DATA, ConnectionManager.onTCPReceive);
 			socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
 			
 			socket.connect(serverIP, ConnectionConfig.TCP_PORT);
-			Starter.textLog.text += "localIP : " + socket.localAddress + "\n";
-			Starter.textLog.text += "connecting to server : " + serverIP + " ...\n";
+			WaitingScreen.textLog.text += "localIP : " + socket.localAddress + "\n";
+			WaitingScreen.textLog.text += "connecting to server : " + serverIP + " ...\n";
 			
 			trace("connected to server " + serverIP);
 		}
 		
 		private function onConnect(e:Event):void 
 		{
-			Starter.textLog.text += "connected to server!" + "\n";
-			sendMsg(CMD.join + "/" + Match.myId);
+			WaitingScreen.textLog.text += "connected to server!" + "\n";
+			sendMsg(CMD.JOIN + "#" + Match.myId);
 		}
 		
 		private function onReceived(e:ProgressEvent):void {
 			date = new Date();
-			Starter.textLog.text += date.milliseconds + "\n";
+			WaitingScreen.textLog.text += date.milliseconds + "\n";
 			if (socket.bytesAvailable > 0)
 			{
 				var msg:String = socket.readUTFBytes(socket.bytesAvailable);
 				trace(msg);
-				Starter.textLog.text += "received: " + msg + "\n";
+				WaitingScreen.textLog.text += "received: " + msg + "\n";
 			}
 		}
 		
@@ -57,19 +60,19 @@ package ir.baazino.mytank.connection
 		private function onClose(e:Event):void 
 		{
 			socket.close();
-			Starter.textLog.text += "socket closed\n";
+			WaitingScreen.textLog.text += "socket closed\n";
 		}
 		
 		private function onError(e:IOErrorEvent):void 
 		{
 			trace("IO Error: " + e);
-			Starter.textLog.text += "IO Error: " + e + "\n";
+			WaitingScreen.textLog.text += "IO Error: " + e + "\n";
 		}
 		
 		private function onSecError(e:SecurityErrorEvent):void 
 		{
 			trace("Security Error: "+e);
-			Starter.textLog.text += "Security Error: " + e + "\n";
+			WaitingScreen.textLog.text += "Security Error: " + e + "\n";
 		}
 		
 

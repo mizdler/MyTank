@@ -3,6 +3,11 @@ package ir.baazino.mytank.game.element
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import ir.baazino.mytank.connection.ConnectionManager;
+	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.info.Actor;
+	import ir.baazino.mytank.info.Match;
+	
 	import nape.phys.Body;
 	
 	import starling.display.Image;
@@ -12,17 +17,17 @@ package ir.baazino.mytank.game.element
 	
 	public class JoyStick extends AbstractObject
 	{
-		public static var info:Object = new Object();
-		[Embed(source='../assets/thumb.png')]
+		public static var actor:Actor = Match.playerMap[Match.myId] as Actor;
+		[Embed(source='assets/thumb.png')]
 		private var thumbImg:Class;
 		private var thumbShape:Image;
 		private var thumbShape2:Image;
 		
-		[Embed(source='../assets/surround.png')]
+		[Embed(source='assets/surround.png')]
 		private var surroundImg:Class;
 		private var surroundShape:Image;
 		
-		[Embed(source='../assets/shoot.png')]
+		[Embed(source='assets/shoot.png')]
 		private var shootImg:Class;
 		private var shootShape:Image;
 		
@@ -31,19 +36,17 @@ package ir.baazino.mytank.game.element
 		
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
-		private var tank:Body;
 		
 		public var speed:Number = 0.7;
 		
-		public function JoyStick(_tank:Body):void
+		public function JoyStick():void
 		{
 			super();
 			center = new Object();
 			actual = new Object();
-			tank = _tank;
-			info.rotation = Math.PI/2;
-			info.isMoving = false;
-			info.shoot = false;
+			actor.rotation = Math.PI/2;
+			actor.isMoving = false;
+			actor.shoot = false;
 		}
 		
 		override protected function init():void
@@ -84,7 +87,9 @@ package ir.baazino.mytank.game.element
 		{
 			var touches:Vector.<Touch> = e.getTouches(stage);
 			for each(var touch:Touch in touches)
-				if(touch.target == thumbShape2){
+			{
+				if(touch.target == thumbShape2)
+				{
 					if(touch.phase == TouchPhase.MOVED){
 						var postion:Point = touch.getLocation(stage);
 						thumbShape2.x = postion.x - thumbShape2.width/2;
@@ -108,13 +113,13 @@ package ir.baazino.mytank.game.element
 						}
 						
 						if(distance > minRadius){
-							info.isMoving = true;
-							info.rotation = angle + Math.PI/2;
+							actor.isMoving = true;
+							actor.rotation = angle + Math.PI/2;
 						}
 						
 					}
 					else if(touch.phase == TouchPhase.ENDED){
-						info.isMoving = false;
+						actor.isMoving = false;
 						thumbShape2.x = center.x;
 						thumbShape2.y = center.y;
 						
@@ -122,10 +127,10 @@ package ir.baazino.mytank.game.element
 						thumbShape.y = center.y;
 					}
 				}
-				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED){
-					JoyStick.info.shoot = true;
-				}
-			
+				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
+					actor.shoot = true;
+			}
+			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}
 	}
 }
