@@ -1,7 +1,6 @@
 {
 	"Backgrounds":
 	[
-		{"src":"/maps/war/backgrounds/pat.png"},
 		{"src":"/maps/war/backgrounds/bg.png"}
 	],
 	"Objects":

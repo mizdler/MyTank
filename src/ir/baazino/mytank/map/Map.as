@@ -66,6 +66,8 @@ package ir.baazino.mytank.map
 		{
 			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
 			var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
+			image.scaleX = 1.5;
+			image.scaleY = 1.5;
 			addChild(image);
 		}
 
