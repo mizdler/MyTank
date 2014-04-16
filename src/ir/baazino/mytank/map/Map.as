@@ -1,22 +1,28 @@
 package ir.baazino.mytank.map
 {
+	import flash.display.Bitmap;
+	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
 	import ir.baazino.mytank.game.element.Player;
-	import ir.baazino.mytank.map.Painter;
 	
-	public class Map
+	import starling.core.Starling;
+	import starling.display.Image;
+	import starling.display.Sprite;
+	import starling.textures.Texture;
+	
+	public class Map extends Sprite
 	{
 		private var map:String;
 		private var p1:Player;
 		private var p2:Player;
-
-		private var painter:Painter = new Painter();
 		
 		private var json:URLLoader = new URLLoader();
 		private var data:Object;
+		
+		public var loader:Loader = new Loader();
 		
 		public function Map(player1:Player, player2:Player)
 		{
@@ -36,23 +42,31 @@ package ir.baazino.mytank.map
 			data = JSON.parse(json.data);
 			
 			drawBackgrounds();
-			drawObjects();
+			//drawObjects();
 		}
 		
 		private function drawBackgrounds():void
 		{
 			for each (var bg:Object in data.Backgrounds) 
 			{
-				painter.paint('background', bg.src, new Array());
+				loader.load(new URLRequest(bg.src));
 			}
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, add);
 		}
 		
 		private function drawObjects():void
 		{
 			for each (var obj:Object in data.Objects) 
 			{
-				painter.paint('object', obj.src, obj.pos);
+				
 			}
+		}
+		
+		private function add(e:Event):void
+		{
+			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
+			var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
+			addChild(image);
 		}
 
 		public function clear()

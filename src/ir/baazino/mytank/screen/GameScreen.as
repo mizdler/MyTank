@@ -42,13 +42,13 @@ package ir.baazino.mytank.screen
 
 		private function init():void
 		{
+			loadMap();
+			
 			addPlayer();
 			
 			addController();
 			
 			addButtons();
-			
-			loadMap();
 
 			addToSpace();
 			
@@ -58,7 +58,8 @@ package ir.baazino.mytank.screen
 		private function loadMap():void
 		{
 			map = new Map(players[0], players[0]);
-			map.load('war');
+			map.load('war');	
+			addChild(map);
 		}
 		
 		private function addButtons():void
