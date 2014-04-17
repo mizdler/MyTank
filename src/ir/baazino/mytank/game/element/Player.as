@@ -74,6 +74,7 @@ package ir.baazino.mytank.game.element
 
 			tank.position.x = 75;
 			tank.position.y = 40;
+			tank.scaleShapes(Starter.scale, Starter.scale);
 			tank.rotation = Math.PI/2;
 
 			addChild(tankShape);

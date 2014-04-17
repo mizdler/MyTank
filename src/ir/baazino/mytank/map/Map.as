@@ -6,6 +6,8 @@ package ir.baazino.mytank.map
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import flashx.textLayout.formats.Float;
+	
 	import ir.baazino.mytank.game.element.Player;
 	
 	import starling.core.Starling;
@@ -48,9 +50,8 @@ package ir.baazino.mytank.map
 		private function drawBackgrounds():void
 		{
 			for each (var bg:Object in data.Backgrounds) 
-			{
 				loader.load(new URLRequest(bg.src));
-			}
+
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, add);
 		}
 		
@@ -62,12 +63,31 @@ package ir.baazino.mytank.map
 			}
 		}
 		
+		private function drawWalls():void
+		{
+			
+		}
+		
 		private function add(e:Event):void
 		{
 			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
 			var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
-			image.scaleX = 1.5;
-			image.scaleY = 1.5;
+			
+			var marginLeft:Number = 0;
+			var marginTop:Number = 0;
+			
+			
+			image.scaleX = Starter.scale;
+			image.scaleY = Starter.scale;
+			
+			if (image.width != Starter.width) 
+				marginLeft = (Starter.width - image.width)/2;
+			if (image.height != Starter.height) 
+				marginTop = (Starter.height - image.height)/2;
+			
+			image.x = marginLeft;
+			image.y = marginTop;
+			
 			addChild(image);
 		}
 

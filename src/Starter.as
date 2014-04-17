@@ -32,6 +32,10 @@ package
 		public static var navigator:ScreenNavigator;
 		private static var transitionManager:ScreenSlidingStackTransitionManager;
 		
+		public static var width:int;
+		public static var height:int;
+		public static var scale:Number;
+		
 		public function Starter()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);

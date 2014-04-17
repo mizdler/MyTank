@@ -39,6 +39,15 @@ package
 				viewPortRectangle.width = Capabilities.screenResolutionX;
 				viewPortRectangle.height = Capabilities.screenResolutionY;
 			}
+			
+			Starter.height = viewPortRectangle.height;
+			Starter.width = viewPortRectangle.width;
+			
+			if (Starter.height/600 > Starter.width/800) 
+				Starter.scale = Starter.width/800;
+			else
+				Starter.scale = Starter.height/600;
+
 			strling = new Starling(Starter, stage, viewPortRectangle);
 			strling.antiAliasing = 1;
 			strling.showStats = true;
