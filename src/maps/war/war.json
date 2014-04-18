@@ -6,22 +6,27 @@
 	"Objects":
 	[
 		{
+			"name":"barrier1",
 			"src":"/maps/war/objects/barrier1.png",
 			"pos":[648, 202]
 		},
 		{
+			"name":"barrier2",
 			"src":"/maps/war/objects/barrier2.png",
 			"pos":[472, 453]
 		},
 		{
+			"name":"rock",
 			"src":"/maps/war/objects/rock.png",
 			"pos":[337, 136]
 		},
 		{
+			"name":"left-rocks",
 			"src":"/maps/war/objects/left-rocks.png",
 			"pos":[183, 300]
 		},
 		{
+			"name":"right-rocks",
 			"src":"/maps/war/objects/right-rocks.png",
 			"pos":[629, 279.5]
 		}

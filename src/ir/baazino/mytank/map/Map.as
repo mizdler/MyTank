@@ -5,10 +5,11 @@ package ir.baazino.mytank.map
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	
-	import flashx.textLayout.formats.Float;
+	import flash.utils.Dictionary;
 	
 	import ir.baazino.mytank.game.element.Player;
+	
+	import nape.phys.Body;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -21,10 +22,13 @@ package ir.baazino.mytank.map
 		private var p1:Player;
 		private var p2:Player;
 		
+		public var body:Dictionary = new Dictionary();
+		
 		private var json:URLLoader = new URLLoader();
 		private var data:Object;
 		
-		public var loader:Loader = new Loader();
+		private var marginLeft:Number = 0;
+		private var marginTop:Number = 0;
 		
 		public function Map(player1:Player, player2:Player)
 		{
@@ -32,7 +36,7 @@ package ir.baazino.mytank.map
 			p2 = player2;
 		}
 
-		public function load(name:String)
+		public function load(name:String):void
 		{
 			map = name;
 			json.load(new URLRequest("/maps/"+map+"/"+map+".json"));
@@ -44,22 +48,25 @@ package ir.baazino.mytank.map
 			data = JSON.parse(json.data);
 			
 			drawBackgrounds();
-			//drawObjects();
 		}
 		
 		private function drawBackgrounds():void
 		{
+			var loader:Loader = new Loader();
+
 			for each (var bg:Object in data.Backgrounds) 
 				loader.load(new URLRequest(bg.src));
 
-			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, add);
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, addBg);
 		}
 		
 		private function drawObjects():void
 		{
 			for each (var obj:Object in data.Objects) 
 			{
-				
+				var loader:Loader = new Loader();
+				loader.load(new URLRequest(obj.src));
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, addObj(obj.name, obj.pos[0], obj.pos[1]));
 			}
 		}
 		
@@ -68,14 +75,10 @@ package ir.baazino.mytank.map
 			
 		}
 		
-		private function add(e:Event):void
+		private function addBg(e:Event):void
 		{
 			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
 			var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
-			
-			var marginLeft:Number = 0;
-			var marginTop:Number = 0;
-			
 			
 			image.scaleX = Starter.scale;
 			image.scaleY = Starter.scale;
@@ -87,11 +90,39 @@ package ir.baazino.mytank.map
 			
 			image.x = marginLeft;
 			image.y = marginTop;
-			
+
 			addChild(image);
+			
+			drawObjects();
+		}
+		
+		private function addObj(name:String, x:Number, y:Number):Function
+		{
+			x += marginLeft;
+			y += marginTop;
+			
+			return function(e:Event):void {
+				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
+				var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
+
+				image.scaleX = Starter.scale;
+				image.scaleY = Starter.scale;
+				image.x = x;
+				image.y = y;
+				image.alignPivot();
+				
+				body[name] = PhysicsData.createBody(name);
+				body[name].userData.graphic = image;
+				
+				body[name].position.x = x;
+				body[name].position.y = y;
+				body[name].scaleShapes(Starter.scale, Starter.scale);
+
+				addChild(image);
+			};
 		}
 
-		public function clear()
+		public function clear():void
 		{
 		}
 	}

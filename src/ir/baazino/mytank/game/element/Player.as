@@ -60,12 +60,9 @@ package ir.baazino.mytank.game.element
 		{
 			tankShape = Image.fromBitmap(new tankImg());
 
-			tankShape.pivotX = int(width/2);
-			tankShape.pivotY = int(height/2);
-			tankShape.alignPivot();
-
 			width = tankShape.width * scale;
 			height = tankShape.height * scale;
+			tankShape.alignPivot();
 
 			PhysicsData.registerCbType('tank', tankColl);
 			tank = PhysicsData.createBody("tank");

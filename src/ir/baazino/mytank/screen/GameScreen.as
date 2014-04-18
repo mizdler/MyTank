@@ -114,7 +114,10 @@ package ir.baazino.mytank.screen
 		{
 			for each(var p:Player in players)
 				p.tank.space = space;
-			
+				
+			for each (var b:Body in map.body)
+				b.space = space;
+
 			for each(var p2:Player in players)
 				for (var j:int = 0; j < 5; j++)
 					p2.missiles[j].missile.space = space;
