@@ -10,6 +10,7 @@ package ir.baazino.mytank.map
 	import ir.baazino.mytank.game.element.Player;
 	
 	import nape.phys.Body;
+	import nape.phys.BodyType;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -22,10 +23,11 @@ package ir.baazino.mytank.map
 		private var p1:Player;
 		private var p2:Player;
 		
-		public var body:Dictionary = new Dictionary();
+		public var bodies:Dictionary = new Dictionary();
 		
 		private var json:URLLoader = new URLLoader();
 		private var data:Object;
+		private var len:int = 0;
 		
 		private var marginLeft:Number = 0;
 		private var marginTop:Number = 0;
@@ -92,11 +94,7 @@ package ir.baazino.mytank.map
 			image.y = marginTop;
 
 			addChild(image);
-			trace('bg');
-			trace(image.height);
-			trace(Starter.scale);
-			trace(marginTop);
-			
+			len++;
 			drawObjects();
 		}
 		
@@ -104,8 +102,6 @@ package ir.baazino.mytank.map
 		{
 			x = x*Starter.scale + marginLeft;
 			y = y*Starter.scale + marginTop;
-			trace(name);
-			trace(y);
 			
 			return function(e:Event):void {
 				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
@@ -117,15 +113,24 @@ package ir.baazino.mytank.map
 				image.y = y;
 				image.alignPivot();
 				
-				body[name] = PhysicsData.createBody(name);
-				body[name].userData.graphic = image;
+				bodies[name] = PhysicsData.createBody(name);
+				bodies[name].type = BodyType.STATIC;
 				
-				body[name].scaleShapes(Starter.scale, Starter.scale);
-				body[name].position.x = x;
-				body[name].position.y = y;
+				bodies[name].userData.graphic = image;
+				bodies[name].scaleShapes(Starter.scale, Starter.scale);
+				bodies[name].position.x = x;
+				bodies[name].position.y = y;
 
 				addChild(image);
+				len++;
 			};
+		}
+		
+		public function isFinished():Boolean
+		{
+			if(len != 0)
+				return (len == data.Count);
+			return false;
 		}
 
 		public function clear():void

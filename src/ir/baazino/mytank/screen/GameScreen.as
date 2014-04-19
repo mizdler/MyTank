@@ -6,13 +6,13 @@ package ir.baazino.mytank.screen
 	import flash.utils.Dictionary;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.map.Map;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
+	import ir.baazino.mytank.map.Map;
 	
 	import nape.callbacks.*;
 	import nape.phys.Body;
@@ -34,6 +34,8 @@ package ir.baazino.mytank.screen
 		private var sepration:InteractionListener;
 		private var wallCollisionType:CbType=new CbType();
 		private var tankCollisionType:CbType=new CbType();
+		
+		private var isMapInSpace:Boolean = false;
 		
 		public function GameScreen()
 		{
@@ -114,9 +116,6 @@ package ir.baazino.mytank.screen
 		{
 			for each(var p:Player in players)
 				p.tank.space = space;
-				
-			for each (var b:Body in map.body)
-				b.space = space;
 
 			for each(var p2:Player in players)
 				for (var j:int = 0; j < 5; j++)
@@ -125,6 +124,15 @@ package ir.baazino.mytank.screen
 		
 		private function loop():void
 		{
+			if (!isMapInSpace && map.isFinished()) 
+			{
+				for each (var b:Body in map.bodies)
+					b.space = space;
+
+				isMapInSpace = true;
+				trace('aha');
+			}
+			
 			space.step(1/60);
 			space.liveBodies.foreach(updateGraphics);
 		}
