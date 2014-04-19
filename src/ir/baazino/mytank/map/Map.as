@@ -92,14 +92,20 @@ package ir.baazino.mytank.map
 			image.y = marginTop;
 
 			addChild(image);
+			trace('bg');
+			trace(image.height);
+			trace(Starter.scale);
+			trace(marginTop);
 			
 			drawObjects();
 		}
 		
 		private function addObj(name:String, x:Number, y:Number):Function
 		{
-			x += marginLeft;
-			y += marginTop;
+			x = x*Starter.scale + marginLeft;
+			y = y*Starter.scale + marginTop;
+			trace(name);
+			trace(y);
 			
 			return function(e:Event):void {
 				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
@@ -114,9 +120,9 @@ package ir.baazino.mytank.map
 				body[name] = PhysicsData.createBody(name);
 				body[name].userData.graphic = image;
 				
+				body[name].scaleShapes(Starter.scale, Starter.scale);
 				body[name].position.x = x;
 				body[name].position.y = y;
-				body[name].scaleShapes(Starter.scale, Starter.scale);
 
 				addChild(image);
 			};

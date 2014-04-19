@@ -27,7 +27,6 @@ package ir.baazino.mytank.game.element
 		private var tankShape:Image;
 
 		public var speed:Number = 0.7;
-		private var scale:Number = 1;
 
 		public var missiles:Dictionary = new Dictionary;
 
@@ -59,9 +58,7 @@ package ir.baazino.mytank.game.element
 		private function createPlayer():void
 		{
 			tankShape = Image.fromBitmap(new tankImg());
-
-			width = tankShape.width * scale;
-			height = tankShape.height * scale;
+			tankShape.scaleX = tankShape.scaleY = Starter.scale;
 			tankShape.alignPivot();
 
 			PhysicsData.registerCbType('tank', tankColl);

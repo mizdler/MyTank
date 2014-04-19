@@ -52,27 +52,33 @@ package ir.baazino.mytank.game.element
 		override protected function init():void
 		{
 			thumbShape2 = Image.fromBitmap(new thumbImg());
+			thumbShape2.alignPivot();
 			
-			center.x = stage.stageWidth*0.8 - thumbShape2.width/2;
-			center.y = stage.stageHeight*0.9 - thumbShape2.height/2;
+			center.x = Starter.width*0.9 - thumbShape2.width/2;
+			center.y = Starter.height*0.9 - thumbShape2.height/2;
 			
 			thumbShape2.x = center.x;
 			thumbShape2.y = center.y;
+			thumbShape2.scaleX = thumbShape2.scaleY = Starter.scale;
 			thumbShape2.alpha = 0;
 			
 			thumbShape = Image.fromBitmap(new thumbImg());
+			thumbShape.alignPivot();
 			thumbShape.x = center.x;
 			thumbShape.y = center.y;
+			thumbShape.scaleX = thumbShape.scaleY = Starter.scale;
 			thumbShape.alpha = 0.7;
 			
 			surroundShape = Image.fromBitmap(new surroundImg());
-			surroundShape.x = stage.stageWidth*0.8 - surroundShape.width/2;
-			surroundShape.y = stage.stageHeight*0.9 - surroundShape.height/2;
+			surroundShape.alignPivot();
+			surroundShape.x = center.x;
+			surroundShape.y = center.y;
+			surroundShape.scaleX = surroundShape.scaleY = Starter.scale;
 			surroundShape.alpha = 0.5;
 			
 			shootShape = Image.fromBitmap(new shootImg());
-			shootShape.x = 0;
-			shootShape.y = stage.stageHeight - shootShape.height;
+			shootShape.x = 100;
+			shootShape.y = stage.stageHeight - shootShape.height - 100;
 			shootShape.alpha = 0.7;
 			
 			addChild(surroundShape);
@@ -92,8 +98,8 @@ package ir.baazino.mytank.game.element
 				{
 					if(touch.phase == TouchPhase.MOVED){
 						var postion:Point = touch.getLocation(stage);
-						thumbShape2.x = postion.x - thumbShape2.width/2;
-						thumbShape2.y = postion.y - thumbShape2.height/2;
+						thumbShape2.x = postion.x;
+						thumbShape2.y = postion.y;
 						
 						actual.x = thumbShape2.x - center.x;
 						actual.y = thumbShape2.y - center.y;
