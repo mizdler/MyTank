@@ -130,7 +130,6 @@ package ir.baazino.mytank.screen
 					b.space = space;
 
 				isMapInSpace = true;
-				trace('aha');
 			}
 			
 			space.step(1/60);

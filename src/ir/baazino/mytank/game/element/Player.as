@@ -60,16 +60,17 @@ package ir.baazino.mytank.game.element
 			tankShape = Image.fromBitmap(new tankImg());
 			tankShape.scaleX = tankShape.scaleY = Starter.scale;
 			tankShape.alignPivot();
+			tankShape.x = 121.5;
+			tankShape.y = 133.5;
 
 			PhysicsData.registerCbType('tank', tankColl);
 			tank = PhysicsData.createBody("tank");
-
 			tank.userData.graphic = tankShape;
 
-			tank.position.x = 75;
-			tank.position.y = 40;
 			tank.scaleShapes(Starter.scale, Starter.scale);
-			tank.rotation = Math.PI/2;
+			tank.position.x = 121.5;
+			tank.position.y = 133.5;
+			tank.rotation = Math.PI;
 
 			addChild(tankShape);
 		}

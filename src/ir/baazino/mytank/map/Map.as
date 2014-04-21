@@ -11,6 +11,7 @@ package ir.baazino.mytank.map
 	
 	import nape.phys.Body;
 	import nape.phys.BodyType;
+	import nape.shape.Polygon;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -74,7 +75,15 @@ package ir.baazino.mytank.map
 		
 		private function drawWalls():void
 		{
+			bodies["left-wall"] = new Body(BodyType.STATIC);
+			bodies["left-wall"].shapes.add(new Polygon(Polygon.rect(-10, 0, marginLeft+10, Starter.height)));
+			bodies["right-wall"] = new Body(BodyType.STATIC);
+			bodies["right-wall"].shapes.add(new Polygon(Polygon.rect(Starter.width - marginLeft, 0, marginLeft+10, Starter.height)));
 			
+			bodies["up-wall"] = new Body(BodyType.STATIC);
+			bodies["up-wall"].shapes.add(new Polygon(Polygon.rect(marginLeft, -10, Starter.width - 2*marginLeft, marginTop+10)));
+			bodies["down-wall"] = new Body(BodyType.STATIC);
+			bodies["down-wall"].shapes.add(new Polygon(Polygon.rect(marginLeft, Starter.height - marginTop, Starter.width - 2*marginLeft, marginTop+10)));
 		}
 		
 		private function addBg(e:Event):void
@@ -95,6 +104,8 @@ package ir.baazino.mytank.map
 
 			addChild(image);
 			len++;
+
+			drawWalls();
 			drawObjects();
 		}
 		
