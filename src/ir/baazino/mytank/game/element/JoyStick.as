@@ -37,8 +37,6 @@ package ir.baazino.mytank.game.element
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
 		
-		public var speed:Number = 0.7;
-		
 		public function JoyStick():void
 		{
 			super();

@@ -30,6 +30,7 @@ package ir.baazino.mytank.game.element
 		private var tWidth:Number;
 
 		public var speed:Number = 150;
+		public var angSpeed:Number = 10;
 
 		public var missiles:Dictionary = new Dictionary;
 
@@ -95,7 +96,8 @@ package ir.baazino.mytank.game.element
 		private function go():void
 		{
 			var actor:Actor = Match.playerMap[this.id] as Actor;
-			tank.rotation = actor.rotation;
+			
+			rotate(actor.rotation);
 			
 			if(actor.isMoving)
 				move(speed);
@@ -136,6 +138,24 @@ package ir.baazino.mytank.game.element
 				}
 			}
 
+		}
+		
+		private function getAngel(angel:Number):Number
+		{
+			while (angel > Math.PI*2) 
+				angel -= Math.PI;
+
+			while (angel < -Math.PI*2) 
+				angel += Math.PI;
+			return angel;
+		} 
+		
+		private function rotate(angel:Number):void
+		{
+			if (angel > tank.rotation + Math.PI) angel -= Math.PI*2;
+			if (angel < tank.rotation - Math.PI) angel += Math.PI*2;
+
+			tank.rotation += (angel - tank.rotation) / angSpeed;
 		}
 	}
 }
