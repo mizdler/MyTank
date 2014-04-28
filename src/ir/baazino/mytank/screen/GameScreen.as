@@ -12,7 +12,7 @@ package ir.baazino.mytank.screen
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
-	import ir.baazino.mytank.map.Map;
+	import ir.baazino.mytank.game.map.Map;
 	
 	import nape.callbacks.*;
 	import nape.phys.Body;

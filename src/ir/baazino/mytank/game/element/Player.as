@@ -10,6 +10,7 @@ package ir.baazino.mytank.game.element
 	import ir.baazino.mytank.screen.GameScreen;
 	
 	import nape.callbacks.CbType;
+	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	
@@ -26,7 +27,7 @@ package ir.baazino.mytank.game.element
 		private var tankImg:Class;
 		private var tankShape:Image;
 
-		public var speed:Number = 0.7;
+		public var speed:Number = 150;
 
 		public var missiles:Dictionary = new Dictionary;
 
@@ -90,13 +91,18 @@ package ir.baazino.mytank.game.element
 		{
 			var actor:Actor = Match.playerMap[this.id] as Actor;
 			tank.rotation = actor.rotation;
+			
 			if(actor.isMoving)
-				move(speed*3);
+				move(speed);
+			else
+				tank.velocity = new Vec2(0,0);
+			
 			if(actor.shoot)
 			{
 				fire();
 				actor.shoot = false;
 			}
+			
 			actor.x = tank.position.x;
 			actor.y = tank.position.y;
 		}
@@ -105,8 +111,8 @@ package ir.baazino.mytank.game.element
 		{
 			if (!isCollided)
 			{
-				tank.position.x += Math.sin(tank.rotation)*len;
-				tank.position.y -= Math.cos(tank.rotation)*len;
+				tank.velocity.x = len*Math.sin(tank.rotation);
+				tank.velocity.y = -len*Math.cos(tank.rotation);
 			}
 		}
 

@@ -2,3 +2,6 @@
 /.actionScriptProperties
 /MyTank.apk
 /MyTank.ipa
+*.db
+.settings/org.eclipse.ltk.core.refactoring.prefs
+.flexProperties

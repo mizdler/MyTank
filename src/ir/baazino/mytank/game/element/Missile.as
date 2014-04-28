@@ -63,7 +63,7 @@ package ir.baazino.mytank.game.element
 			missile.position.y = y;
 
 			missile.velocity.x = Math.sin(angel)*velLen;
-			missile.velocity.y = Math.cos(angel)*-velLen;
+			missile.velocity.y = -Math.cos(angel)*velLen;
 
 			setTimeout(stop, goTime);
 		}
