@@ -26,6 +26,8 @@ package ir.baazino.mytank.game.element
 		[Embed(source='assets/blue-tank.png')]
 		private var tankImg:Class;
 		private var tankShape:Image;
+		private var tHeight:Number;
+		private var tWidth:Number;
 
 		public var speed:Number = 150;
 
@@ -63,6 +65,9 @@ package ir.baazino.mytank.game.element
 			tankShape.alignPivot();
 			tankShape.x = 121.5;
 			tankShape.y = 133.5;
+			
+			tHeight = tankShape.height;
+			tWidth = tankShape.width;
 
 			PhysicsData.registerCbType('tank', tankColl);
 			tank = PhysicsData.createBody("tank");
@@ -118,8 +123,8 @@ package ir.baazino.mytank.game.element
 
 		private function fire():void
 		{
-			var mX:Number = Math.sin(-tank.rotation)*-53;
-			var mY:Number = Math.cos(tank.rotation)*-53;
+			var mX:Number = Math.sin(tank.rotation)*(tHeight/2)*1.1;
+			var mY:Number = -Math.cos(tank.rotation)*(tHeight/2)*1.1;
 
 			for (var i:int = 0; i < mCount; i++)
 			{
