@@ -34,7 +34,13 @@ package
 		
 		public static var width:int;
 		public static var height:int;
+		
+		public static var mWidth:Number;
+		public static var mHeight:Number;
+		
 		public static var scale:Number;
+		public static var marginLeft:Number = 0;
+		public static var marginTop:Number = 0;
 		
 		public function Starter()
 		{

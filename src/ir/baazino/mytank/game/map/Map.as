@@ -30,9 +30,6 @@ package ir.baazino.mytank.game.map
 		private var data:Object;
 		private var len:int = 0;
 		
-		private var marginLeft:Number = 0;
-		private var marginTop:Number = 0;
-		
 		public function Map(player1:Player, player2:Player)
 		{
 			p1 = player1;
@@ -76,14 +73,14 @@ package ir.baazino.mytank.game.map
 		private function drawWalls():void
 		{
 			bodies["left-wall"] = new Body(BodyType.STATIC);
-			bodies["left-wall"].shapes.add(new Polygon(Polygon.rect(-10, 0, marginLeft+10, Starter.height)));
+			bodies["left-wall"].shapes.add(new Polygon(Polygon.rect(-10, 0, Starter.marginLeft+10, Starter.height)));
 			bodies["right-wall"] = new Body(BodyType.STATIC);
-			bodies["right-wall"].shapes.add(new Polygon(Polygon.rect(Starter.width - marginLeft, 0, marginLeft+10, Starter.height)));
+			bodies["right-wall"].shapes.add(new Polygon(Polygon.rect(Starter.width - Starter.marginLeft, 0, Starter.marginLeft+10, Starter.height)));
 			
 			bodies["up-wall"] = new Body(BodyType.STATIC);
-			bodies["up-wall"].shapes.add(new Polygon(Polygon.rect(marginLeft, -10, Starter.width - 2*marginLeft, marginTop+10)));
+			bodies["up-wall"].shapes.add(new Polygon(Polygon.rect(Starter.marginLeft, -10, Starter.width - 2*Starter.marginLeft, Starter.marginTop+10)));
 			bodies["down-wall"] = new Body(BodyType.STATIC);
-			bodies["down-wall"].shapes.add(new Polygon(Polygon.rect(marginLeft, Starter.height - marginTop, Starter.width - 2*marginLeft, marginTop+10)));
+			bodies["down-wall"].shapes.add(new Polygon(Polygon.rect(Starter.marginLeft, Starter.height - Starter.marginTop, Starter.width - 2*Starter.marginLeft, Starter.marginTop+10)));
 		}
 		
 		private function addBg(e:Event):void
@@ -95,12 +92,15 @@ package ir.baazino.mytank.game.map
 			image.scaleY = Starter.scale;
 			
 			if (image.width != Starter.width) 
-				marginLeft = (Starter.width - image.width)/2;
+				Starter.marginLeft = (Starter.width - image.width)/2;
 			if (image.height != Starter.height) 
-				marginTop = (Starter.height - image.height)/2;
+				Starter.marginTop = (Starter.height - image.height)/2;
 			
-			image.x = marginLeft;
-			image.y = marginTop;
+			image.x = Starter.marginLeft;
+			image.y = Starter.marginTop;
+			
+			Starter.mWidth = image.width;
+			Starter.mHeight = image.height;
 
 			addChild(image);
 			len++;
@@ -111,8 +111,8 @@ package ir.baazino.mytank.game.map
 		
 		private function addObj(name:String, x:Number, y:Number):Function
 		{
-			x = x*Starter.scale + marginLeft;
-			y = y*Starter.scale + marginTop;
+			x = x*Starter.scale + Starter.marginLeft;
+			y = y*Starter.scale + Starter.marginTop;
 			
 			return function(e:Event):void {
 				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
@@ -139,7 +139,7 @@ package ir.baazino.mytank.game.map
 		
 		public function isFinished():Boolean
 		{
-			if(len != 0 && false)
+			if(len != 0)
 				return (len == data.Count);
 			return false;
 		}

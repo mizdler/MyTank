@@ -47,19 +47,16 @@ package ir.baazino.mytank.screen
 		public function onAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			init();
+			loadMap();
+			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
 		private function init():void
 		{
-			loadMap();
-			
 			addPlayer();
-			
 			addController();
-			
 			addButtons();
-			
+
 			addToSpace();
 			
 			interaction = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, wallCollisionType, tankCollisionType, collision);
@@ -67,8 +64,6 @@ package ir.baazino.mytank.screen
 			
 			space.listeners.add(interaction);
 			space.listeners.add(sepration);
-			
-			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
 		private function loadMap():void
@@ -130,6 +125,7 @@ package ir.baazino.mytank.screen
 					b.space = space;
 
 				isMapInSpace = true;
+				init();
 			}
 			
 			space.step(1/60);

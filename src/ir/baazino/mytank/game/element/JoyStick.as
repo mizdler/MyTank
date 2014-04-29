@@ -11,6 +11,7 @@ package ir.baazino.mytank.game.element
 	import nape.phys.Body;
 	
 	import starling.display.Image;
+	import starling.display.Shape;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -27,12 +28,10 @@ package ir.baazino.mytank.game.element
 		private var surroundImg:Class;
 		private var surroundShape:Image;
 		
-		[Embed(source='assets/shoot.png')]
-		private var shootImg:Class;
-		private var shootShape:Image;
-		
 		private var center:Object;
 		private var actual:Object;
+		
+		private var shootShape:Shape;
 		
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
@@ -74,10 +73,15 @@ package ir.baazino.mytank.game.element
 			surroundShape.scaleX = surroundShape.scaleY = Starter.scale;
 			surroundShape.alpha = 0.5;
 			
-			shootShape = Image.fromBitmap(new shootImg());
-			shootShape.x = 100;
-			shootShape.y = stage.stageHeight - shootShape.height - 100;
-			shootShape.alpha = 0.7;
+			var w:Number = Starter.mHeight/3;
+			var upOf:Number = Starter.marginTop + 2*Starter.mHeight/3;
+			var lfOf:Number = Starter.marginLeft;
+			
+			shootShape = new Shape();
+			shootShape.graphics.beginFill(0x000000, 1);
+			shootShape.graphics.lineStyle(4, 0x000000, 1);
+			shootShape.graphics.drawRect(lfOf, upOf, w*1.4, w*1.4);
+			shootShape.alpha = 0;
 			
 			addChild(surroundShape);
 			addChild(thumbShape);
@@ -90,6 +94,7 @@ package ir.baazino.mytank.game.element
 		protected function touchHandler(e:TouchEvent):void
 		{
 			var touches:Vector.<Touch> = e.getTouches(stage);
+
 			for each(var touch:Touch in touches)
 			{
 				if(touch.target == thumbShape2)
@@ -131,8 +136,9 @@ package ir.baazino.mytank.game.element
 						thumbShape.y = center.y;
 					}
 				}
-				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
-					actor.shoot = true;
+
+				if(touch.target.name == shootShape.name && touch.phase == TouchPhase.ENDED)
+					actor.shoot = true;	
 			}
 			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}
