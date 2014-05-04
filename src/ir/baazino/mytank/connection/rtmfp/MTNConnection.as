@@ -64,18 +64,18 @@ package ir.baazino.mytank.connection.rtmfp
 				case "NetGroup.Connect.Success":
 					var me:Actor = new Actor();
 					Match.myId = mGroup.convertPeerIDToGroupAddress(nearID);
-					me.name = Storage.loadPlayerName();
+					me.playerName = Storage.loadPlayerName();
 					Match.playerMap[Match.myId] = me;
 					
 					var item:Object = new Object();
 					item.id = Match.myId;
-					item.name = me.name;
+					item.playerName = me.playerName;
 					Match.noneCollection.addItem(item);
 					
-					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.name);
+					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName);
 					break;
 				case "NetGroup.Neighbor.Connect":
-					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + (Match.playerMap[Match.myId] as Actor).name);
+					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + (Match.playerMap[Match.myId] as Actor).playerName);
 					break;
 				case "NetGroup.Posting.Notify":
 					receiveNeighbor(event.info.message);
@@ -113,12 +113,12 @@ package ir.baazino.mytank.connection.rtmfp
 				
 				case CMD.JOIN:
 					actor = new Actor();
-					actor.name = splited[2];
+					actor.playerName = splited[2];
 					Match.playerMap[id] = actor;
 					
 					var item:Object = new Object();
 					item.id = id;
-					item.name = actor.name;
+					item.playerName = actor.playerName;
 					Match.noneCollection.addItem(item);
 					break;
 				

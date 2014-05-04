@@ -8,6 +8,7 @@ package ir.baazino.mytank.screen
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
+	import ir.baazino.mytank.helper.DragDropList;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Match;
 	
@@ -18,9 +19,9 @@ package ir.baazino.mytank.screen
 		private var teamGroup:LayoutGroup;
 		private var teamLayout:HorizontalLayout;
 		
-		private var redList:List;
-		private var noneList:List;
-		private var blueList:List;
+		private var redList:DragDropList;
+		private var noneList:DragDropList;
+		private var blueList:DragDropList;
 		
 		private var btnStart:Button;
 		private var btnBack:Button;
@@ -42,19 +43,25 @@ package ir.baazino.mytank.screen
 			teamLayout.horizontalAlign = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
 			this.addChild(teamGroup);
 			
-			redList = new List();
+			redList = new DragDropList();
+			redList.width = stage.stageWidth/4;
+			redList.height = stage.stageHeight/2;
 			redList.dataProvider = Match.redCollection;
-			redList.itemRendererProperties.labelField = "name";
+			redList.itemRendererProperties.labelField = "playerName";
 			teamGroup.addChild(redList);
 			
-			noneList = new List();
+			noneList = new DragDropList();
+			noneList.width = stage.stageWidth/4;
+			noneList.height = stage.stageHeight/2;
 			noneList.dataProvider = Match.noneCollection;
-			noneList.itemRendererProperties.labelField = "name";
+			noneList.itemRendererProperties.labelField = "playerName";
 			teamGroup.addChild(noneList);
 			
-			blueList = new List();
+			blueList = new DragDropList();
+			blueList.width = stage.stageWidth/4;
+			blueList.height = stage.stageHeight/2;
 			blueList.dataProvider = Match.blueCollection;
-			blueList.itemRendererProperties.labelField = "name";
+			blueList.itemRendererProperties.labelField = "playerName";
 			teamGroup.addChild(blueList);
 			
 			teamGroup.validate();

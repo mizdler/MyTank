@@ -24,11 +24,14 @@ package ir.baazino.mytank.screen
 		private var btnSettings:Button;
 		private var btnUpgrade:Button;
 		
+		private static var notif:Notifier;
+		
 		public function MainMenuScreen()
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			this.backButtonHandler = btnBackClickHandler;
+			ANE.purchase.addEventListener(StatusEvent.STATUS, onPurchaseStatus);
 		}
 		
 		private function addedToStageHandler():void
@@ -71,28 +74,17 @@ package ir.baazino.mytank.screen
 		
 		private function btnUpgradeClickHandler():void
 		{
-			(EventDispatcher(ANE.purchase)).addEventListener(StatusEvent.STATUS, onPurchaseStatus);
-			ANE.purchase.purchase();
+			ANE.purchase.init();
 		}
 
 		protected function onPurchaseStatus(event:StatusEvent):void
 		{
-			var notif:Notifier;
-			if(event.code == "INIT_SUCCESS")
-			{
-				notif = new Notifier("success!",Notifier.OK,"Alert");
-				notif.width = stage.stageWidth/2;
-				addChild(notif);
-				notif.show();
-			}
-			else if(event.code == "INIT_FAIL")
-			{
-				notif = new Notifier("failed",Notifier.OK,"Alert");
-				notif.width = stage.stageWidth/2;
-				addChild(notif);
-				notif.show();
-			}
-				
+			if(notif)
+				notif.dispose();
+			notif = new Notifier(event.code, Notifier.OK, "Alert");
+			notif.width = stage.stageWidth/2;
+			addChild(notif);
+			notif.show();
 		}
 		
 		private function btnSettingsClickHandler():void

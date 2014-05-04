@@ -78,7 +78,8 @@ package ir.baazino.mytank.connection.socket
 
 		public function closeSocket():void
 		{
-			socket.close();
+			if(socket)
+				socket.close();
 		}
 	}
 }

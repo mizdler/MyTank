@@ -5,12 +5,15 @@ package ir.baazino.mytank.screen
 	import feathers.controls.TextInput;
 	import feathers.controls.text.StageTextTextEditor;
 	
+	import flash.events.StatusEvent;
+	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.helper.CMD;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Match;
 	
 	import starling.events.Event;
+	import ir.baazino.mytank.helper.Notifier;
 	
 	public class WaitingScreen extends Screen
 	{
@@ -23,8 +26,17 @@ package ir.baazino.mytank.screen
 		public function WaitingScreen()
 		{
 			super();
+			ConnectionManager.dispatcher.addEventListener("CONNECTION", connectionListener);
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			this.backButtonHandler = btnCancelClickHandler;
+		}
+		
+		protected function connectionListener(event:StatusEvent):void
+		{
+			var notif:Notifier = new Notifier(event.code, Notifier.OK, "Alert");
+			notif.width = stage.stageWidth/2;
+			addChild(notif);
+			notif.show();
 		}
 		
 		private function addedToStageHandler():void

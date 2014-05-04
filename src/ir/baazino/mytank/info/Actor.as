@@ -4,14 +4,14 @@ package ir.baazino.mytank.info
 	{
 		public function Actor()
 		{
-			name = "none";
+			playerName = "none";
 			x = 75;
 			y = 40;
 			rotation = Math.PI/2;
 			isMoving = false;
 			shoot = false;
 		}
-		public var name:String;
+		public var playerName:String;
 		public var x:Number;
 		public var y:Number;
 		public var rotation:Number;

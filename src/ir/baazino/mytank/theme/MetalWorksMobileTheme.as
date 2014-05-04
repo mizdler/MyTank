@@ -56,6 +56,7 @@ package ir.baazino.mytank.theme
 	import feathers.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
+	import ir.baazino.mytank.helper.DragDropListItemRenderer;
 	import feathers.controls.text.StageTextTextEditor;
 	import feathers.controls.text.TextFieldTextEditor;
 	import feathers.controls.text.TextFieldTextRenderer;
@@ -482,6 +483,8 @@ package ir.baazino.mytank.theme
 			this.setInitializerForClass(ButtonGroup, alertButtonGroupInitializer, Alert.DEFAULT_CHILD_NAME_BUTTON_GROUP);
 			this.setInitializerForClass(DefaultListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultListItemRenderer, pickerListItemRendererInitializer, COMPONENT_NAME_PICKER_LIST_ITEM_RENDERER);
+			this.setInitializerForClass(DragDropListItemRenderer, itemRendererInitializer);
+			this.setInitializerForClass(DragDropListItemRenderer, pickerListItemRendererInitializer, COMPONENT_NAME_PICKER_LIST_ITEM_RENDERER);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, itemRendererInitializer);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetMiddleItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_ITEM_RENDERER);
 			this.setInitializerForClass(DefaultGroupedListItemRenderer, insetFirstItemRendererInitializer, GroupedList.ALTERNATE_CHILD_NAME_INSET_FIRST_ITEM_RENDERER);

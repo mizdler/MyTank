@@ -2,10 +2,12 @@ package ir.baazino.mytank.connection
 {
 	import flash.events.DatagramSocketDataEvent;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.ProgressEvent;
 	import flash.events.ServerSocketConnectEvent;
+	import flash.events.StatusEvent;
 	import flash.events.TimerEvent;
 	import flash.net.DatagramSocket;
 	import flash.net.GroupSpecifier;
@@ -39,7 +41,7 @@ package ir.baazino.mytank.connection
 	
 	import org.osmf.events.TimeEvent;
 
-	public class ConnectionManager
+	public class ConnectionManager extends EventDispatcher
 	{
 		public static const SERVER_ID:String = "0";
 		public static const CLIENT_ID:String = "1";
@@ -57,6 +59,8 @@ package ir.baazino.mytank.connection
 		
 		private static var mConnection:MTNConnection;
 		private static var isRTMFP:Boolean;
+		private static var attempts:Number;
+		public static var dispatcher:EventDispatcher = new EventDispatcher();
 
 		public static function joinHotspot():void
 		{
@@ -69,6 +73,7 @@ package ir.baazino.mytank.connection
 			else
 			{
 				ANE.wifi.joinHotspot(Storage.loadWifiPassword());
+				attempts = 0;
 				var checkTimer:Timer = new Timer(1000);
 				checkTimer.addEventListener(TimerEvent.TIMER, checkWifi);
 				checkTimer.start();
@@ -76,6 +81,7 @@ package ir.baazino.mytank.connection
 			
 			function checkWifi(event:TimerEvent):void
 			{
+				attempts++;
 				if(ANE.wifi.isWifiConnected())
 				{
 					if(checkTimer != null)
@@ -94,9 +100,14 @@ package ir.baazino.mytank.connection
 					client = new TCPClient(serverIP);
 					udp = new UDPConnection(splited[1], serverIP);
 					udp.connect();
+					dispatcher.dispatchEvent(new StatusEvent("CONNECTION", false, false, "Connection_Success"));
 				}
 				else if(Starter.isIOS)
 					ANE.wifi.showWifiAlert();
+				else if(attempts > 7){
+					checkTimer.stop();
+					dispatcher.dispatchEvent(new StatusEvent("CONNECTION", false, false, "Connection_Error"));
+				}
 			}
 			
 		}	
@@ -167,9 +178,9 @@ package ir.baazino.mytank.connection
 				mConnection.sendMsg(msg);
 			else
 			{
-				if(msg.substr(0,4)==CMD.UPDATE)
+				if(udp && msg.substr(0,4)==CMD.UPDATE)
 					sendUDP(msg);
-				else
+				else if(server || client)
 					sendTCP(msg);
 			}
 		}
