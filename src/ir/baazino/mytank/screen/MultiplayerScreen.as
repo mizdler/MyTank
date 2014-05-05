@@ -82,14 +82,14 @@ package ir.baazino.mytank.screen
 		
 		private function btLanClickHandler():void
 		{
-			Match.init();
+			Match.init(Match.multi);
 			ConnectionManager.connectLocal();
 			owner.showScreen(SCREEN.ROOM);			
 		}
 		
 		private function btnJoinClickHandler():void
 		{
-			Match.init();
+			Match.init(Match.multi);
 			WaitingScreen.isServer = false;
 			owner.showScreen(SCREEN.WAITING);
 			ConnectionManager.joinHotspot();
@@ -97,7 +97,7 @@ package ir.baazino.mytank.screen
 		
 		private function btnCreateClickHandler():void
 		{
-			Match.init();
+			Match.init(Match.multi);
 			WaitingScreen.isServer = true;
 			owner.showScreen(SCREEN.WAITING);
 			ConnectionManager.createHotspot();

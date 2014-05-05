@@ -37,6 +37,31 @@ package ir.baazino.mytank.connection.rtmfp
 			connect(serverAddr);
 		}
 		
+		// push functions
+		
+		public function pushPlayersNumber(msg:String):void{
+			
+		}
+			
+		public function pushAddRoomList(msg:String):void{
+
+		}
+		
+		public function pushDeleteRoomList(msg:String):void{
+
+		}
+		
+		public function pushJoinRoomList(msg:String):void{
+
+		}
+		
+		public function pushExitRoomList(msg:String):void{
+
+		}
+		
+		// end of push functions
+		
+		
 		public function joinGroup(groupName:String):void
 		{
 			groupSpecifier = new GroupSpecifier(groupName);

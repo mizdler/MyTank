@@ -10,6 +10,7 @@ package
 	
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.screen.GameScreen;
+	import ir.baazino.mytank.screen.LobbyScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
 	import ir.baazino.mytank.screen.MultiplayerScreen;
 	import ir.baazino.mytank.screen.RoomScreen;
@@ -50,6 +51,8 @@ package
 			navigator.addScreen(SCREEN.SETTINGS, new ScreenNavigatorItem(SettingsScreen));
 			navigator.addScreen(SCREEN.WAITING, new ScreenNavigatorItem(WaitingScreen));
 			navigator.addScreen(SCREEN.ROOM, new ScreenNavigatorItem(RoomScreen));
+			navigator.addScreen(SCREEN.LOBBY, new ScreenNavigatorItem(LobbyScreen));
+			
 			navigator.showScreen(SCREEN.MAIN_MENU);
 			
 			transitionManager = new ScreenSlidingStackTransitionManager(navigator);

@@ -10,6 +10,5 @@ features
 
 ToDos
 =====
-- lots of work about design and single player mode.
-- drag and drop list capability in local network screen.
-- bazaar in app purchase.
+- lots of work about design.
+- single player mode.

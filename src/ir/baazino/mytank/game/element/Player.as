@@ -23,29 +23,24 @@ package ir.baazino.mytank.game.element
 		public var id:String;
 
 		[Embed(source='assets/tank.png')]
-		private var tankImg:Class;
-		private var tankShape:Image;
+		protected var tankImg:Class;
+		protected var tankShape:Image;
 
 		public var speed:Number = 0.7;
-		private var scale:Number = 1;
+		protected var scale:Number = 1;
 
 		public var missiles:Dictionary = new Dictionary;
 
-		private var mCount:int;
+		protected var mCount:int;
+		protected var firing:Boolean = false;
 
-		private var right:Boolean = false;
-		private var left:Boolean = false;
-		private var up:Boolean = false;
-		private var down:Boolean = false;
-		private var firing:Boolean = false;
-
-		private var tankColl:CbType;
+		protected var tankColl:CbType;
 		public var isCollided:Boolean = false;
 
 		public function Player(tankCollisionType:CbType)
 		{
-			tankColl = tankCollisionType;
 			super();
+			tankColl = tankCollisionType;
 		}
 
 		override protected function init():void
@@ -56,7 +51,7 @@ package ir.baazino.mytank.game.element
 			stage.addEventListener(Event.ENTER_FRAME, go);
 		}
 
-		private function createPlayer():void
+		protected function createPlayer():void
 		{
 			tankShape = Image.fromBitmap(new tankImg());
 
@@ -79,7 +74,7 @@ package ir.baazino.mytank.game.element
 			addChild(tankShape);
 		}
 
-		private function addMissilePack(count:int = 5):void
+		protected function addMissilePack(count:int = 5):void
 		{
 			mCount = count;
 
@@ -90,7 +85,7 @@ package ir.baazino.mytank.game.element
 			}
 		}
 
-		private function go():void
+		protected function go():void
 		{
 			var actor:Actor = Match.playerMap[this.id] as Actor;
 			tank.rotation = actor.rotation;
@@ -114,7 +109,7 @@ package ir.baazino.mytank.game.element
 			}
 		}
 
-		private function fire():void
+		protected function fire():void
 		{
 			var mX:Number = Math.sin(-tank.rotation)*-53;
 			var mY:Number = Math.cos(tank.rotation)*-53;

@@ -14,13 +14,20 @@ package ir.baazino.mytank.info
 		public static var redCollection:ListCollection;
 		public static var blueCollection:ListCollection;
 		
-		public static function init():void
+		public static const single:String = "single_player";
+		public static const multi:String = "multi_player";
+		
+		public static var mode:String;
+		
+		public static function init(_mode:String):void
 		{
+			mode = _mode;
 			playerMap = new Dictionary();
 			noneCollection = new ListCollection();
 			redCollection = new ListCollection();
 			blueCollection = new ListCollection();
 			
+			// just for test
 			var item1:Object = new Object();
 			item1.id = 1;
 			item1.playerName = "dummy1";
@@ -36,6 +43,7 @@ package ir.baazino.mytank.info
 			Match.noneCollection.addItem(item1);
 			Match.redCollection.addItem(item2);
 			Match.blueCollection.addItem(item3);
+			//////////////////
 		}
 		         
 	}

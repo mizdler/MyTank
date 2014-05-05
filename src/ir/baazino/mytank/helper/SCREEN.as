@@ -9,5 +9,6 @@ package ir.baazino.mytank.helper
 		public static const SETTINGS:String = "settingsScreen";
 		public static const WAITING:String = "waitingScreen";
 		public static const ROOM:String = "roomScreen";
+		public static const LOBBY:String = "lobbyScreen";
 	}
 }

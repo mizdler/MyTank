@@ -7,6 +7,7 @@ package ir.baazino.mytank.screen
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
 	import ir.baazino.mytank.game.Field;
+	import ir.baazino.mytank.game.bot.BotController;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
 	import ir.baazino.mytank.helper.CMD;
@@ -28,12 +29,14 @@ package ir.baazino.mytank.screen
 		private var players:Dictionary = new Dictionary;
 		private var playersLen:int;
 		
-		private var space:Space = new Space();
+		public var space:Space = new Space();
 		
 		private var interaction:InteractionListener;
 		private var sepration:InteractionListener;
 		private var wallCollisionType:CbType=new CbType();
 		private var tankCollisionType:CbType=new CbType();
+		
+		private var botController:BotController
 		
 		public function GameScreen()
 		{
@@ -53,11 +56,14 @@ package ir.baazino.mytank.screen
 			field = new Field(stage.stageWidth, stage.stageHeight);
 			addChild(field);
 			
-			addPlayer();
+			addPlayers();
 			
 			addController();
 			
 			addButtons();
+			
+			if(Match.mode == Match.single)
+				 botController = new BotController(this);
 			
 			addToSpace();
 			
@@ -86,7 +92,7 @@ package ir.baazino.mytank.screen
 			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 		
-		private function addPlayer():void
+		private function addPlayers():void
 		{
 			for(var id:String in Match.playerMap)
 			{
