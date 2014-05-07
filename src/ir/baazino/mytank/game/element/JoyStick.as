@@ -11,6 +11,7 @@ package ir.baazino.mytank.game.element
 	import nape.phys.Body;
 	
 	import starling.display.Image;
+	import starling.display.Shape;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -27,17 +28,13 @@ package ir.baazino.mytank.game.element
 		private var surroundImg:Class;
 		private var surroundShape:Image;
 		
-		[Embed(source='assets/shoot.png')]
-		private var shootImg:Class;
-		private var shootShape:Image;
-		
 		private var center:Object;
 		private var actual:Object;
 		
+		private var shootShape:Shape;
+		
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
-		
-		public var speed:Number = 0.7;
 		
 		public function JoyStick():void
 		{
@@ -52,28 +49,39 @@ package ir.baazino.mytank.game.element
 		override protected function init():void
 		{
 			thumbShape2 = Image.fromBitmap(new thumbImg());
+			thumbShape2.alignPivot();
 			
-			center.x = stage.stageWidth*0.8 - thumbShape2.width/2;
-			center.y = stage.stageHeight*0.9 - thumbShape2.height/2;
+			center.x = Starter.width*0.9 - thumbShape2.width/2;
+			center.y = Starter.height*0.9 - thumbShape2.height/2;
 			
 			thumbShape2.x = center.x;
 			thumbShape2.y = center.y;
+			thumbShape2.scaleX = thumbShape2.scaleY = Starter.scale;
 			thumbShape2.alpha = 0;
 			
 			thumbShape = Image.fromBitmap(new thumbImg());
+			thumbShape.alignPivot();
 			thumbShape.x = center.x;
 			thumbShape.y = center.y;
+			thumbShape.scaleX = thumbShape.scaleY = Starter.scale;
 			thumbShape.alpha = 0.7;
 			
 			surroundShape = Image.fromBitmap(new surroundImg());
-			surroundShape.x = stage.stageWidth*0.8 - surroundShape.width/2;
-			surroundShape.y = stage.stageHeight*0.9 - surroundShape.height/2;
+			surroundShape.alignPivot();
+			surroundShape.x = center.x;
+			surroundShape.y = center.y;
+			surroundShape.scaleX = surroundShape.scaleY = Starter.scale;
 			surroundShape.alpha = 0.5;
 			
-			shootShape = Image.fromBitmap(new shootImg());
-			shootShape.x = 0;
-			shootShape.y = stage.stageHeight - shootShape.height;
-			shootShape.alpha = 0.7;
+			var w:Number = Starter.mHeight/3;
+			var upOf:Number = Starter.marginTop + 2*Starter.mHeight/3;
+			var lfOf:Number = Starter.marginLeft;
+			
+			shootShape = new Shape();
+			shootShape.graphics.beginFill(0x000000, 1);
+			shootShape.graphics.lineStyle(4, 0x000000, 1);
+			shootShape.graphics.drawRect(lfOf, upOf, w*1.4, w*1.4);
+			shootShape.alpha = 0;
 			
 			addChild(surroundShape);
 			addChild(thumbShape);
@@ -81,19 +89,19 @@ package ir.baazino.mytank.game.element
 			addChild(shootShape);
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
 		}
-		
-		
+
 		protected function touchHandler(e:TouchEvent):void
 		{
 			var touches:Vector.<Touch> = e.getTouches(stage);
+
 			for each(var touch:Touch in touches)
 			{
 				if(touch.target == thumbShape2)
 				{
 					if(touch.phase == TouchPhase.MOVED){
 						var postion:Point = touch.getLocation(stage);
-						thumbShape2.x = postion.x - thumbShape2.width/2;
-						thumbShape2.y = postion.y - thumbShape2.height/2;
+						thumbShape2.x = postion.x;
+						thumbShape2.y = postion.y;
 						
 						actual.x = thumbShape2.x - center.x;
 						actual.y = thumbShape2.y - center.y;
@@ -127,8 +135,9 @@ package ir.baazino.mytank.game.element
 						thumbShape.y = center.y;
 					}
 				}
-				else if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
-					actor.shoot = true;
+
+				if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
+					actor.shoot = true;	
 			}
 			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}

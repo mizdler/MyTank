@@ -1,12 +1,12 @@
 package ir.baazino.mytank.game.element
 {
 	import flash.utils.setTimeout;
-
+	
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import nape.phys.Material;
 	import nape.shape.Circle;
-
+	
 	import starling.core.Starling;
 	import starling.display.Shape;
 
@@ -25,7 +25,7 @@ package ir.baazino.mytank.game.element
 		{
 			super();
 
-			mRadius = radius;
+			mRadius = radius*Starter.scale;
 			mColor = color;
 		}
 
@@ -40,8 +40,8 @@ package ir.baazino.mytank.game.element
 			missileGraphic.graphics.drawCircle(0, 0, mRadius);
 			missileGraphic.graphics.endFill();
 
-			missile.shapes.add(new Circle(mRadius, null, new Material(20)));
-			missile.mass = 1;
+			missile.shapes.add(new Circle(mRadius, null, new Material()));
+			missile.isBullet = true;
 			missile.userData.graphic = missileGraphic;
 
 			addChild(missileGraphic);
@@ -63,7 +63,7 @@ package ir.baazino.mytank.game.element
 			missile.position.y = y;
 
 			missile.velocity.x = Math.sin(angel)*velLen;
-			missile.velocity.y = Math.cos(angel)*-velLen;
+			missile.velocity.y = -Math.cos(angel)*velLen;
 
 			setTimeout(stop, goTime);
 		}

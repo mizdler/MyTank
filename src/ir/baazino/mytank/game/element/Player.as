@@ -10,6 +10,7 @@ package ir.baazino.mytank.game.element
 	import ir.baazino.mytank.screen.GameScreen;
 	
 	import nape.callbacks.CbType;
+	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	
@@ -22,12 +23,14 @@ package ir.baazino.mytank.game.element
 		public var tank:Body;
 		public var id:String;
 
-		[Embed(source='assets/tank.png')]
-		protected var tankImg:Class;
-		protected var tankShape:Image;
+		[Embed(source='assets/blue-tank.png')]
+		private var tankImg:Class;
+		private var tankShape:Image;
+		private var tHeight:Number;
+		private var tWidth:Number;
 
-		public var speed:Number = 0.7;
-		protected var scale:Number = 1;
+		public var speed:Number = 150;
+		public var angSpeed:Number = 10;
 
 		public var missiles:Dictionary = new Dictionary;
 
@@ -54,22 +57,22 @@ package ir.baazino.mytank.game.element
 		protected function createPlayer():void
 		{
 			tankShape = Image.fromBitmap(new tankImg());
-
-			tankShape.pivotX = int(width/2);
-			tankShape.pivotY = int(height/2);
+			tankShape.scaleX = tankShape.scaleY = Starter.scale;
 			tankShape.alignPivot();
-
-			width = tankShape.width * scale;
-			height = tankShape.height * scale;
+			tankShape.x = 121.5;
+			tankShape.y = 133.5;
+			
+			tHeight = tankShape.height;
+			tWidth = tankShape.width;
 
 			PhysicsData.registerCbType('tank', tankColl);
 			tank = PhysicsData.createBody("tank");
-
 			tank.userData.graphic = tankShape;
 
-			tank.position.x = 75;
-			tank.position.y = 40;
-			tank.rotation = Math.PI/2;
+			tank.scaleShapes(Starter.scale, Starter.scale);
+			tank.position.x = 121.5;
+			tank.position.y = 133.5;
+			tank.rotation = Math.PI;
 
 			addChild(tankShape);
 		}
@@ -88,14 +91,20 @@ package ir.baazino.mytank.game.element
 		protected function go():void
 		{
 			var actor:Actor = Match.playerMap[this.id] as Actor;
-			tank.rotation = actor.rotation;
+			
+			rotate(actor.rotation);
+			
 			if(actor.isMoving)
-				move(speed*3);
+				move(speed);
+			else
+				tank.velocity = new Vec2(0,0);
+			
 			if(actor.shoot)
 			{
 				fire();
 				actor.shoot = false;
 			}
+			
 			actor.x = tank.position.x;
 			actor.y = tank.position.y;
 		}
@@ -104,15 +113,15 @@ package ir.baazino.mytank.game.element
 		{
 			if (!isCollided)
 			{
-				tank.position.x += Math.sin(tank.rotation)*len;
-				tank.position.y -= Math.cos(tank.rotation)*len;
+				tank.velocity.x = len*Math.sin(tank.rotation);
+				tank.velocity.y = -len*Math.cos(tank.rotation);
 			}
 		}
 
 		protected function fire():void
 		{
-			var mX:Number = Math.sin(-tank.rotation)*-53;
-			var mY:Number = Math.cos(tank.rotation)*-53;
+			var mX:Number = Math.sin(tank.rotation)*(tHeight/2)*1.1;
+			var mY:Number = -Math.cos(tank.rotation)*(tHeight/2)*1.1;
 
 			for (var i:int = 0; i < mCount; i++)
 			{
@@ -124,6 +133,24 @@ package ir.baazino.mytank.game.element
 				}
 			}
 
+		}
+		
+		private function getAngel(angel:Number):Number
+		{
+			while (angel > Math.PI*2) 
+				angel -= Math.PI;
+
+			while (angel < -Math.PI*2) 
+				angel += Math.PI;
+			return angel;
+		} 
+		
+		private function rotate(angel:Number):void
+		{
+			if (angel > tank.rotation + Math.PI) angel -= Math.PI*2;
+			if (angel < tank.rotation - Math.PI) angel += Math.PI*2;
+
+			tank.rotation += (angel - tank.rotation) / angSpeed;
 		}
 	}
 }

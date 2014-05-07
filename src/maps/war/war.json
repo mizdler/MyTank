@@ -1,0 +1,29 @@
+{
+	"Backgrounds":
+	[
+		{"src":"/maps/war/backgrounds/bg.png"}
+	],
+	"Objects":
+	[
+		{
+			"name":"barrier1",
+			"src":"/maps/war/objects/barrier1.png",
+			"pos":[648, 202]
+		},
+		{
+			"name":"barrier2",
+			"src":"/maps/war/objects/barrier2.png",
+			"pos":[472, 453]
+		},
+		{
+			"name":"rock",
+			"src":"/maps/war/objects/rock.png",
+			"pos":[210, 200]
+		}
+	],
+	"Players":
+	[
+		
+	],
+	"Count":"4"
+}

@@ -6,7 +6,6 @@ package ir.baazino.mytank.screen
 	import flash.utils.Dictionary;
 	
 	import ir.baazino.mytank.connection.ConnectionManager;
-	import ir.baazino.mytank.game.Field;
 	import ir.baazino.mytank.game.bot.BotController;
 	import ir.baazino.mytank.game.element.JoyStick;
 	import ir.baazino.mytank.game.element.Player;
@@ -14,7 +13,8 @@ package ir.baazino.mytank.screen
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.info.Actor;
 	import ir.baazino.mytank.info.Match;
-	
+	import ir.baazino.mytank.game.map.Map;
+
 	import nape.callbacks.*;
 	import nape.phys.Body;
 	import nape.space.Space;
@@ -23,7 +23,7 @@ package ir.baazino.mytank.screen
 	
 	public class GameScreen extends Screen
 	{
-		private var field:Field;
+		private var map:Map;
 		private var controller:JoyStick;
 		private var player:Player;
 		private var players:Dictionary = new Dictionary;
@@ -37,6 +37,7 @@ package ir.baazino.mytank.screen
 		private var tankCollisionType:CbType=new CbType();
 		
 		private var botController:BotController
+		private var isMapInSpace:Boolean = false;
 		
 		public function GameScreen()
 		{
@@ -48,23 +49,19 @@ package ir.baazino.mytank.screen
 		public function onAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			init();
+			loadMap();
+			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
 		private function init():void
 		{
-			field = new Field(stage.stageWidth, stage.stageHeight);
-			addChild(field);
-			
-			addPlayers();
-			
 			addController();
-			
 			addButtons();
+			addPlayers();
 			
 			if(Match.mode == Match.single)
 				 botController = new BotController(this);
-			
+
 			addToSpace();
 			
 			interaction = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, wallCollisionType, tankCollisionType, collision);
@@ -72,8 +69,13 @@ package ir.baazino.mytank.screen
 			
 			space.listeners.add(interaction);
 			space.listeners.add(sepration);
-			
-			addEventListener(Event.ENTER_FRAME, loop);
+		}
+		
+		private function loadMap():void
+		{
+			map = new Map(players[0], players[0]);
+			map.load('war');	
+			addChild(map);
 		}
 		
 		private function addButtons():void
@@ -94,6 +96,7 @@ package ir.baazino.mytank.screen
 		
 		private function addPlayers():void
 		{
+			trace(Match.playerMap);
 			for(var id:String in Match.playerMap)
 			{
 				player = new Player(tankCollisionType);
@@ -112,15 +115,9 @@ package ir.baazino.mytank.screen
 		
 		private function addToSpace():void
 		{
-			for each(var b:Body in field.body)
-			{
-				b.cbTypes.add(wallCollisionType);
-				b.space = space;
-			}
-			
 			for each(var p:Player in players)
 				p.tank.space = space;
-			
+
 			for each(var p2:Player in players)
 				for (var j:int = 0; j < 5; j++)
 					p2.missiles[j].missile.space = space;
@@ -128,6 +125,15 @@ package ir.baazino.mytank.screen
 		
 		private function loop():void
 		{
+			if (!isMapInSpace && map.isFinished()) 
+			{
+				for each (var b:Body in map.bodies)
+					b.space = space;
+
+				isMapInSpace = true;
+				init();
+			}
+			
 			space.step(1/60);
 			space.liveBodies.foreach(updateGraphics);
 		}
