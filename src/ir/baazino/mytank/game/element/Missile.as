@@ -41,6 +41,7 @@ package ir.baazino.mytank.game.element
 			missileGraphic.graphics.endFill();
 
 			missile.shapes.add(new Circle(mRadius, null, new Material()));
+			missile.isBullet = true;
 			missile.userData.graphic = missileGraphic;
 
 			addChild(missileGraphic);

@@ -18,22 +18,12 @@
 		{
 			"name":"rock",
 			"src":"/maps/war/objects/rock.png",
-			"pos":[337, 136]
-		},
-		{
-			"name":"left-rocks",
-			"src":"/maps/war/objects/left-rocks.png",
-			"pos":[183.5, 361.5]
-		},
-		{
-			"name":"right-rocks",
-			"src":"/maps/war/objects/right-rocks.png",
-			"pos":[645.5, 272.5]
+			"pos":[210, 200]
 		}
 	],
 	"Players":
 	[
 		
 	],
-	"Count":"6"
+	"Count":"4"
 }

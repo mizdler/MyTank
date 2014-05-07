@@ -490,285 +490,148 @@ public class PhysicsData {
 			body.cbTypes.add(cbtype("null"));
 
 			
-				mat = material("default");
-				filt = filter("default");
-				prop = fprop("default");
-				cbType = cbtype("null");
-
-				
-					
-						s = new Polygon(
-							[   Vec2.weak(96.5,48)   ,  Vec2.weak(94.5,36)   ,  Vec2.weak(84.5,49)   ,  Vec2.weak(85,51.5)   ,  Vec2.weak(89,52.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(169,79.5)   ,  Vec2.weak(163,79.5)   ,  Vec2.weak(158,82.5)   ,  Vec2.weak(132.5,104)   ,  Vec2.weak(144,111.5)   ,  Vec2.weak(163.5,101)   ,  Vec2.weak(171.5,89)   ,  Vec2.weak(171.5,83)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(122,101.5)   ,  Vec2.weak(127,96.5)   ,  Vec2.weak(102.5,70)   ,  Vec2.weak(108,91.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(86,53.5)   ,  Vec2.weak(81,57.5)   ,  Vec2.weak(102.5,70)   ,  Vec2.weak(101,62.5)   ,  Vec2.weak(90,54.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(124,66.5)   ,  Vec2.weak(115,66.5)   ,  Vec2.weak(108,71.5)   ,  Vec2.weak(133.5,79)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(160.5,109)   ,  Vec2.weak(163.5,101)   ,  Vec2.weak(144,111.5)   ,  Vec2.weak(155,111.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(130.5,106)   ,  Vec2.weak(130.5,110)   ,  Vec2.weak(135,115.5)   ,  Vec2.weak(139,115.5)   ,  Vec2.weak(144,111.5)   ,  Vec2.weak(132.5,104)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(70.5,6)   ,  Vec2.weak(68.5,9)   ,  Vec2.weak(69.5,18)   ,  Vec2.weak(96.5,32)   ,  Vec2.weak(96.5,24)   ,  Vec2.weak(79,6.5)   ,  Vec2.weak(73.5,5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(84.5,49)   ,  Vec2.weak(94.5,36)   ,  Vec2.weak(96.5,32)   ,  Vec2.weak(77,48.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(45.5,47)   ,  Vec2.weak(43.5,55)   ,  Vec2.weak(46.5,65)   ,  Vec2.weak(77,48.5)   ,  Vec2.weak(96.5,32)   ,  Vec2.weak(61,39.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(94.5,165)   ,  Vec2.weak(102.5,152)   ,  Vec2.weak(103.5,145)   ,  Vec2.weak(101.5,141)   ,  Vec2.weak(87.5,124)   ,  Vec2.weak(66,172.5)   ,  Vec2.weak(70,174.5)   ,  Vec2.weak(77,173.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(5.5,94)   ,  Vec2.weak(5.5,112)   ,  Vec2.weak(22,79.5)   ,  Vec2.weak(12.5,84)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(69.5,18)   ,  Vec2.weak(66.5,24)   ,  Vec2.weak(64.5,34)   ,  Vec2.weak(96.5,32)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(66,172.5)   ,  Vec2.weak(87.5,124)   ,  Vec2.weak(31.5,148)   ,  Vec2.weak(32.5,157)   ,  Vec2.weak(37,164.5)   ,  Vec2.weak(43,169.5)   ,  Vec2.weak(54,172.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(30.5,150)   ,  Vec2.weak(32.5,157)   ,  Vec2.weak(31.5,148)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(87.5,124)   ,  Vec2.weak(97.5,105)   ,  Vec2.weak(103,90.5)   ,  Vec2.weak(45,67.5)   ,  Vec2.weak(7.5,115)   ,  Vec2.weak(24,145.5)   ,  Vec2.weak(31.5,148)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(36,67.5)   ,  Vec2.weak(33,69.5)   ,  Vec2.weak(22,79.5)   ,  Vec2.weak(5.5,112)   ,  Vec2.weak(7.5,115)   ,  Vec2.weak(45,67.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(64.5,34)   ,  Vec2.weak(61,39.5)   ,  Vec2.weak(96.5,32)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(7.5,124)   ,  Vec2.weak(9.5,129)   ,  Vec2.weak(24,145.5)   ,  Vec2.weak(7.5,115)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(77,48.5)   ,  Vec2.weak(46.5,65)   ,  Vec2.weak(75.5,52)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(75.5,52)   ,  Vec2.weak(46.5,65)   ,  Vec2.weak(78.5,56)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(78.5,56)   ,  Vec2.weak(46.5,65)   ,  Vec2.weak(81,57.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(81,57.5)   ,  Vec2.weak(46.5,65)   ,  Vec2.weak(45,67.5)   ,  Vec2.weak(103,90.5)   ,  Vec2.weak(108,91.5)   ,  Vec2.weak(102.5,70)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(127,96.5)   ,  Vec2.weak(131.5,98)   ,  Vec2.weak(105,71.5)   ,  Vec2.weak(102.5,70)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(108,71.5)   ,  Vec2.weak(105,71.5)   ,  Vec2.weak(131.5,98)   ,  Vec2.weak(133.5,79)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(158,82.5)   ,  Vec2.weak(140,81.5)   ,  Vec2.weak(132.5,104)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(140,81.5)   ,  Vec2.weak(133.5,79)   ,  Vec2.weak(131.5,98)   ,  Vec2.weak(132.5,104)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-				
+			body = new Body();
+			cbType = cbtype("null");
 			
+			
+			mat = material("default");
+			filt = filter("default");
+			prop = fprop("default");
+			cbType = cbtype("null");
+			
+			
+			
+			s = new Polygon(
+				[   Vec2.weak(93,17.5)   ,  Vec2.weak(87,21.5)   ,  Vec2.weak(104.5,44)   ,  Vec2.weak(108.5,37)   ,  Vec2.weak(108.5,31)   ,  Vec2.weak(102,22.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(55,8.5)   ,  Vec2.weak(51.5,11)   ,  Vec2.weak(49.5,21)   ,  Vec2.weak(52.5,29)   ,  Vec2.weak(59,8.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(48,132.5)   ,  Vec2.weak(61,136.5)   ,  Vec2.weak(70,135.5)   ,  Vec2.weak(99.5,129)   ,  Vec2.weak(37.5,112)   ,  Vec2.weak(39.5,123)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(59,8.5)   ,  Vec2.weak(52.5,29)   ,  Vec2.weak(85.5,21)   ,  Vec2.weak(71,4.5)   ,  Vec2.weak(68,4.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(107.5,51)   ,  Vec2.weak(104.5,47)   ,  Vec2.weak(29,43.5)   ,  Vec2.weak(26,43.5)   ,  Vec2.weak(94.5,84)   ,  Vec2.weak(107.5,60)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(16.5,50)   ,  Vec2.weak(11.5,59)   ,  Vec2.weak(11.5,75)   ,  Vec2.weak(13.5,78)   ,  Vec2.weak(93.5,90)   ,  Vec2.weak(94.5,84)   ,  Vec2.weak(26,43.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(46,31.5)   ,  Vec2.weak(38,34.5)   ,  Vec2.weak(29,43.5)   ,  Vec2.weak(50,32.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(13.5,87)   ,  Vec2.weak(16.5,94)   ,  Vec2.weak(29,108.5)   ,  Vec2.weak(37.5,112)   ,  Vec2.weak(99.5,129)   ,  Vec2.weak(102.5,126)   ,  Vec2.weak(93.5,90)   ,  Vec2.weak(13.5,78)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(74,137.5)   ,  Vec2.weak(81,137.5)   ,  Vec2.weak(99.5,129)   ,  Vec2.weak(70,135.5)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(109.5,109)   ,  Vec2.weak(105.5,103)   ,  Vec2.weak(93.5,90)   ,  Vec2.weak(102.5,126)   ,  Vec2.weak(109.5,112)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(52.5,29)   ,  Vec2.weak(50,32.5)   ,  Vec2.weak(85.5,21)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(50,32.5)   ,  Vec2.weak(29,43.5)   ,  Vec2.weak(104.5,47)   ,  Vec2.weak(87,21.5)   ,  Vec2.weak(85.5,21)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+			
+			s = new Polygon(
+				[   Vec2.weak(104.5,44)   ,  Vec2.weak(87,21.5)   ,  Vec2.weak(104.5,47)   ],
+				mat,
+				filt
+			);
+			s.body = body;
+			s.fluidEnabled = false;
+			s.fluidProperties = prop;
+			cbType = cbtype("null");
+					
+
 
 			anchor = (true) ? body.localCOM.copy() : Vec2.get(89,90);
 			body.translateShapes(Vec2.weak(-anchor.x,-anchor.y));
@@ -787,774 +650,345 @@ public class PhysicsData {
 
 				
 					
-						s = new Polygon(
-							[   Vec2.weak(326.5,235)   ,  Vec2.weak(326.5,225)   ,  Vec2.weak(319,226.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(154.5,354)   ,  Vec2.weak(156.5,340)   ,  Vec2.weak(142,352.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(295,257.5)   ,  Vec2.weak(304,238.5)   ,  Vec2.weak(267,252.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(183,326.5)   ,  Vec2.weak(188.5,314)   ,  Vec2.weak(187.5,307)   ,  Vec2.weak(171,327.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(314,171.5)   ,  Vec2.weak(308,169.5)   ,  Vec2.weak(313.5,182)   ,  Vec2.weak(315.5,179)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(297,160.5)   ,  Vec2.weak(295,162.5)   ,  Vec2.weak(314,227.5)   ,  Vec2.weak(319,226.5)   ,  Vec2.weak(313.5,182)   ,  Vec2.weak(308,169.5)   ,  Vec2.weak(301,162.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(41,44.5)   ,  Vec2.weak(35.5,39)   ,  Vec2.weak(23,40.5)   ,  Vec2.weak(40,51.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(184,149.5)   ,  Vec2.weak(176.5,150)   ,  Vec2.weak(235,262.5)   ,  Vec2.weak(188,154.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(249,270.5)   ,  Vec2.weak(261,266.5)   ,  Vec2.weak(267,252.5)   ,  Vec2.weak(243.5,265)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(16.5,24)   ,  Vec2.weak(17,18.5)   ,  Vec2.weak(7,9.5)   ,  Vec2.weak(-0.5,11)   ,  Vec2.weak(10.5,28)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(59,52.5)   ,  Vec2.weak(42,52.5)   ,  Vec2.weak(-0.5,411)   ,  Vec2.weak(6,414.5)   ,  Vec2.weak(63,68.5)   ,  Vec2.weak(63.5,61)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(326,187.5)   ,  Vec2.weak(313.5,182)   ,  Vec2.weak(319,226.5)   ,  Vec2.weak(326.5,225)   ,  Vec2.weak(329.5,209)   ,  Vec2.weak(330,198.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(333,214.5)   ,  Vec2.weak(329.5,209)   ,  Vec2.weak(326.5,225)   ,  Vec2.weak(331,222.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(221.5,275)   ,  Vec2.weak(228,263.5)   ,  Vec2.weak(135.5,117)   ,  Vec2.weak(211,278.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(208,285.5)   ,  Vec2.weak(211,278.5)   ,  Vec2.weak(135.5,117)   ,  Vec2.weak(198,289.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(24,476.5)   ,  Vec2.weak(114,475.5)   ,  Vec2.weak(114,457.5)   ,  Vec2.weak(22.5,450)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(143.5,381)   ,  Vec2.weak(121.5,362)   ,  Vec2.weak(6,414.5)   ,  Vec2.weak(22.5,450)   ,  Vec2.weak(114,457.5)   ,  Vec2.weak(119,455.5)   ,  Vec2.weak(132.5,443)   ,  Vec2.weak(149.5,405)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(13.5,29)   ,  Vec2.weak(10.5,28)   ,  Vec2.weak(-0.5,411)   ,  Vec2.weak(16.5,37)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(269,150.5)   ,  Vec2.weak(259,160.5)   ,  Vec2.weak(289,161.5)   ,  Vec2.weak(275,150.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(243.5,265)   ,  Vec2.weak(314,227.5)   ,  Vec2.weak(295,162.5)   ,  Vec2.weak(289,161.5)   ,  Vec2.weak(259,160.5)   ,  Vec2.weak(248,162.5)   ,  Vec2.weak(235,262.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(10,432.5)   ,  Vec2.weak(22.5,450)   ,  Vec2.weak(6,414.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(169.5,140)   ,  Vec2.weak(153.5,130)   ,  Vec2.weak(235,262.5)   ,  Vec2.weak(176.5,150)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(129,102.5)   ,  Vec2.weak(98,78.5)   ,  Vec2.weak(91,75.5)   ,  Vec2.weak(73,73.5)   ,  Vec2.weak(6,414.5)   ,  Vec2.weak(128.5,110)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(136,357.5)   ,  Vec2.weak(156.5,340)   ,  Vec2.weak(164.5,331)   ,  Vec2.weak(192,295.5)   ,  Vec2.weak(121.5,362)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(304,238.5)   ,  Vec2.weak(314,227.5)   ,  Vec2.weak(267,252.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(141,118.5)   ,  Vec2.weak(135.5,117)   ,  Vec2.weak(228,263.5)   ,  Vec2.weak(235,262.5)   ,  Vec2.weak(153.5,130)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(233,154.5)   ,  Vec2.weak(188,154.5)   ,  Vec2.weak(235,262.5)   ,  Vec2.weak(236.5,160)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(187.5,307)   ,  Vec2.weak(192,295.5)   ,  Vec2.weak(164.5,331)   ,  Vec2.weak(171,327.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(121.5,362)   ,  Vec2.weak(198,289.5)   ,  Vec2.weak(135.5,117)   ,  Vec2.weak(128.5,110)   ,  Vec2.weak(6,414.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(248,162.5)   ,  Vec2.weak(236.5,160)   ,  Vec2.weak(235,262.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(-0.5,11)   ,  Vec2.weak(-0.5,411)   ,  Vec2.weak(10.5,28)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(73,73.5)   ,  Vec2.weak(63,68.5)   ,  Vec2.weak(6,414.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(23,40.5)   ,  Vec2.weak(16.5,37)   ,  Vec2.weak(-0.5,411)   ,  Vec2.weak(40,51.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(40,51.5)   ,  Vec2.weak(-0.5,411)   ,  Vec2.weak(42,52.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
+				s = new Polygon(
+					[   Vec2.weak(71,124.5)   ,  Vec2.weak(77.5,119)   ,  Vec2.weak(77,116.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(64,122.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
 				
-			
-				mat = material("default");
-				filt = filter("default");
-				prop = fprop("default");
-				cbType = cbtype("null");
-
+				s = new Polygon(
+					[   Vec2.weak(330.5,45)   ,  Vec2.weak(326.5,39)   ,  Vec2.weak(314.5,28)   ,  Vec2.weak(309,74.5)   ,  Vec2.weak(317,68.5)   ,  Vec2.weak(328.5,52)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
 				
-					
-						s = new Polygon(
-							[   Vec2.weak(153.5,353)   ,  Vec2.weak(155.5,341)   ,  Vec2.weak(141,352.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(0,411.5)   ,  Vec2.weak(2,410.5)   ,  Vec2.weak(36,54.5)   ,  Vec2.weak(15.5,37)   ,  Vec2.weak(-0.5,410)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(296.5,256)   ,  Vec2.weak(298.5,247)   ,  Vec2.weak(272,251.5)   ,  Vec2.weak(288,256.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(15.5,24)   ,  Vec2.weak(16,19.5)   ,  Vec2.weak(11.5,17)   ,  Vec2.weak(-0.5,12)   ,  Vec2.weak(11,25.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(325,187.5)   ,  Vec2.weak(319,186.5)   ,  Vec2.weak(328.5,208)   ,  Vec2.weak(326.5,195)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(332.5,214)   ,  Vec2.weak(328.5,210)   ,  Vec2.weak(317,224.5)   ,  Vec2.weak(330.5,220)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(248,270.5)   ,  Vec2.weak(253,267.5)   ,  Vec2.weak(266.5,256)   ,  Vec2.weak(267,251.5)   ,  Vec2.weak(242,263.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(182.5,326)   ,  Vec2.weak(187.5,315)   ,  Vec2.weak(187.5,303)   ,  Vec2.weak(172,326.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(14,30.5)   ,  Vec2.weak(8.5,29)   ,  Vec2.weak(-0.5,410)   ,  Vec2.weak(15.5,37)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(330.5,201)   ,  Vec2.weak(326.5,195)   ,  Vec2.weak(328.5,208)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(183,149.5)   ,  Vec2.weak(174.5,150)   ,  Vec2.weak(200,287.5)   ,  Vec2.weak(189,155.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(128.5,105)   ,  Vec2.weak(125,100.5)   ,  Vec2.weak(111.5,92)   ,  Vec2.weak(72,74.5)   ,  Vec2.weak(127.5,110)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(6,10.5)   ,  Vec2.weak(-0.5,12)   ,  Vec2.weak(11.5,17)   ,  Vec2.weak(10,13.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(40.5,50)   ,  Vec2.weak(40,45.5)   ,  Vec2.weak(34,39.5)   ,  Vec2.weak(21,41.5)   ,  Vec2.weak(36,54.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(298,161.5)   ,  Vec2.weak(295,164.5)   ,  Vec2.weak(313.5,183)   ,  Vec2.weak(306.5,169)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(207.5,285)   ,  Vec2.weak(212,276.5)   ,  Vec2.weak(243,162.5)   ,  Vec2.weak(236.5,161)   ,  Vec2.weak(189,155.5)   ,  Vec2.weak(200,287.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(221.5,274)   ,  Vec2.weak(228,262.5)   ,  Vec2.weak(243,162.5)   ,  Vec2.weak(212,276.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(313,170.5)   ,  Vec2.weak(306.5,169)   ,  Vec2.weak(313.5,183)   ,  Vec2.weak(314.5,174)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(62.5,61)   ,  Vec2.weak(59,53.5)   ,  Vec2.weak(57,52.5)   ,  Vec2.weak(47,51.5)   ,  Vec2.weak(36,54.5)   ,  Vec2.weak(2,410.5)   ,  Vec2.weak(61.5,69)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(298.5,247)   ,  Vec2.weak(303.5,237)   ,  Vec2.weak(272,251.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(96,78.5)   ,  Vec2.weak(72,74.5)   ,  Vec2.weak(111.5,92)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(270,151.5)   ,  Vec2.weak(265.5,154)   ,  Vec2.weak(259,161.5)   ,  Vec2.weak(288,161.5)   ,  Vec2.weak(278,152.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(11,25.5)   ,  Vec2.weak(-0.5,12)   ,  Vec2.weak(8.5,29)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(259.5,267)   ,  Vec2.weak(261.5,265)   ,  Vec2.weak(266.5,256)   ,  Vec2.weak(253,267.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(293,162.5)   ,  Vec2.weak(288,161.5)   ,  Vec2.weak(259,161.5)   ,  Vec2.weak(243,162.5)   ,  Vec2.weak(228,262.5)   ,  Vec2.weak(328.5,210)   ,  Vec2.weak(328.5,208)   ,  Vec2.weak(295,164.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(10.5,431)   ,  Vec2.weak(22.5,447)   ,  Vec2.weak(112.5,459)   ,  Vec2.weak(116.5,454)   ,  Vec2.weak(123.5,435)   ,  Vec2.weak(119,361.5)   ,  Vec2.weak(7.5,415)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(136.5,403)   ,  Vec2.weak(134.5,392)   ,  Vec2.weak(130.5,382)   ,  Vec2.weak(119,361.5)   ,  Vec2.weak(123.5,435)   ,  Vec2.weak(132.5,419)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(114.5,473)   ,  Vec2.weak(112.5,459)   ,  Vec2.weak(22.5,447)   ,  Vec2.weak(23.5,472)   ,  Vec2.weak(25,476.5)   ,  Vec2.weak(112,476.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(242,263.5)   ,  Vec2.weak(267,251.5)   ,  Vec2.weak(328.5,210)   ,  Vec2.weak(228,262.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(173,145.5)   ,  Vec2.weak(166,138.5)   ,  Vec2.weak(154,131.5)   ,  Vec2.weak(174.5,150)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(134,357.5)   ,  Vec2.weak(141,352.5)   ,  Vec2.weak(155.5,341)   ,  Vec2.weak(164,330.5)   ,  Vec2.weak(119,361.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(319,186.5)   ,  Vec2.weak(313.5,183)   ,  Vec2.weak(328.5,208)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(172,326.5)   ,  Vec2.weak(187.5,303)   ,  Vec2.weak(164,330.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(313.5,183)   ,  Vec2.weak(295,164.5)   ,  Vec2.weak(328.5,208)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(234,155.5)   ,  Vec2.weak(189,155.5)   ,  Vec2.weak(236.5,161)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(142,120.5)   ,  Vec2.weak(135.5,118)   ,  Vec2.weak(154,131.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(164,330.5)   ,  Vec2.weak(187.5,303)   ,  Vec2.weak(192,294.5)   ,  Vec2.weak(72,74.5)   ,  Vec2.weak(61.5,69)   ,  Vec2.weak(2,410.5)   ,  Vec2.weak(7.5,415)   ,  Vec2.weak(119,361.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(317,224.5)   ,  Vec2.weak(328.5,210)   ,  Vec2.weak(267,251.5)   ,  Vec2.weak(272,251.5)   ,  Vec2.weak(309,230.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(303.5,237)   ,  Vec2.weak(309,230.5)   ,  Vec2.weak(272,251.5)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(154,131.5)   ,  Vec2.weak(72,74.5)   ,  Vec2.weak(192,294.5)   ,  Vec2.weak(200,287.5)   ,  Vec2.weak(174.5,150)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(127.5,110)   ,  Vec2.weak(72,74.5)   ,  Vec2.weak(135.5,118)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
-					
-						s = new Polygon(
-							[   Vec2.weak(-0.5,12)   ,  Vec2.weak(-0.5,410)   ,  Vec2.weak(8.5,29)   ],
-							mat,
-							filt
-						);
-						s.body = body;
-						s.fluidEnabled = false;
-						s.fluidProperties = prop;
-						s.cbTypes.add(cbType);
+				s = new Polygon(
+					[   Vec2.weak(325,31.5)   ,  Vec2.weak(314.5,28)   ,  Vec2.weak(326.5,39)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(43.5,138)   ,  Vec2.weak(47,130.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(19,133.5)   ,  Vec2.weak(27,137.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(303,11.5)   ,  Vec2.weak(296,9.5)   ,  Vec2.weak(243,6.5)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(303.5,81)   ,  Vec2.weak(309,74.5)   ,  Vec2.weak(307.5,21)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(331.5,61)   ,  Vec2.weak(328.5,56)   ,  Vec2.weak(317,68.5)   ,  Vec2.weak(330.5,64)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(32,13.5)   ,  Vec2.weak(26,16.5)   ,  Vec2.weak(15,27.5)   ,  Vec2.weak(44,18.5)   ,  Vec2.weak(41,15.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(80,11.5)   ,  Vec2.weak(70,17.5)   ,  Vec2.weak(85,13.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(58,14.5)   ,  Vec2.weak(54,17.5)   ,  Vec2.weak(70,17.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(101,10.5)   ,  Vec2.weak(92,13.5)   ,  Vec2.weak(104,12.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(101,106.5)   ,  Vec2.weak(111,103.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(93,104.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(248,103.5)   ,  Vec2.weak(267,95.5)   ,  Vec2.weak(15,27.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(231,102.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(53,130.5)   ,  Vec2.weak(64,122.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(47,130.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(226.5,109)   ,  Vec2.weak(227,105.5)   ,  Vec2.weak(172,112.5)   ,  Vec2.weak(178,117.5)   ,  Vec2.weak(218,116.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(135,111.5)   ,  Vec2.weak(145,114.5)   ,  Vec2.weak(168,114.5)   ,  Vec2.weak(133.5,109)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(188,-0.5)   ,  Vec2.weak(171,8.5)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(236.5,5)   ,  Vec2.weak(234,-0.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(7,138.5)   ,  Vec2.weak(19,133.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(0,138.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(328.5,56)   ,  Vec2.weak(328.5,52)   ,  Vec2.weak(317,68.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(314.5,28)   ,  Vec2.weak(307.5,21)   ,  Vec2.weak(309,74.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(296.5,100)   ,  Vec2.weak(298.5,91)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(288,100.5)   ,  Vec2.weak(295,100.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(298.5,91)   ,  Vec2.weak(303.5,81)   ,  Vec2.weak(272,95.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(156,10.5)   ,  Vec2.weak(147,14.5)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(171,8.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(110,11.5)   ,  Vec2.weak(104,12.5)   ,  Vec2.weak(124,14.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(133.5,109)   ,  Vec2.weak(168,114.5)   ,  Vec2.weak(172,112.5)   ,  Vec2.weak(125,103.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(83,113.5)   ,  Vec2.weak(93,104.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(77,116.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(85,13.5)   ,  Vec2.weak(70,17.5)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(124,14.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(2,23.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(15,27.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(104,12.5)   ,  Vec2.weak(92,13.5)   ,  Vec2.weak(124,14.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(172,112.5)   ,  Vec2.weak(227,105.5)   ,  Vec2.weak(231,102.5)   ,  Vec2.weak(-0.5,24)   ,  Vec2.weak(125,103.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(293,6.5)   ,  Vec2.weak(243,6.5)   ,  Vec2.weak(296,9.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(243,6.5)   ,  Vec2.weak(236.5,5)   ,  Vec2.weak(272,95.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(147,14.5)   ,  Vec2.weak(124,14.5)   ,  Vec2.weak(272,95.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(111,103.5)   ,  Vec2.weak(125,103.5)   ,  Vec2.weak(-0.5,24)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
+				
+				s = new Polygon(
+					[   Vec2.weak(44,18.5)   ,  Vec2.weak(15,27.5)   ,  Vec2.weak(267,95.5)   ,  Vec2.weak(272,95.5)   ,  Vec2.weak(70,17.5)   ,  Vec2.weak(54,17.5)   ],
+					mat,
+					filt
+				);
+				s.body = body;
+				s.fluidEnabled = false;
+				s.fluidProperties = prop;
+				s.cbTypes.add(cbType);
 					
 				
 			

@@ -89,8 +89,7 @@ package ir.baazino.mytank.game.element
 			addChild(shootShape);
 			this.addEventListener(TouchEvent.TOUCH, touchHandler);
 		}
-		
-		
+
 		protected function touchHandler(e:TouchEvent):void
 		{
 			var touches:Vector.<Touch> = e.getTouches(stage);
@@ -137,7 +136,7 @@ package ir.baazino.mytank.game.element
 					}
 				}
 
-				if(touch.target.name == shootShape.name && touch.phase == TouchPhase.ENDED)
+				if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
 					actor.shoot = true;	
 			}
 			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);

@@ -118,14 +118,15 @@ package ir.baazino.mytank.game.map
 				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
 				var image:Image = new Image(Texture.fromBitmap(loadedBitmap));
 
+				image.alignPivot();
 				image.scaleX = Starter.scale;
 				image.scaleY = Starter.scale;
 				image.x = x;
 				image.y = y;
-				image.alignPivot();
 				
 				bodies[name] = PhysicsData.createBody(name);
 				bodies[name].type = BodyType.STATIC;
+				bodies[name].align();
 				
 				bodies[name].userData.graphic = image;
 				bodies[name].scaleShapes(Starter.scale, Starter.scale);
