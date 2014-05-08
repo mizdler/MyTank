@@ -1,5 +1,8 @@
 package ir.baazino.mytank.screen
 {
+	import com.freshplanet.ane.AirImagePicker.AirImagePicker;
+	import com.greensock.loading.ImageLoader;
+	
 	import feathers.controls.Button;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
@@ -9,15 +12,22 @@ package ir.baazino.mytank.screen
 	import feathers.layout.HorizontalLayout;
 	import feathers.layout.VerticalLayout;
 	
-	import ir.baazino.mytank.helper.ANE;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Loader;
+	import flash.geom.Matrix;
+	import flash.utils.ByteArray;
+	
+	import flashx.textLayout.factory.TruncationOptions;
+	
+	import ir.baazino.mytank.helper.ImageHelper;
 	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.Storage;
-	import ir.baazino.mytank.theme.MetalWorksMobileTheme;
 	
-	import spark.containers.NavigatorGroup;
-	
+	import starling.display.Image;
 	import starling.events.Event;
+	import starling.textures.Texture;
 	
 	public class SettingsScreen extends Screen
 	{
@@ -27,13 +37,15 @@ package ir.baazino.mytank.screen
 		
 		private var playerGroup:LayoutGroup;
 		private var playerLayout:HorizontalLayout;
+		private var lblPlayerName:Label;
+		private var txtPlayerName:TextInput;
+		private var btnAvatar:Button;
+		
+		private var imgAvatar:Image;
+		private var byteAvatar:ByteArray;
 		
 		private var wifiGroup:LayoutGroup;
 		private var wifiLayout:HorizontalLayout;
-		
-		private var lblPlayerName:Label;
-		private var txtPlayerName:TextInput;
-		
 		private var lblWifiPassword:Label;
 		private var txtWifiPassword:TextInput;
 		
@@ -64,6 +76,15 @@ package ir.baazino.mytank.screen
 			txtPlayerName = new TextInput();
 			txtPlayerName.text = Storage.loadPlayerName();
 			playerGroup.addChild(txtPlayerName);
+			
+			setAvatar(Storage.loadAvatar());
+			if(imgAvatar)
+				playerGroup.addChild(imgAvatar);
+				
+			btnAvatar = new Button();
+			btnAvatar.label = "Choose Image";
+			btnAvatar.addEventListener(Event.TRIGGERED, btnAvatarClickHandler);
+			playerGroup.addChild(btnAvatar);
 			
 			playerLayout = new HorizontalLayout();
 			playerGroup.layout = playerLayout;
@@ -111,6 +132,37 @@ package ir.baazino.mytank.screen
 			btnSave.y = stage.stageHeight - (btnSave.height + stage.stageHeight/100);
 		}
 		
+		private function btnAvatarClickHandler():void
+		{
+			if (AirImagePicker.getInstance().isCameraAvailable())
+			{
+				AirImagePicker.getInstance().displayCamera(function(status:String, ...mediaArgs):void {
+					if(status == AirImagePicker.STATUS_OK){
+						byteAvatar = (ByteArray)(mediaArgs[1]);
+						setAvatar(byteAvatar);
+					}
+				});
+			}			
+		}
+		public function setAvatar(byteArray:ByteArray):void
+		{
+			if(!byteArray)
+				return;
+			var imageLoader:Loader = new Loader();
+			var ldr:ImageLoader;
+			imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,function (event:Object):void
+			{
+				var ldr:Loader = event.currentTarget.loader as Loader;
+				var newAvatar:Image = ImageHelper.loaderToAvatar(ldr, stage);
+				
+				if(imgAvatar)
+					playerGroup.removeChild(imgAvatar, true);
+				imgAvatar = newAvatar;
+				playerGroup.addChild(imgAvatar);
+			});
+			imageLoader.loadBytes(byteArray);
+		}
+		
 		private function btnBackClickHandler():void
 		{
 			owner.showScreen(SCREEN.MAIN_MENU);
@@ -138,6 +190,7 @@ package ir.baazino.mytank.screen
 			else
 			{
 				Storage.savePlayerName(txtPlayerName.text);
+				Storage.saveAvatar(byteAvatar);
 				Storage.saveWifiPassword(txtWifiPassword.text);
 				owner.showScreen(SCREEN.MAIN_MENU);
 			}

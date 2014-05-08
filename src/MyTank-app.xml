@@ -260,6 +260,9 @@
 			    <uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR" />
 				<application android:enabled="true" android:versionCode="1" android:versionName="1.0">
 				<activity android:name="ir.baazino.bazaarpurchase.PurchaseActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+				<activity
+    			android:name="com.freshplanet.ane.AirImagePicker.AirImagePickerActivity"
+    			android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|fontScale"/>
 				</application>
 			</manifest>
 			
@@ -281,5 +284,6 @@
         <extensionID>ir.baazino.notification.id</extensionID>
 	    <extensionID>ir.baazino.wifi.id</extensionID>
     <extensionID>ir.baazino.purchase.id</extensionID>
+    <extensionID>com.freshplanet.AirImagePicker</extensionID>
     </extensions>
 </application>

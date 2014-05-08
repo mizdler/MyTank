@@ -57,7 +57,7 @@ package ir.baazino.mytank.connection
 		private static var client:TCPClient;
 		private static var udp:UDPConnection;
 		
-		private static var mConnection:MTNConnection;
+		public static var mConnection:MTNConnection;
 		private static var isRTMFP:Boolean;
 		private static var attempts:Number;
 		public static var dispatcher:EventDispatcher = new EventDispatcher();

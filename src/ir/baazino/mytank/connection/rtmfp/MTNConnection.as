@@ -1,10 +1,13 @@
 package ir.baazino.mytank.connection.rtmfp
 {
+	import flash.events.Event;
 	import flash.events.NetStatusEvent;
+	import flash.events.StatusEvent;
 	import flash.net.GroupSpecifier;
 	import flash.net.NetConnection;
 	import flash.net.NetGroupSendMode;
 	import flash.net.sendToURL;
+	import flash.utils.ByteArray;
 	
 	import ir.baazino.mytank.connection.ConnectionConfig;
 	import ir.baazino.mytank.helper.ANE;
@@ -90,17 +93,25 @@ package ir.baazino.mytank.connection.rtmfp
 					var me:Actor = new Actor();
 					Match.myId = mGroup.convertPeerIDToGroupAddress(nearID);
 					me.playerName = Storage.loadPlayerName();
+					me.avatar = Storage.loadAvatar();
 					Match.playerMap[Match.myId] = me;
 					
 					var item:Object = new Object();
 					item.id = Match.myId;
 					item.playerName = me.playerName;
-					Match.noneCollection.addItem(item);
+					item.byteAvatar = me.avatar;
+					Match.noneCollection.push(item);
+					dispatchEvent(new StatusEvent("UPDATE", false, false, "avatars"));
 					
-					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName);
+					var r1:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + me.avatar.readUTF());
+					if(!r1)
+						trace("POST ERROR");
 					break;
 				case "NetGroup.Neighbor.Connect":
-					mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + (Match.playerMap[Match.myId] as Actor).playerName);
+					me = Match.playerMap[Match.myId];
+					var r2:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + me.avatar.readUTF());
+					if(!r2)
+						trace("POST ERROR");
 					break;
 				case "NetGroup.Posting.Notify":
 					receiveNeighbor(event.info.message);
@@ -139,12 +150,16 @@ package ir.baazino.mytank.connection.rtmfp
 				case CMD.JOIN:
 					actor = new Actor();
 					actor.playerName = splited[2];
+					var bArray:ByteArray = new ByteArray();
+					bArray.writeUTF(splited[3]);
+					actor.avatar = bArray;
 					Match.playerMap[id] = actor;
 					
 					var item:Object = new Object();
 					item.id = id;
 					item.playerName = actor.playerName;
 					Match.noneCollection.addItem(item);
+					dispatchEvent(new StatusEvent("UPDATE", false, false, "avatars"))
 					break;
 				
 				case CMD.START:

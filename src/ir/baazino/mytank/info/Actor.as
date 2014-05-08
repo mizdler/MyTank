@@ -1,5 +1,7 @@
 package ir.baazino.mytank.info
 {
+	import flash.utils.ByteArray;
+
 	public class Actor
 	{
 		public function Actor()
@@ -12,6 +14,7 @@ package ir.baazino.mytank.info
 			shoot = false;
 		}
 		public var playerName:String;
+		public var avatar:ByteArray;
 		public var x:Number;
 		public var y:Number;
 		public var rotation:Number;
