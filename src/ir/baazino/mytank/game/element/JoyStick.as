@@ -9,7 +9,7 @@ package ir.baazino.mytank.game.element
 	import ir.baazino.mytank.info.Match;
 	
 	import nape.phys.Body;
-	
+
 	import starling.display.Image;
 	import starling.display.Shape;
 	import starling.events.Touch;
@@ -32,6 +32,10 @@ package ir.baazino.mytank.game.element
 		private var actual:Object;
 		
 		private var shootShape:Shape;
+		private var shootW:Number;
+		private var shootH:Number;
+		private var shootX:Number;
+		private var shootY:Number;
 		
 		private const radius:Number = 30;
 		private const minRadius:Number = 25;
@@ -72,15 +76,15 @@ package ir.baazino.mytank.game.element
 			surroundShape.y = center.y;
 			surroundShape.scaleX = surroundShape.scaleY = Starter.scale;
 			surroundShape.alpha = 0.5;
-			
-			var w:Number = Starter.mHeight/3;
-			var upOf:Number = Starter.marginTop + 2*Starter.mHeight/3;
-			var lfOf:Number = Starter.marginLeft;
+
+			shootW = shootH = 1.4*Starter.mHeight/3;
+			shootY = Starter.marginTop + 2*Starter.mHeight/3;
+			shootX = Starter.marginLeft;
 			
 			shootShape = new Shape();
 			shootShape.graphics.beginFill(0x000000, 1);
 			shootShape.graphics.lineStyle(4, 0x000000, 1);
-			shootShape.graphics.drawRect(lfOf, upOf, w*1.4, w*1.4);
+			shootShape.graphics.drawRect(shootX, shootY, shootW, shootW);
 			shootShape.alpha = 0;
 			
 			addChild(surroundShape);
@@ -136,8 +140,10 @@ package ir.baazino.mytank.game.element
 					}
 				}
 
-				if(touch.target == shootShape && touch.phase == TouchPhase.ENDED)
-					actor.shoot = true;	
+				if( touch.globalY > shootY && touch.globalY < shootY + shootH &&
+					touch.globalX > shootX && touch.globalX < shootX + shootW &&
+					touch.phase == TouchPhase.ENDED)
+					actor.shoot = true;
 			}
 			ConnectionManager.sendMsg(CMD.UPDATE + "#" + Match.myId + "#" + actor.x + "#" + actor.y + "#" + actor.rotation + "#" + actor.isMoving + "#" + actor.shoot);
 		}
