@@ -27,7 +27,10 @@ package ir.baazino.mytank.helper
 			matrix.scale(scale, scale);
 			scaledBmpd.draw(bmpData, matrix);
 			
-			var texture:Texture = Texture.fromBitmapData(scaledBmpd);
+			var cropedBmpd:BitmapData = new BitmapData(stage.stageHeight/AVATAR_FACTOR, stage.stageHeight/AVATAR_FACTOR);
+			cropedBmpd.draw(scaledBmpd);
+			
+			var texture:Texture = Texture.fromBitmapData(cropedBmpd);
 			return new Image(texture);
 		}
 	}

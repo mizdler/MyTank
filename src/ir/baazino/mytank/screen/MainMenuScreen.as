@@ -1,8 +1,10 @@
 package ir.baazino.mytank.screen
 {
+	import feathers.controls.Alert;
 	import feathers.controls.Button;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
+	import feathers.data.ListCollection;
 	import feathers.layout.VerticalLayout;
 	
 	import flash.events.EventDispatcher;
@@ -23,8 +25,6 @@ package ir.baazino.mytank.screen
 		private var btnMulti:Button;
 		private var btnSettings:Button;
 		private var btnUpgrade:Button;
-		
-		private static var notif:Notifier;
 		
 		public function MainMenuScreen()
 		{
@@ -79,12 +79,10 @@ package ir.baazino.mytank.screen
 
 		protected function onPurchaseStatus(event:StatusEvent):void
 		{
-			if(notif)
-				notif.dispose();
-			notif = new Notifier(event.code, Notifier.OK, "Alert");
-			notif.width = stage.stageWidth/2;
-			addChild(notif);
-			notif.show();
+			var alert:Alert = Alert.show(event.code, "Alert", new ListCollection(
+				[
+					{ label: "OK"},
+				]) );
 		}
 		
 		private function btnSettingsClickHandler():void

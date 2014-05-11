@@ -3,12 +3,14 @@ package ir.baazino.mytank.screen
 	import com.freshplanet.ane.AirImagePicker.AirImagePicker;
 	import com.greensock.loading.ImageLoader;
 	
+	import feathers.controls.Alert;
 	import feathers.controls.Button;
 	import feathers.controls.Header;
 	import feathers.controls.Label;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
 	import feathers.controls.TextInput;
+	import feathers.data.ListCollection;
 	import feathers.layout.HorizontalLayout;
 	import feathers.layout.VerticalLayout;
 	
@@ -132,18 +134,6 @@ package ir.baazino.mytank.screen
 			btnSave.y = stage.stageHeight - (btnSave.height + stage.stageHeight/100);
 		}
 		
-		private function btnAvatarClickHandler():void
-		{
-			if (AirImagePicker.getInstance().isCameraAvailable())
-			{
-				AirImagePicker.getInstance().displayCamera(function(status:String, ...mediaArgs):void {
-					if(status == AirImagePicker.STATUS_OK){
-						byteAvatar = (ByteArray)(mediaArgs[1]);
-						setAvatar(byteAvatar);
-					}
-				});
-			}			
-		}
 		public function setAvatar(byteArray:ByteArray):void
 		{
 			if(!byteArray)
@@ -163,6 +153,45 @@ package ir.baazino.mytank.screen
 			imageLoader.loadBytes(byteArray);
 		}
 		
+		private function btnAvatarClickHandler():void
+		{
+			var alert:Alert = Alert.show( "which way to you prefer?", "Alert", new ListCollection(
+				[
+					{ label: "from Gallery", triggered: gelleryHandler },
+					{ label: "take a Picture", triggered: cameraHandler }
+					
+				]) );
+			alert.width = stage.stageWidth/2;
+			alert.buttonGroupProperties.gap = stage.stageWidth/10
+		}
+		
+		private function gelleryHandler():void
+		{
+			if (AirImagePicker.getInstance().isImagePickerAvailable())
+			{
+				AirImagePicker.getInstance().displayImagePicker(function(status:String, ...mediaArgs):void {
+					if(status == AirImagePicker.STATUS_OK){
+						byteAvatar = (ByteArray)(mediaArgs[1]);
+						setAvatar(byteAvatar);
+					}
+				});
+			}
+		}
+		
+		private function cameraHandler():void
+		{
+			if (AirImagePicker.getInstance().isCameraAvailable())
+			{
+				AirImagePicker.getInstance().displayCamera(function(status:String, ...mediaArgs):void {
+					if(status == AirImagePicker.STATUS_OK){
+						byteAvatar = (ByteArray)(mediaArgs[1]);
+						setAvatar(byteAvatar);
+					}
+				});
+			}
+		}
+		
+		
 		private function btnBackClickHandler():void
 		{
 			owner.showScreen(SCREEN.MAIN_MENU);
@@ -170,21 +199,22 @@ package ir.baazino.mytank.screen
 		
 		private function btnSaveClickHandler():void
 		{
-			var alert:Notifier;
+			var alert:Alert;
 			if(txtPlayerName.text.length < 1)
 			{
-				alert = new Notifier("player name must be at least 1 characters.",Notifier.OK,"Alert");
-				alert.width = stage.stageWidth/2;
-				addChild(alert);
-				alert.show();
+				alert = Alert.show("player name must be at least 1 characters.", "Alert", new ListCollection(
+					[
+						{label: "I got it!"}
+						
+					]) );
 				txtPlayerName.text = Storage.loadPlayerName()();
 			}
 			else if(txtWifiPassword.text.length < 8)
 			{
-				alert= new Notifier("WiFi password must be at least 8 characters.",Notifier.OK,"Alert");
-				alert.width = stage.stageWidth/2;
-				addChild(alert);
-				alert.show();
+				alert = Alert.show("WiFi password must be at least 8 characters.", "Alert", new ListCollection(
+					[
+						{label: "I got it!"}
+					]) );
 				txtWifiPassword.text = Storage.loadWifiPassword();
 			}
 			else
