@@ -139,13 +139,13 @@ package ir.baazino.mytank.connection.rtmfp
 					Match.noneCollection.push(item);
 					dispatchEvent(new StatusEvent("UPDATE", false, false, "avatars"));
 					
-					var r1:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + me.avatar.readUTF());
+					var r1:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + "");
 					if(!r1)
 						trace("POST ERROR");
 					break;
 				case "NetGroup.Neighbor.Connect":
 					me = Match.playerMap[Match.myId];
-					var r2:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + me.avatar.readUTF());
+					var r2:String = mGroup.post(CMD.JOIN + "#" + Match.myId + "#" + me.playerName + "#" + "");
 					if(!r2)
 						trace("POST ERROR");
 					break;
@@ -186,10 +186,14 @@ package ir.baazino.mytank.connection.rtmfp
 				case CMD.JOIN:
 					actor = new Actor();
 					actor.playerName = splited[2];
-					var bArray:ByteArray = new ByteArray();
-					bArray.writeUTF(splited[3]);
-					actor.avatar = bArray;
 					Match.playerMap[id] = actor;
+					
+					if(splited[3] != "")
+					{
+						var bArray:ByteArray = new ByteArray();
+						bArray.writeUTF(splited[3]);
+						actor.avatar = bArray;
+					}
 					
 					var item:Object = new Object();
 					item.id = id;
