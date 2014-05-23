@@ -17,7 +17,6 @@ package ir.baazino.mytank.helper
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	
-	//[Event(name="changeTeam", type="Event")]
 	
 	public class DragDropList extends List implements IDropTarget, IDragSource
 	{
@@ -63,7 +62,6 @@ package ir.baazino.mytank.helper
 			{
 				var obj:Object = dragData.getDataForFormat("playerFormat");
 				dataProvider.push(obj);
-				//dispatchEventWith("changeTeam", false, obj);
 			}
 		}
 		

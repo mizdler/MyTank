@@ -115,6 +115,7 @@ package ir.baazino.mytank.screen
 			{
 				var ldr:Loader = event.currentTarget.loader as Loader;
 				item.avatar = ImageHelper.loaderToAvatar(ldr, stage);
+				
 				if(Match.noneCollection.getItemIndex(item)!=-1)
 					Match.noneCollection.updateItemAt(Match.noneCollection.getItemIndex(item));
 			});
@@ -129,8 +130,16 @@ package ir.baazino.mytank.screen
 		
 		private function btnCancelClickHandler():void
 		{
-			ConnectionManager.closeRTMFP();
-			owner.showScreen(SCREEN.MULTI_PLAYER);
+			if(!ConnectionManager.mConnection.isLocal)
+			{
+				ConnectionManager.closeRTMFP();
+				owner.showScreen(SCREEN.MAIN_MENU);
+			}
+			else
+			{
+				ConnectionManager.mConnection.exitRoom();
+				owner.showScreen(SCREEN.LOBBY);
+			}
 		}
 	}
 }

@@ -13,6 +13,7 @@ package ir.baazino.mytank.screen
 	import ir.baazino.mytank.helper.ANE;
 	import ir.baazino.mytank.helper.Notifier;
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.info.Lobby;
 	
 	import starling.events.Event;
 	
@@ -23,6 +24,7 @@ package ir.baazino.mytank.screen
 		
 		private var btnSingle:Button;
 		private var btnMulti:Button;
+		private var btnOnline:Button;
 		private var btnSettings:Button;
 		private var btnUpgrade:Button;
 		
@@ -49,6 +51,11 @@ package ir.baazino.mytank.screen
 			btnSingle.addEventListener(Event.TRIGGERED, btnSingleClickHandler);
 			group.addChild(btnSingle);
 			
+			btnOnline = new Button();
+			btnOnline.label = "Play Online";
+			btnOnline.addEventListener(Event.TRIGGERED, btnOnlineClickHandler);
+			group.addChild(btnOnline);
+			
 			btnMulti = new Button();
 			btnMulti.label = "MultiPlayer";
 			btnMulti.addEventListener(Event.TRIGGERED, btnMultiClickHandler);
@@ -72,10 +79,6 @@ package ir.baazino.mytank.screen
 			btnUpgrade.x = stage.stageWidth - (btnUpgrade.width + stage.stageWidth / 20);
 		}
 		
-		private function btnUpgradeClickHandler():void
-		{
-			ANE.purchase.init();
-		}
 
 		protected function onPurchaseStatus(event:StatusEvent):void
 		{
@@ -85,9 +88,20 @@ package ir.baazino.mytank.screen
 				]) );
 		}
 		
-		private function btnSettingsClickHandler():void
+		private function btnUpgradeClickHandler():void
 		{
-			owner.showScreen(SCREEN.SETTINGS);
+			ANE.purchase.init();
+		}
+
+		private function btnOnlineClickHandler():void
+		{
+			Lobby.init();
+			owner.showScreen(SCREEN.LOBBY);
+		}
+		
+		private function btnSingleClickHandler():void
+		{
+			owner.showScreen(SCREEN.SINGLE_PLAYER);
 		}
 		
 		private function btnMultiClickHandler():void
@@ -95,10 +109,11 @@ package ir.baazino.mytank.screen
 			owner.showScreen(SCREEN.MULTI_PLAYER);
 		}
 		
-		private function btnSingleClickHandler():void
+		private function btnSettingsClickHandler():void
 		{
-			owner.showScreen(SCREEN.SINGLE_PLAYER);
+			owner.showScreen(SCREEN.SETTINGS);
 		}
+		
 		private function btnBackClickHandler():void
 		{
 			MyTank.exitGame();

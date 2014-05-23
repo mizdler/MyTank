@@ -147,6 +147,12 @@ package ir.baazino.mytank.connection
 			mConnection = new MTNConnection(true);
 			mConnection.connectNet();
 		}
+		public static function connectOnline():void
+		{
+			isRTMFP = true;
+			mConnection = new MTNConnection(false);
+			mConnection.connectNet();
+		}
 		
 		public static function onTCPReceive(event:ProgressEvent):void 
 		{
@@ -220,7 +226,7 @@ package ir.baazino.mytank.connection
 		public static function closeRTMFP():void
 		{
 			if(mConnection)
-				mConnection.closeRTMFP();
+				mConnection.close();
 		}
 		
 	}

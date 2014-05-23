@@ -6,6 +6,7 @@ package ir.baazino.mytank.connection.rtmfp
 	import flash.net.GroupSpecifier;
 	import flash.net.NetConnection;
 	import flash.net.NetGroupSendMode;
+	import flash.net.Responder;
 	import flash.net.sendToURL;
 	import flash.utils.ByteArray;
 	
@@ -15,12 +16,14 @@ package ir.baazino.mytank.connection.rtmfp
 	import ir.baazino.mytank.helper.SCREEN;
 	import ir.baazino.mytank.helper.Storage;
 	import ir.baazino.mytank.info.Actor;
+	import ir.baazino.mytank.info.Lobby;
 	import ir.baazino.mytank.info.Match;
 
 	public class MTNConnection extends NetConnection
 	{
+		public var isLocal:Boolean;
+		
 		private var groupSpecifier:GroupSpecifier;
-		private var isLocal:Boolean;
 		private var mGroup:MTNGroup;
 		private var serverAddr:String;
 		
@@ -39,27 +42,55 @@ package ir.baazino.mytank.connection.rtmfp
 		{
 			connect(serverAddr);
 		}
+		public function exitRoom():void
+		{
+			mGroup.close();
+		}
 		
 		// push functions
 		
-		public function pushPlayersNumber(msg:String):void{
-			
-		}
-			
-		public function pushAddRoomList(msg:String):void{
-
+		public function pushPlayersNumber(msg:String):void
+		{
+			Lobby.playersNumber = Number(msg);
 		}
 		
-		public function pushDeleteRoomList(msg:String):void{
-
+		public function pushAddRoomList(msg:String):void
+		{
+			var words:Array = new Array();
+			words = msg.split("$#_^");
+			var room:Object = new Object();
+			room.roomId = Number(words[0]);
+			room.roomName =  words[1];
+			room.maxPlayers = words[2] + '/' + words[3];
+			room.pass = words[4];
+			Lobby.roomCollection.addItem(room);
 		}
 		
-		public function pushJoinRoomList(msg:String):void{
-
+		public function pushDeleteRoomList(msg:String):void
+		{
+			for (var i:Number=0; i<Lobby.roomCollection.length; i++)
+				if(Lobby.roomCollection.getItemAt(i).roomId == msg)
+					Lobby.roomCollection.removeItemAt(i);
 		}
 		
-		public function pushExitRoomList(msg:String):void{
-
+		public function pushJoinRoomList(msg:String):void
+		{
+			for (var i:Number=0; i<Lobby.roomCollection.length; i++)
+				if(Lobby.roomCollection.getItemAt(i).roomId == msg)
+				{
+					var room:Object = Lobby.roomCollection.getItemAt(i)
+					room.maxPlayers = (Number(room.maxPlayers.split("/")[0]) - 1).toString() + '/' + room.maxPlayers.split("/")[1];
+				}
+		}
+		
+		public function pushExitRoomList(msg:String):void
+		{
+			for (var i:Number=0; i<Lobby.roomCollection.length; i++)
+				if(Lobby.roomCollection.getItemAt(i).roomId == msg)
+				{
+					var room:Object = Lobby.roomCollection.getItemAt(i)
+					room.maxPlayers = (Number(room.maxPlayers.split("/")[0]) + 1).toString() + '/' + room.maxPlayers.split("/")[1];
+				}
 		}
 		
 		// end of push functions
@@ -87,11 +118,16 @@ package ir.baazino.mytank.connection.rtmfp
 			switch(code)
 			{
 				case "NetConnection.Connect.Success":
-					joinGroup(ConnectionConfig.GROUP_NAME);
+					if(isLocal)
+						joinGroup(ConnectionConfig.GROUP_NAME);
+					else
+						dispatchEvent(new StatusEvent("CONNECTION", false, false, "success"));
+					
 					break;
 				case "NetGroup.Connect.Success":
 					var me:Actor = new Actor();
-					Match.myId = mGroup.convertPeerIDToGroupAddress(nearID);
+					if(isLocal)
+						Match.myId = mGroup.convertPeerIDToGroupAddress(nearID);
 					me.playerName = Storage.loadPlayerName();
 					me.avatar = Storage.loadAvatar();
 					Match.playerMap[Match.myId] = me;
@@ -170,13 +206,6 @@ package ir.baazino.mytank.connection.rtmfp
 		public function sendMsg(msg:String):void
 		{
 			mGroup.sendToAllNeighbors(msg);
-		}
-		
-		public function closeRTMFP():void
-		{
-			if(mGroup)
-				mGroup.close();
-			this.close();
 		}
 		
 	}

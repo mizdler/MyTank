@@ -9,6 +9,7 @@ package
 	import flash.display.Bitmap;
 	
 	import ir.baazino.mytank.helper.SCREEN;
+	import ir.baazino.mytank.screen.CreateRoomScreen;
 	import ir.baazino.mytank.screen.GameScreen;
 	import ir.baazino.mytank.screen.LobbyScreen;
 	import ir.baazino.mytank.screen.MainMenuScreen;
@@ -62,6 +63,7 @@ package
 			navigator.addScreen(SCREEN.WAITING, new ScreenNavigatorItem(WaitingScreen));
 			navigator.addScreen(SCREEN.ROOM, new ScreenNavigatorItem(RoomScreen));
 			navigator.addScreen(SCREEN.LOBBY, new ScreenNavigatorItem(LobbyScreen));
+			navigator.addScreen(SCREEN.CREATE_ROOM, new ScreenNavigatorItem(CreateRoomScreen));
 			
 			navigator.showScreen(SCREEN.MAIN_MENU);
 			
