@@ -5,6 +5,7 @@ package ir.baazino.mytank.screen
 	import feathers.controls.Panel;
 	import feathers.controls.Screen;
 	import feathers.controls.TextInput;
+	import feathers.layout.TiledRowsLayout;
 	
 	import flash.net.Responder;
 	
@@ -16,7 +17,6 @@ package ir.baazino.mytank.screen
 	import mx.states.AddChild;
 	
 	import starling.events.Event;
-	import feathers.layout.TiledRowsLayout;
 	
 	public class CreateRoomScreen extends Screen
 	{
@@ -94,6 +94,7 @@ package ir.baazino.mytank.screen
 		private function btnCreateClickHandler():void
 		{
 			ConnectionManager.mConnection.call(SERVER_FUNCTION.ADD_ROOM, new Responder(addRoomHandler), txtRoomName.text, Match.myId, txtPassword.text, txtMaxPlayer.text);
+			ConnectionManager.isServer = true;
 			Match.init(Match.multi);
 			owner.showScreen(SCREEN.ROOM);
 		}

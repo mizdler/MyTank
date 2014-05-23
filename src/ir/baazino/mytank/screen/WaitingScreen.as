@@ -53,17 +53,17 @@ package ir.baazino.mytank.screen
 			textLog.y = 0;
 			textLog.x = 0;
 			
-			if(isServer)
-			{
-				btnStart = new Button();
-				btnStart.label = "Start Game!";
-				btnStart.name = Button.ALTERNATE_NAME_FORWARD_BUTTON;
-				btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
-				this.addChild(btnStart);
-				btnStart.validate();
-				btnStart.x = stage.stageWidth - (btnStart.width + stage.stageWidth/100);
-				btnStart.y = stage.stageHeight - (btnStart.height + stage.stageHeight/100);
-			}
+			btnStart = new Button();
+			btnStart.label = "Start Game!";
+			btnStart.name = Button.ALTERNATE_NAME_FORWARD_BUTTON;
+			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
+			
+			if(!isServer)
+				btnStart.alpha = 0.3;
+			this.addChild(btnStart);
+			btnStart.validate();
+			btnStart.x = stage.stageWidth - (btnStart.width + stage.stageWidth/100);
+			btnStart.y = stage.stageHeight - (btnStart.height + stage.stageHeight/100);
 			
 			btnCancel = new Button();
 			btnCancel.name = Button.ALTERNATE_NAME_BACK_BUTTON;
@@ -82,8 +82,18 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
-			owner.showScreen(SCREEN.GAME);
+			if(isServer)
+			{
+				ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
+				owner.showScreen(SCREEN.GAME);
+			}
+			else
+			{
+				var alert:Alert = Alert.show("your friend should start game!", "Alert", new ListCollection(
+					[
+						{label: "OK"}
+					]) );			
+			}
 		}
 	}
 }

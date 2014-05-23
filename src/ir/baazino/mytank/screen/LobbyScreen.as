@@ -164,6 +164,7 @@ package ir.baazino.mytank.screen
 			else{
 				ConnectionManager.mConnection.joinGroup(roomList.selectedItem.roomId);
 				var hostId:Number = Number(msg);
+				ConnectionManager.isServer = false;
 				Match.init(Match.multi);
 				owner.showScreen(SCREEN.ROOM);
 			}

@@ -83,6 +83,7 @@ package ir.baazino.mytank.screen
 		private function btLanClickHandler():void
 		{
 			Match.init(Match.multi);
+			ConnectionManager.isServer = true;
 			ConnectionManager.connectLocal();
 			owner.showScreen(SCREEN.ROOM);			
 		}

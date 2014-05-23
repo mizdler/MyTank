@@ -1,8 +1,12 @@
 package ir.baazino.mytank.screen
 {
+	import feathers.controls.Alert;
 	import feathers.controls.Button;
 	import feathers.controls.LayoutGroup;
 	import feathers.controls.Screen;
+	import feathers.data.ListCollection;
+	import feathers.dragDrop.DragData;
+	import feathers.events.DragDropEvent;
 	import feathers.layout.HorizontalLayout;
 	
 	import flash.display.Loader;
@@ -65,6 +69,7 @@ package ir.baazino.mytank.screen
 			redList.dataProvider = Match.redCollection;
 			redList.itemRendererProperties.labelField = "playerName";
 			redList.itemRendererProperties.iconSourceField = "avatar";
+			redList.addEventListener(DragDropEvent.DRAG_DROP, dropRedEventHandler);
 			teamGroup.addChild(redList);
 			
 			noneList = new DragDropList();
@@ -73,6 +78,7 @@ package ir.baazino.mytank.screen
 			noneList.dataProvider = Match.noneCollection;
 			noneList.itemRendererProperties.labelField = "playerName";
 			noneList.itemRendererProperties.iconSourceField = "avatar";
+			noneList.addEventListener(DragDropEvent.DRAG_DROP, dropNoneEventHandler);
 			teamGroup.addChild(noneList);
 			
 			blueList = new DragDropList();
@@ -81,6 +87,7 @@ package ir.baazino.mytank.screen
 			blueList.dataProvider = Match.blueCollection;
 			blueList.itemRendererProperties.labelField = "playerName";
 			blueList.itemRendererProperties.iconSourceField = "avatar";
+			blueList.addEventListener(DragDropEvent.DRAG_DROP, dropBlueEventHandler);
 			teamGroup.addChild(blueList);
 			
 			teamGroup.validate();
@@ -91,6 +98,8 @@ package ir.baazino.mytank.screen
 			btnStart.label = "Start Game!";
 			btnStart.name = Button.ALTERNATE_NAME_FORWARD_BUTTON;
 			btnStart.addEventListener(Event.TRIGGERED, btnStartClickHandler);
+			if(!ConnectionManager.isServer)
+				btnStart.alpha = 0.3;
 			this.addChild(btnStart);
 			btnStart.validate();
 			btnStart.x = stage.stageWidth - (btnStart.width + stage.stageWidth/100);
@@ -104,6 +113,21 @@ package ir.baazino.mytank.screen
 			btnBack.validate();
 			btnBack.x = stage.stageWidth / 100;
 			btnBack.y = stage.stageHeight - (btnBack.height + stage.stageHeight/100);
+		}
+		
+		private function dropBlueEventHandler(event:DragDropEvent, dragData:DragData):void
+		{
+			
+		}
+		
+		private function dropNoneEventHandler(event:DragDropEvent, dragData:DragData):void
+		{
+			
+		}
+		
+		private function dropRedEventHandler(event:DragDropEvent, dragData:DragData):void
+		{
+			
 		}
 		
 		public function setAvatar(item:Object):void
@@ -124,8 +148,18 @@ package ir.baazino.mytank.screen
 		
 		private function btnStartClickHandler():void
 		{
-			ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
-			owner.showScreen(SCREEN.GAME);
+			if(ConnectionManager.isServer)
+			{
+				ConnectionManager.sendMsg(CMD.START + "#" + Match.myId);
+				owner.showScreen(SCREEN.GAME);
+			}
+			else
+			{
+				var alert:Alert = Alert.show("your friend should start game!", "Alert", new ListCollection(
+					[
+						{label: "OK"}
+					]) );			
+			}
 		}
 		
 		private function btnCancelClickHandler():void
