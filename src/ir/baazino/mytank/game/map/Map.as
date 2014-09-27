@@ -21,8 +21,6 @@ package ir.baazino.mytank.game.map
 	public class Map extends Sprite
 	{
 		private var map:String;
-		private var p1:Player;
-		private var p2:Player;
 		
 		public var bodies:Dictionary = new Dictionary();
 		
@@ -30,12 +28,6 @@ package ir.baazino.mytank.game.map
 		private var data:Object;
 		private var len:int = 0;
 		
-		public function Map(player1:Player, player2:Player)
-		{
-			p1 = player1;
-			p2 = player2;
-		}
-
 		public function load(name:String):void
 		{
 			map = name;

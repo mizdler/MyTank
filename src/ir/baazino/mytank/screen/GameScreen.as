@@ -73,7 +73,7 @@ package ir.baazino.mytank.screen
 		
 		private function loadMap():void
 		{
-			map = new Map(players[0], players[0]);
+			map = new Map();
 			map.load('war');	
 			addChild(map);
 		}
@@ -91,6 +91,10 @@ package ir.baazino.mytank.screen
 		
 		private function btnEndClickHandler():void
 		{
+			space.clear();
+			controller.dispose();
+			map.dispose();
+			dispose();
 			owner.showScreen(SCREEN.MAIN_MENU);
 		}
 		
